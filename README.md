@@ -1,37 +1,34 @@
-proyectoDVI
-Posibles nombres
-El despertar de los dioses
-El legado del Nilo
-Ambientación
-Un excursionista en Egipto se queda encerrado en una piramide
+# proyectoDVI
+<H3>Posibles nombres</H3>
+<li> El despertar de los dioses</li>
+<li>El legado del Nilo</li>
+<h3>Ambientación</h3>
+<p>Un excursionista en Egipto se queda encerrado en una piramide</p>
+<h3>Personajes</h3>
+<p>Los jugadores van a ponerse en la piel de un intrempido excursionista</p>
+<p>El personaje va a tener 3 vidas. Cada vez que este muera volvera al punto de inicio, pero este todo aquello que haya desbloqueado permanecera desbloqueado.
+El personaje tiene un mochila con una capacidad de 3 para objetos que recoleccione. 
+Y otra ranura donde incorporara los medallones siendo su capacidad maxima 2.
+</p>
+<h3>Objetivo</h3>
+<p>Salir de la piramide</p>
+<h3>Escenario</h3>
+<p>El interior de una piramide. Habra distintas salas donde el excursionista tendrá que buscar piezas y enfrentarse a distintos jefes que le permitan ir desbloqueando los niveles sucesivamente nuev</p>
+<h3>Enemigos</h3>
+<p>Los enemigos son más dificiles de superar de forma progresiva</p>
+<li>Momia</li>
+<li>Serpientes</li>
 
-Personajes
-Los jugadores van a ponerse en la piel de un intrempido excursionista
+<p>El personaje ira con una antorcha y a medida que pase por los pasadizos se iran encendiendo las luces de forma que se pueda observar cual ha sido el recorrido.
+Cada vez que un jefe es derrotado por el excursionista obtiene un medallon que le da poder, salvo en el ultimo nivel que le dara un llave que le permitira salir.
+</p>
+<h3>Inspiracion</h3>
+<p>https://www.youtube.com/watch?v=Uc0tHRkB-Po</p>
+<h3>Posibles niveles</h3>
+<p>Nivel 1: se enfrenta a Horus, en caso de vencerle obtiene el medallon de la protección.</p>
+<p>Nivel 2: se enfrenta a Ra, en caso de vencerle obtiene el medallon de la energia del sol</p>
+<p>Nivel 3: nivel final, para salir de la piramide hay que superar al dios Osiris (dios de la vida y de la muerte)</p>
 
-El personaje va a tener 3 vidas. Cada vez que este muera volvera al punto de inicio, pero este todo aquello que haya desbloqueado permanecera desbloqueado. El personaje tiene un mochila con una capacidad de 3 para objetos que recoleccione. Y otra ranura donde incorporara los medallones siendo su capacidad maxima 2.
-
-Objetivo
-Salir de la piramide
-
-Escenario
-El interior de una piramide. Habra distintas salas donde el excursionista tendrá que buscar piezas y enfrentarse a distintos jefes que le permitan ir desbloqueando los niveles sucesivamente nuev
-
-Enemigos
-Los enemigos son más dificiles de superar de forma progresiva
-
-Momia
-Serpientes
-El personaje ira con una antorcha y a medida que pase por los pasadizos se iran encendiendo las luces de forma que se pueda observar cual ha sido el recorrido. Cada vez que un jefe es derrotado por el excursionista obtiene un medallon que le da poder, salvo en el ultimo nivel que le dara un llave que le permitira salir.
-
-Inspiracion
-https://www.youtube.com/watch?v=Uc0tHRkB-Po
-
-Posibles niveles
-Nivel 1: se enfrenta a Horus, en caso de vencerle obtiene el medallon de la protección.
-
-Nivel 2: se enfrenta a Ra, en caso de vencerle obtiene el medallon de la energia del sol
-
-Nivel 3: nivel final, para salir de la piramide hay que superar al dios Osiris (dios de la vida y de la muerte)
 
 
 # Plantilla para juegos en Phaser
