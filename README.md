@@ -23,12 +23,13 @@ El personaje tiene un mochila con una capacidad de 3 para objetos que recoja en 
 <p>Los niveles sucederán en el interior de una piramide. Cada nivel consinsitirá en un mapa en todas las direcciones con plataformas, trampas y enemigos. El mapa se irá inundando progresivamente con un líquido nocivo de abajo a arriba, haciendo que el jugador tenga un tiempo límite para superar el nivel antes de que le mate. Cada vez que esté en contacto con el líquido le hará un daño por cada segundo y lo ralentizará. Al llegar a la salida del nivel, el líquido dejará de inundar el mapa para poder enfrentarse al jefe.
 Los niveles contarán con cofres de dificil acceso que te proporcionarán objetos que puedes guardar en la mochila y utilizarlos a lo largo de ese nivel.
 Para superar el nivel deberá llegar a la salida y enfrentarse al jefe. Al matar al jefe conseguirá el medallón y un nuevo poder que usará en el siguiente nivel.</p>
+<img src="imagenes\nivel1.jpeg" width="300"/>
 
 <h3>Enemigos</h3>
 <p>Los enemigos son más dificiles de superar de forma progresiva
 Todos los enemigos quitan vida en distintas proporciones y te pueden aportar o no objetos</p>
 <li>Momia: Aportan vendas. Debilidad: fuego (antorcha/poder del sol) y puños</li> <img src="imagenes\momia1.jpeg" width="100"/>
-<li>Serpientes: Aportan antídoto. Paralizan al personaje. Debilidad: flauta para encantarlas</li> <img src="imagenes\serpiente.jpeg" width="100"/>
+<li>Serpientes: Aportan antídoto. Paralizan al personaje. Debilidad: flauta para encantarlas</li> <img src="imagenes\serpiente.png" width="100"/>
 <li> </li>
 
 <h3>Inspiracion</h3>
@@ -38,7 +39,6 @@ Todos los enemigos quitan vida en distintas proporciones y te pueden aportar o n
 <p>Nivel 1: se enfrenta a Horus, en caso de vencerle obtiene el medallon de la protección.</p> <img src="imagenes\arteConceptualHorus.jpeg" width="100"/>
 <p>Nivel 2: se enfrenta a Ra, en caso de vencerle obtiene el medallon de la energia del sol</p>
 <p>Nivel 3: nivel final, para salir de la piramide hay que superar al dios Osiris (dios de la vida y de la muerte)</p>
-<img src="imagenes\nivel1.jpeg" width="100"/>
 
 
 
