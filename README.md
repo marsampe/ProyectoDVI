@@ -30,16 +30,15 @@ Para superar el nivel deberá llegar a la salida y enfrentarse al jefe. Al matar
 Todos los enemigos quitan vida en distintas proporciones y te pueden aportar o no objetos</p>
 <li>Momia: Aportan vendas. Debilidad: fuego (antorcha/poder del sol) y puños</li> <img src="imagenes\momia1.jpeg" width="100"/>
 <li>Serpientes: Aportan antídoto. Paralizan al personaje. Debilidad: flauta para encantarlas</li> <img src="imagenes\serpiente.png" width="100"/>
-<li> </li>
 
 <h3>Inspiracion</h3>
 <p>https://www.youtube.com/watch?v=Uc0tHRkB-Po</p>
 
 <h3>Posibles niveles</h3>
-<p>Nivel 1: se enfrenta a Horus, en caso de vencerle obtiene el medallon de la protección.</p> <img src="imagenes\arteConceptualHorus.jpeg" width="100"/>
+<p>Nivel 1: se enfrenta a Horus, en caso de vencerle obtiene el medallon de la protección.</p>
 <p>Nivel 2: se enfrenta a Ra, en caso de vencerle obtiene el medallon de la energia del sol</p>
 <p>Nivel 3: nivel final, para salir de la piramide hay que superar al dios Osiris (dios de la vida y de la muerte)</p>
-
+ <img src="imagenes\arteConceptualHorus.jpeg" width="300"/>
 
 
 # Plantilla para juegos en Phaser
