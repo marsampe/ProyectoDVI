@@ -1,5 +1,6 @@
 <H3>Posibles nombres jeje</H3>
 <li>El despertar de los dioses</li>
+<img src="imagenes\portada.jpeg" />
 <h3>Ambientación</h3>
 <p>Un estudiante de arqueología le encargan un trabajo de investigación en Egipto. Su trabajo es inspeccionar una nueva sala que se ha descubierto en una de las pirámides de Guiza, pero al pisar una baldosa suelta, cae en una trampa oculta y queda atrapado en las profundidades de la antigua estructura. 
 Al seguir investigando en la nueva sala, descubre un sarcófago que al abrirlo deja escapar los espíritus de los dioses del Antiguo Egipto que protegían los secretos de la pirámide. Tras un temblor, el estudiante se da cuenta que la sala se está empezando a inundar. 
