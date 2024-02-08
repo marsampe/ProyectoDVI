@@ -1,5 +1,4 @@
-<H3>Posibles nombres jeje</H3>
-<li>El despertar de los dioses</li>
+<H3>El despertar de los dioses</H3>
 <img src="imagenes\portada.jpeg" width="480"/>
 <h3>Ambientación</h3>
 <p>Un estudiante de arqueología le encargan un trabajo de investigación en Egipto. Su trabajo es inspeccionar una nueva sala que se ha descubierto en una de las pirámides de Guiza, pero al pisar una baldosa suelta, cae en una trampa oculta y queda atrapado en las profundidades de la antigua estructura. 
