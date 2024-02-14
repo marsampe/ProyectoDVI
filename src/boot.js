@@ -4,7 +4,7 @@ import Phaser from 'phaser'
 import platform from '../assets/sprites/platform.png'
 import base from '../assets/sprites/base.png'
 import star from '../assets/sprites/star.png'
-import player from '../assets/sprites/player.png'
+import player from '../assets/sprites/personaje.png'
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
  * Esta escena se puede mejorar añadiendo una imagen del juego y una 
@@ -31,6 +31,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('star', star);
     this.load.image('player', player);
   }
+  
 
   /**
    * Creación de la escena. En este caso, solo cambiamos a la escena que representa el
