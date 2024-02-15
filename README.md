@@ -8,7 +8,11 @@ Deberá usar sus habilidades para esquivar trampas, vencer enemigos y encontrar 
 <p>Los jugadores van a ponerse en la piel de un estudiante de arqueología de la complutense llamado Laura Cruz
 El personaje va a poder desplazarse por el mapa pudiendo ir hacia la derecha, izquierda, saltar y agacharse en un plano 2D. En el mapa habrá objetos como escaleras o cuerdas para subir y bajar.
 Al principio del nivel el personaje podrá atacar a sus enemigos golpeándolos y según vaya consiguiendo objetos y poderes podrá usarlos contra ellos.
-El personaje tiene un mochila con una capacidad de 3 para objetos que recoja en el nivel y podrá usarlos exclusivamente en ese nivel, cuando termine el nivel el inventario de la mochila se vaciará, pero los poderes se mantendrán.
+</p>
+
+<h3>Mochila</h3>
+<p>
+El personaje tiene un mochila con una capacidad de 3 para objetos que recoja en el nivel y podrá usarlos exclusivamente en ese nivel, cuando termine el nivel el inventario de la mochila se vaciará, pero los poderes se mantendrán. La interfaz de la1 mochila serán 3 ranuras en uno de los laterales de la ventana de juego donde se guardarán los items que vayan recogiendo.
 	<li>Vendas</li> <img src="imagenes\diseñosVendas.jpeg" width="100"/>
 	<li>Arma cuerpo a cuerpo</li> <img src="imagenes\antorcha.jpeg" width="100"/>
 	<li>Desplazamiento rápido</li>
