@@ -18,6 +18,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.score = 0;
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
+        this.setScale(0.5);
         // Queremos que el jugador no se salga de los límites del mundo
         this.body.setCollideWorldBounds();
         this.speed = 300;
@@ -57,12 +58,15 @@ export default class Player extends Phaser.GameObjects.Sprite {
         }
         if (this.cursors.left.isDown) {
             this.body.setVelocityX(-this.speed);
+            this.anims.play('izquierda', true);
         }
         else if (this.cursors.right.isDown) {
             this.body.setVelocityX(this.speed);
+            this.anims.play('derecha', true);
         }
         else {
             this.body.setVelocityX(0);
+            this.anims.play('parado', true);
         }
     }
 
