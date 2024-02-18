@@ -3,7 +3,7 @@ import Phaser from 'phaser'
 
 import platform from '../assets/sprites/platform.png'
 import base from '../assets/sprites/base.png'
-import star from '../assets/sprites/star.png'
+import venda from '../assets/sprites/vendas.png'
 import player from '../assets/sprites/personaje.png'
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
@@ -28,7 +28,7 @@ export default class Boot extends Phaser.Scene {
     this.load.setPath('assets/sprites/');
     this.load.image('platform', platform);
     this.load.image('base', base);
-    this.load.image('star', star);
+    this.load.image('venda', venda);
     this.load.spritesheet('player', player, { frameWidth: 125, frameHeight: 215});
   }
   
