@@ -1,4 +1,4 @@
-import Star from './star.ts';
+import Venda from './venda.ts';
 import Phaser from 'phaser'
 
 /**
@@ -26,7 +26,7 @@ export default class Base extends Phaser.GameObjects.Sprite {
      * Método para que la base instancie una estrella sobre ella
      */
     spawn() {
-        this.scene.add.existing(new Star(this.scene, this, this.x, this.y));
+        this.scene.add.existing(new Venda(this.scene, this, this.x, this.y));
     }
 
 }
