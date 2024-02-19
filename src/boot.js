@@ -29,7 +29,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('platform', platform);
     this.load.image('base', base);
     this.load.image('venda', venda);
-    this.load.spritesheet('player', player, { frameWidth: 125, frameHeight: 215});
+    this.load.spritesheet('player', player, { frameWidth: 127, frameHeight: 215});
   }
   
 
@@ -39,6 +39,14 @@ export default class Boot extends Phaser.Scene {
    */
   create() {
     this.scene.start('level');
+
+    this.anims.create({
+      key: 'saltar',
+      frames: this.anims.generateFrameNumbers('player', { start: 6, end: 6}),
+      frameRate: 0,
+      repeat: -1
+    });
+
     this.anims.create({
     key: 'derecha',
     frames: this.anims.generateFrameNumbers('player', { start: 0, end: 2 }),
@@ -56,7 +64,9 @@ export default class Boot extends Phaser.Scene {
   this.anims.create({
     key: 'parado',
     frames: this.anims.generateFrameNumbers('player', { start: 1, end: 1}),
-    frameRate: 0
+    frameRate: 0,
+    repeat: -1
   });
+  
   }
 }

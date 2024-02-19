@@ -22,7 +22,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         // Queremos que el jugador no se salga de los límites del mundo
         this.body.setCollideWorldBounds();
         this.speed = 300;
-        this.jumpSpeed = -400;
+        this.jumpSpeed = -200;
         // Esta label es la UI en la que pondremos la puntuación del jugador
         this.label = this.scene.add.text(10, 10, "");
         this.cursors = this.scene.input.keyboard.createCursorKeys();
@@ -107,21 +107,28 @@ export default class Player extends Phaser.GameObjects.Sprite {
      */
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
-        if (this.cursors.up.isDown && this.body.onFloor()) {
-            this.body.setVelocityY(this.jumpSpeed);
+        if (this.cursors.up.isDown) {
+            if(this.body.onFloor())
+                this.body.setVelocityY(this.jumpSpeed);
+            this.anims.play('saltar', true);
         }
-        if (this.cursors.left.isDown) {
+        else if (this.cursors.left.isDown) {
             this.body.setVelocityX(-this.speed);
-            this.anims.play('izquierda', true);
+            if(this.body.onFloor())
+                this.anims.play('izquierda', true);
         }
         else if (this.cursors.right.isDown) {
             this.body.setVelocityX(this.speed);
-            this.anims.play('derecha', true);
+            if(this.body.onFloor())
+                this.anims.play('derecha', true);
+           
         }
-        else {
+        if(!this.cursors.right.isDown && !this.cursors.left.isDown && !this.cursors.up.isDown && this.body.onFloor()){
             this.body.setVelocityX(0);
             this.anims.play('parado', true);
         }
+        if(!this.body.onFloor())
+            this.anims.play('saltar', true);
     }
 
 }
