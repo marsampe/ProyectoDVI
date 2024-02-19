@@ -40,7 +40,7 @@ export default class Star extends Phaser.GameObjects.Sprite {
         super.preUpdate(t, d);
         if (this.scene.physics.overlap(this.scene.player as Player, this)) {
             // Delegamos en la escena para decidir qué hacer al 
-            // haber cogido una estrella
+            // haber cogido una venda
             this.scene.starPickt(this.base);
             this.destroy();
         }
