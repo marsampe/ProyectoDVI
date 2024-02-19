@@ -22,12 +22,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
         // Queremos que el jugador no se salga de los límites del mundo
         this.body.setCollideWorldBounds();
         this.speed = 300;
-<<<<<<< Updated upstream
-        this.jumpSpeed = -400;
-=======
         this.jumpSpeed = -200;
         this.ultimaDireccion = 'derecha'
->>>>>>> Stashed changes
         // Esta label es la UI en la que pondremos la puntuación del jugador
         this.label = this.scene.add.text(10, 10, "");
         this.cursors = this.scene.input.keyboard.createCursorKeys();
@@ -112,22 +108,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
      */
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
-<<<<<<< Updated upstream
-        if (this.cursors.up.isDown && this.body.onFloor()) {
-            this.body.setVelocityY(this.jumpSpeed);
-        }
-        if (this.cursors.left.isDown) {
-            this.body.setVelocityX(-this.speed);
-            this.anims.play('izquierda', true);
-        }
-        else if (this.cursors.right.isDown) {
-            this.body.setVelocityX(this.speed);
-            this.anims.play('derecha', true);
-        }
-        else {
-            this.body.setVelocityX(0);
-            this.anims.play('parado', true);
-=======
         if (Phaser.Input.Keyboard.JustDown(this.cursors.up)) {
             if(this.body.onFloor())
                 this.body.setVelocityY(this.jumpSpeed);
@@ -175,7 +155,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
                     this.anims.play('saltarDerecha', true);
                 this.anims.play('saltar', true);
             }
->>>>>>> Stashed changes
         }
     }
 }
