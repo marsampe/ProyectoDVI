@@ -41,6 +41,24 @@ export default class Boot extends Phaser.Scene {
    */
   create() {
     this.scene.start('level');
+<<<<<<< Updated upstream
+=======
+
+    this.anims.create({
+      key: 'saltarDerecha',
+      frames: this.anims.generateFrameNumbers('player', { start: 6, end: 6}),
+      frameRate: 0,
+      repeat: -1
+    });
+
+>>>>>>> Stashed changes
+    this.anims.create({
+      key: 'saltarIzquierda',
+      frames: this.anims.generateFrameNumbers('player', { start: 7, end: 7}),
+      frameRate: 0,
+      repeat: -1
+    });
+
     this.anims.create({
     key: 'derecha',
     frames: this.anims.generateFrameNumbers('player', { start: 0, end: 2 }),
@@ -56,9 +74,20 @@ export default class Boot extends Phaser.Scene {
   });
 
   this.anims.create({
-    key: 'parado',
+    key: 'paradoDerecha',
     frames: this.anims.generateFrameNumbers('player', { start: 1, end: 1}),
     frameRate: 0
   });
+<<<<<<< Updated upstream
+=======
+
+  this.anims.create({
+    key: 'paradoIzquierda',
+    frames: this.anims.generateFrameNumbers('player', { start: 4, end: 4}),
+    frameRate: 0,
+    repeat: -1
+  });
+  
+>>>>>>> Stashed changes
   }
 }
