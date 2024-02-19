@@ -1,4 +1,4 @@
-import Star from './star.ts';
+import venda from './venda.ts';
 import Phaser from 'phaser'
 
 /**

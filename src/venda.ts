@@ -9,7 +9,7 @@ import Level from './level.js'
  * una nueva estrella en otra posición, si el juego no ha terminado.
  * @extends Phaser.GameObjects.Sprite
  */
-export default class Star extends Phaser.GameObjects.Sprite {
+export default class Venda extends Phaser.GameObjects.Sprite {
 
     base: Base
     scene: Level
@@ -22,11 +22,12 @@ export default class Star extends Phaser.GameObjects.Sprite {
      * @param {number} y coordenada y
      */
     constructor(scene: Phaser.Scene, base: Base, x: number, y: number) {
-        super(scene, x, y, 'star');
+        super(scene, x, y, 'venda');
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this, true);
-        this.y -= this.height;
+        this.y -= this.height/2;
         this.base = base;
+        //this.setScale(0.5);
 
     }
 
