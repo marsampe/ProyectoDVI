@@ -31,13 +31,25 @@ export default class Level extends Phaser.Scene {
         this.iu = this.scene.get('iu');
         this.iu.scene.setVisible(true);
 
-        new Platform(this, this.player, this.bases, 150, 350);
-        new Platform(this, this.player, this.bases, 850, 350);
-        new Platform(this, this.player, this.bases, 500, 200);
+        new Platform(this, this.player, this.bases, 150, 500);
+        new Platform(this, this.player, this.bases, 850, 500);
+        new Platform(this, this.player, this.bases, 500, 500);
         //new Platform(this, this.player, this.bases, 150, 100);
         //new Platform(this, this.player, this.bases, 850, 100);
         this.spawn();
 
+    }
+
+    collectObject(objectName) {
+        // Registra el objeto recolectado en algún lugar
+        this.player.addToInventory(objectName);
+
+        // Actualiza la interfaz de usuario (UI) del inventario
+        this.updateInventoryUI();
+    }
+
+    updateInventoryUI() {
+        this.iu.updateInventory(this.player.inventory);
     }
 
     /**

@@ -24,6 +24,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.speed = 300;
         this.jumpSpeed = -200;
         this.ultimaDireccion = 'derecha'
+        //creamos inventario
+        this.inventory = [];
+
         // Esta label es la UI en la que pondremos la puntuación del jugador
         this.label = this.scene.add.text(10, 10, "");
         this.cursors = this.scene.input.keyboard.createCursorKeys();
@@ -83,6 +86,13 @@ export default class Player extends Phaser.GameObjects.Sprite {
         return (this.salud === 0);
     }
 
+    addToInventory(objectName) {
+        // Agrega el objeto al inventario solo si aún no lo hemos recolectado
+        if (!this.inventory.includes(objectName)) {
+            this.inventory.push(objectName); // Agrega el objeto al inventario
+        }
+    }
+
 
     /**
      * El jugador ha recogido una estrella por lo que este método añade un punto y
@@ -136,7 +146,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
                     this.anims.play('saltarIzquierda', true);
                 else if(this.ultimaDireccion== 'derecha')
                     this.anims.play('saltarDerecha', true);
-                this.anims.play('saltar', true);
                 this.body.setVelocityX(0);
             }
             if(this.body.onFloor()){
@@ -153,7 +162,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
                     this.anims.play('saltarIzquierda', true);
                 else if(this.ultimaDireccion== 'derecha')
                     this.anims.play('saltarDerecha', true);
-                this.anims.play('saltar', true);
             }
         }
     }
