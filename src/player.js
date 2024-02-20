@@ -88,9 +88,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     addToInventory(objectName) {
         // Agrega el objeto al inventario solo si aún no lo hemos recolectado
-        if (!this.inventory.includes(objectName)) {
+        /*if (!this.inventory.includes(objectName)) {
+           
+        }*/
+        if (this.inventory.length < 3)
             this.inventory.push(objectName); // Agrega el objeto al inventario
-        }
     }
 
 

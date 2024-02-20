@@ -43,7 +43,6 @@ export default class Level extends Phaser.Scene {
     collectObject(objectName) {
         // Registra el objeto recolectado en algún lugar
         this.player.addToInventory(objectName);
-
         // Actualiza la interfaz de usuario (UI) del inventario
         this.updateInventoryUI();
     }

@@ -45,13 +45,13 @@ export default class IU extends Phaser.Scene{
         //this.inventoryItems.removeAll(true);
 
         // Itera sobre los objetos en el inventario y agrega imágenes en la interfaz de usuario
-        let x = 72;
+        let x = 70;
         for (let i = 0; i < inventory.length; i++) {
             let item = inventory[i];
             let itemImage = this.add.image(x, 92, item); // Suponiendo que los nombres de los objetos coinciden con las claves de las imágenes cargadas
             itemImage.setScale(0.4); // Escala la imagen del objeto si es necesario
             this.inventoryItems.add(itemImage);
-            x += 50; // Espacio entre cada imagen de objeto en el inventario
+            x += 76; // Espacio entre cada imagen de objeto en el inventario
         }
     }
 
