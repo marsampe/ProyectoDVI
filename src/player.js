@@ -136,7 +136,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
                     this.anims.play('saltarIzquierda', true);
                 else if(this.ultimaDireccion== 'derecha')
                     this.anims.play('saltarDerecha', true);
-                this.anims.play('saltar', true);
                 this.body.setVelocityX(0);
             }
             if(this.body.onFloor()){
@@ -153,7 +152,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
                     this.anims.play('saltarIzquierda', true);
                 else if(this.ultimaDireccion== 'derecha')
                     this.anims.play('saltarDerecha', true);
-                this.anims.play('saltar', true);
             }
         }
     }
