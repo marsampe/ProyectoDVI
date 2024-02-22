@@ -15,7 +15,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
      */
     constructor(scene, x, y) {
         super(scene, x, y, 'player');
-        this.score = 0;
+        
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.setScale(0.5);
@@ -26,11 +26,15 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.ultimaDireccion = 'derecha'
         //creamos inventario
         this.inventory = [];
+        this.huecos = [0,0,0];
 
         // Esta label es la UI en la que pondremos la puntuación del jugador
-        this.label = this.scene.add.text(10, 10, "");
+        this.labelHueco0 = this.scene.add.text(65, 120, "");
+        this.labelHueco1 = this.scene.add.text(140, 120, "");
+        this.labelHueco2 = this.scene.add.text(215, 120, "");
+
         this.cursors = this.scene.input.keyboard.createCursorKeys();
-        this.updateScore();
+        this.updateHuecos();
 
 
         //crear barra de vida
@@ -86,13 +90,34 @@ export default class Player extends Phaser.GameObjects.Sprite {
         return (this.salud === 0);
     }
 
-    addToInventory(objectName) {
+      addToInventory(objectName) {
         // Agrega el objeto al inventario solo si aún no lo hemos recolectado
-        /*if (!this.inventory.includes(objectName)) {
-           
-        }*/
-        if (this.inventory.length < 3)
-            this.inventory.push(objectName); // Agrega el objeto al inventario
+        if (!this.inventory.includes(objectName)) {
+            if (this.inventory.length < 3){
+                this.inventory.push(objectName); // Agrega el objeto al inventario
+                this.huecos[this.inventory.length-1]++;
+                this.updateHuecos();
+                return true;
+            }
+            
+            
+        }else{
+            for (let index = 0; index < this.inventory.length; index++) {
+                if( objectName == this.inventory[index] && this.huecos[index] < 2){
+                    this.huecos[index]++;
+                    this.updateHuecos();
+                    return true;
+                }else{
+                    return false;
+                }
+
+                    
+
+                
+            }
+
+        }
+        
     }
 
 
@@ -102,14 +127,17 @@ export default class Player extends Phaser.GameObjects.Sprite {
      */
     point() {
         this.score++;
-        this.updateScore();
+
     }
 
     /**
      * Actualiza la UI con la puntuación actual
      */
-    updateScore() {
-        //this.label.text = 'Score: ' + this.score;
+    updateHuecos() {
+
+       this.labelHueco0.text =  this.huecos[0];
+        this.labelHueco1.text = this.huecos[1];
+        this.labelHueco2.text = this.huecos[2];
     }
 
     /**

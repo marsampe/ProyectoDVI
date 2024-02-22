@@ -42,9 +42,15 @@ export default class Level extends Phaser.Scene {
 
     collectObject(objectName) {
         // Registra el objeto recolectado en algún lugar
-        this.player.addToInventory(objectName);
-        // Actualiza la interfaz de usuario (UI) del inventario
-        this.updateInventoryUI();
+        if(this.player.addToInventory(objectName)){
+            this.updateInventoryUI();
+            return true;
+        }
+        else{
+            return false;
+        }
+
+        
     }
 
     updateInventoryUI() {
@@ -65,8 +71,8 @@ export default class Level extends Phaser.Scene {
      * sobre la que estaba la estrella cogida para evitar repeticiones
      * @param {Base} base La base sobre la que estaba la estrella que se ha cogido
      */
-    starPickt(base) {
-        this.player.aumentaSalud(50);
+    objetoPickt(base) {
+        //this.player.aumentaSalud(50);
         
         /*this.player.point();
         if (this.player.score == this.stars) {
