@@ -31,13 +31,30 @@ export default class Level extends Phaser.Scene {
         this.iu = this.scene.get('iu');
         this.iu.scene.setVisible(true);
 
-        new Platform(this, this.player, this.bases, 150, 350);
-        new Platform(this, this.player, this.bases, 850, 350);
-        new Platform(this, this.player, this.bases, 500, 200);
+        new Platform(this, this.player, this.bases, 150, 500);
+        new Platform(this, this.player, this.bases, 850, 500);
+        new Platform(this, this.player, this.bases, 500, 500);
         //new Platform(this, this.player, this.bases, 150, 100);
         //new Platform(this, this.player, this.bases, 850, 100);
         this.spawn();
 
+    }
+
+    collectObject(objectName) {
+        // Registra el objeto recolectado en algún lugar
+        if(this.player.addToInventory(objectName)){
+            this.updateInventoryUI();
+            return true;
+        }
+        else{
+            return false;
+        }
+
+        
+    }
+
+    updateInventoryUI() {
+        this.iu.updateInventory(this.player.inventory);
     }
 
     /**
@@ -54,8 +71,8 @@ export default class Level extends Phaser.Scene {
      * sobre la que estaba la estrella cogida para evitar repeticiones
      * @param {Base} base La base sobre la que estaba la estrella que se ha cogido
      */
-    starPickt(base) {
-        this.player.aumentaSalud(50);
+    objetoPickt(base) {
+        //this.player.aumentaSalud(50);
         
         /*this.player.point();
         if (this.player.score == this.stars) {

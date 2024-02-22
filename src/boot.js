@@ -3,7 +3,7 @@ import Phaser from 'phaser'
 
 import platform from '../assets/sprites/platform.png'
 import base from '../assets/sprites/base.png'
-import venda from '../assets/sprites/vendas.png'
+import venda from '../assets/sprites/venda.png'
 import player from '../assets/sprites/personaje.png'
 import inventario from '../assets/sprites/inventario.png'
 /**

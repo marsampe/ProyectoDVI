@@ -9,7 +9,7 @@ import Level from './level.js'
  * una nueva estrella en otra posición, si el juego no ha terminado.
  * @extends Phaser.GameObjects.Sprite
  */
-export default class Venda extends Phaser.GameObjects.Sprite {
+export default class venda extends Phaser.GameObjects.Sprite {
 
     base: Base
     scene: Level
@@ -42,8 +42,13 @@ export default class Venda extends Phaser.GameObjects.Sprite {
         if (this.scene.physics.overlap(this.scene.player as Player, this)) {
             // Delegamos en la escena para decidir qué hacer al 
             // haber cogido una venda
-            this.scene.starPickt(this.base);
+           if( this.scene.collectObject('venda')){
+            this.scene.objetoPickt(this.base);
             this.destroy();
+
+           }
+            
+            
         }
     }
 }
