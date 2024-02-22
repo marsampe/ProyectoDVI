@@ -6,6 +6,7 @@ import base from '../assets/sprites/base.png'
 import venda from '../assets/sprites/venda.png'
 import player from '../assets/sprites/personaje.png'
 import inventario from '../assets/sprites/inventario.png'
+import escalera from '../assets/sprites/escalera.png'
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
  * Esta escena se puede mejorar añadiendo una imagen del juego y una 
@@ -28,9 +29,10 @@ export default class Boot extends Phaser.Scene {
     // Con setPath podemos establecer el prefijo que se añadirá a todos los load que aparecen a continuación
     this.load.setPath('assets/sprites/');
     this.load.image('platform', platform);
+    this.load.image('escalera', escalera);
     this.load.image('base', base);
     this.load.image('venda', venda);
-    this.load.spritesheet('player', player, { frameWidth: 127, frameHeight: 215});
+    this.load.spritesheet('player', player, { frameWidth: 106, frameHeight: 207});
     this.load.image('inventario', inventario);
   }
   
@@ -79,6 +81,20 @@ export default class Boot extends Phaser.Scene {
   this.anims.create({
     key: 'paradoIzquierda',
     frames: this.anims.generateFrameNumbers('player', { start: 4, end: 4}),
+    frameRate: 0,
+    repeat: -1
+  });
+
+  this.anims.create({
+    key: 'escalar',
+    frames: this.anims.generateFrameNumbers('player', { start: 8, end: 9}),
+    frameRate: 5,
+    repeat: -1
+  });
+
+  this.anims.create({
+    key: 'escalarParado',
+    frames: this.anims.generateFrameNumbers('player', { start: 8, end: 8}),
     frameRate: 0,
     repeat: -1
   });
