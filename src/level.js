@@ -43,6 +43,23 @@ export default class Level extends Phaser.Scene {
 
     }
 
+    collectObject(objectName) {
+        // Registra el objeto recolectado en algún lugar
+        if(this.player.addToInventory(objectName)){
+            this.updateInventoryUI();
+            return true;
+        }
+        else{
+            return false;
+        }
+
+        
+    }
+
+    updateInventoryUI() {
+        this.iu.updateInventory(this.player.inventory);
+    }
+
     /**
      * Genera una estrella en una de las bases del escenario
      * @param {Array<Base>} from Lista de bases sobre las que se puede crear una estrella
@@ -57,8 +74,8 @@ export default class Level extends Phaser.Scene {
      * sobre la que estaba la estrella cogida para evitar repeticiones
      * @param {Base} base La base sobre la que estaba la estrella que se ha cogido
      */
-    starPickt(base) {
-        this.player.aumentaSalud(50);
+    objetoPickt(base) {
+        //this.player.aumentaSalud(50);
         
         /*this.player.point();
         if (this.player.score == this.stars) {
