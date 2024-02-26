@@ -1,4 +1,3 @@
-import venda from './venda.ts';
 import Phaser from 'phaser'
 
 /**
@@ -150,7 +149,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
      */
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
-        if (Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.cofre.getBounds()) && this.teclaE.isDown) {
+        if (Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.cofre.getBounds()) && this.teclaE.isDown && !this.scene.cofre.abierto) {
             this.scene.cofre.abrir();
         }
         else if (Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.escalera.getBounds()) && (this.cursors.down.isDown || this.cursors.up.isDown)) {
