@@ -149,15 +149,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
      */
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
-<<<<<<< Updated upstream
-        if (Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.escalera.getBounds()) && (this.cursors.down.isDown || this.cursors.up.isDown)) {
-=======
 
         if (Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.cofre.getBounds()) && this.teclaE.isDown && !this.scene.cofre.abierto) {
             this.scene.cofre.abrir();
         }
         else if (Phaser.Geom.Rectangle.ContainsRect(this.scene.escalera.getBounds(), this.getBounds()) && (this.cursors.down.isDown || this.cursors.up.isDown)) {
->>>>>>> Stashed changes
             if (this.cursors.down.isDown) {
                 this.body.setVelocityY(150);
                 this.anims.play('escalar', true);
