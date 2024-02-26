@@ -1,6 +1,7 @@
 import Platform from './platform.js';
 import Escalera from './escalera.js';
 import Player from './player.js';
+import Momia from './momia.js';
 import Phaser from 'phaser'
 
 
@@ -27,7 +28,8 @@ export default class Level extends Phaser.Scene {
         this.stars = 10;
         this.bases = this.add.group();
         this.player = new Player(this, 300, 400);
-
+        //this.momia= new Momia (this,150,350);
+        this.momia = new Phaser.Physics.Arcade.Platformer(this, 100, 300, 'momia');
         this.scene.launch('iu');
         this.iu = this.scene.get('iu');
         this.iu.scene.setVisible(true);
