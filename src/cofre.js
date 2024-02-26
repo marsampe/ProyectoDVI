@@ -20,6 +20,11 @@ export default class cofre extends Phaser.GameObjects.Sprite {
     this.scene.physics.add.existing(this, true);
     //this.setScale(0.5);
     this.setDepth(1);
-}
+  }
+
+  abrir(){
+    this.anims.play('abrirCofre', true);
+  }
+
 
 }

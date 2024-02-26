@@ -33,9 +33,9 @@ export default class Boot extends Phaser.Scene {
     this.load.image('escalera', escalera);
     this.load.image('base', base);
     this.load.image('venda', venda);
-    this.load.spritesheet('player', player, { frameWidth: 106, frameHeight: 207});
+    this.load.spritesheet('player', player, { frameWidth: 212, frameHeight: 415});
     this.load.image('inventario', inventario);
-    this.load.spritesheet('cofre', cofre, { frameWidth: 75, frameHeight: 74});
+    this.load.spritesheet('cofre', cofre, { frameWidth: 76, frameHeight: 74});
   }
   
 
@@ -97,6 +97,13 @@ export default class Boot extends Phaser.Scene {
   this.anims.create({
     key: 'escalarParado',
     frames: this.anims.generateFrameNumbers('player', { start: 8, end: 8}),
+    frameRate: 0,
+    repeat: -1
+  });
+
+  this.anims.create({
+    key: 'abrirCofre',
+    frames: this.anims.generateFrameNumbers('cofre', { start: 1, end: 1}),
     frameRate: 0,
     repeat: -1
   });

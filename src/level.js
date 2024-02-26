@@ -37,7 +37,7 @@ export default class Level extends Phaser.Scene {
         new Platform(this, this.player, this.bases, 850, 350);
         new Platform(this, this.player, this.bases, 500, 200);
 
-        this.escalera = new Escalera(this, this.player, 700, 390);
+        this.escalera = new Escalera(this, this.player, 680, 390);
         this.cofre = new Cofre(this, this.player, 150, 463)
         this.spawn();
 

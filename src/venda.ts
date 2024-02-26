@@ -27,7 +27,7 @@ export default class venda extends Phaser.GameObjects.Sprite {
         this.scene.physics.add.existing(this, true);
         this.y -= this.height/2;
         this.base = base;
-        //this.setScale(0.5);
+        this.setScale(0.5);
 
     }
 
