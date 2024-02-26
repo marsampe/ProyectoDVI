@@ -7,6 +7,7 @@ import venda from '../assets/sprites/venda.png'
 import player from '../assets/sprites/personaje.png'
 import inventario from '../assets/sprites/inventario.png'
 import escalera from '../assets/sprites/escalera.png'
+import cofre from '../assets/sprites/cofre.png'
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
  * Esta escena se puede mejorar añadiendo una imagen del juego y una 
@@ -34,6 +35,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('venda', venda);
     this.load.spritesheet('player', player, { frameWidth: 106, frameHeight: 207});
     this.load.image('inventario', inventario);
+    this.load.spritesheet('cofre', cofre, { frameWidth: 75, frameHeight: 74});
   }
   
 

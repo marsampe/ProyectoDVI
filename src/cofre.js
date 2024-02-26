@@ -4,7 +4,7 @@ import Phaser from 'phaser'
  * Cada plataforma es responsable de crear la base que aparece sobre ella y en la 
  * que, durante el juego, puede aparecer una estrella
  */
-export default class escalera extends Phaser.GameObjects.Sprite {
+export default class cofre extends Phaser.GameObjects.Sprite {
   
   /**
    * Constructor de la Plataforma
@@ -15,10 +15,10 @@ export default class escalera extends Phaser.GameObjects.Sprite {
    * @param {number} y Coordenada y
    */
   constructor(scene, player, x, y) {
-    super(scene, x, y, 'escalera');
+    super(scene, x, y, 'cofre');
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this, true);
-    this.setScale(0.5);
+    //this.setScale(0.5);
     this.setDepth(1);
 }
 
