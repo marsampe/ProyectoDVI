@@ -34,7 +34,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('base', base);
     this.load.image('venda', venda);
     this.load.spritesheet('player', player, { frameWidth: 106, frameHeight: 207});
-    this.load.spritesheet('momia', momia, { frameWidth: 200, frameHeight: 207});
+    this.load.spritesheet('momia', momia, { frameWidth: 100, frameHeight: 207});
     this.load.image('inventario', inventario);
   }
   
@@ -46,7 +46,12 @@ export default class Boot extends Phaser.Scene {
   create() {
     this.scene.start('level');
     
-
+    this.anims.create({
+      key: 'caminarMomia',
+      frames: this.anims.generateFrameNumbers('momia', { start: 0, end: 2 }),
+      frameRate: 5,
+      repeat: -1
+  })
 
 
     this.anims.create({
