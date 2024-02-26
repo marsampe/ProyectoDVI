@@ -1,4 +1,3 @@
-import venda from './venda.ts';
 import Phaser from 'phaser'
 
 /**
@@ -18,7 +17,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
-        this.setScale(0.5);
+        this.setScale(0.26);
         // Queremos que el jugador no se salga de los límites del mundo
         this.body.setCollideWorldBounds();
         this.speed = 300;
@@ -34,6 +33,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.labelHueco2 = this.scene.add.text(215, 120, "");
 
         this.cursors = this.scene.input.keyboard.createCursorKeys();
+        this.teclaE = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
         this.updateHuecos();
 
         this.setDepth(2);
@@ -149,7 +149,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
      */
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
-
         if (Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.cofre.getBounds()) && this.teclaE.isDown && !this.scene.cofre.abierto) {
             this.scene.cofre.abrir();
         }

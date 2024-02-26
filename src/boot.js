@@ -2,11 +2,11 @@ import Phaser from 'phaser'
 
 
 import platform from '../assets/sprites/platform.png'
-import base from '../assets/sprites/base.png'
 import venda from '../assets/sprites/venda.png'
 import player from '../assets/sprites/personaje.png'
 import inventario from '../assets/sprites/inventario.png'
 import escalera from '../assets/sprites/escalera.png'
+import cofre from '../assets/sprites/cofre.png'
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
  * Esta escena se puede mejorar añadiendo una imagen del juego y una 
@@ -30,10 +30,10 @@ export default class Boot extends Phaser.Scene {
     this.load.setPath('assets/sprites/');
     this.load.image('platform', platform);
     this.load.image('escalera', escalera);
-    this.load.image('base', base);
     this.load.image('venda', venda);
-    this.load.spritesheet('player', player, { frameWidth: 106, frameHeight: 207});
+    this.load.spritesheet('player', player, { frameWidth: 212, frameHeight: 415});
     this.load.image('inventario', inventario);
+    this.load.spritesheet('cofre', cofre, { frameWidth: 76, frameHeight: 74});
   }
   
 
@@ -95,6 +95,13 @@ export default class Boot extends Phaser.Scene {
   this.anims.create({
     key: 'escalarParado',
     frames: this.anims.generateFrameNumbers('player', { start: 8, end: 8}),
+    frameRate: 0,
+    repeat: -1
+  });
+
+  this.anims.create({
+    key: 'abrirCofre',
+    frames: this.anims.generateFrameNumbers('cofre', { start: 1, end: 1}),
     frameRate: 0,
     repeat: -1
   });

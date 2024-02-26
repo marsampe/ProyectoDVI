@@ -1,5 +1,6 @@
 import Platform from './platform.js';
 import Escalera from './escalera.js';
+import Cofre from './cofre.js';
 import Player from './player.js';
 import Phaser from 'phaser'
 
@@ -25,21 +26,18 @@ export default class Level extends Phaser.Scene {
      */
     create() {
         this.stars = 10;
-        this.bases = this.add.group();
         this.player = new Player(this, 300, 400);
 
         this.scene.launch('iu');
         this.iu = this.scene.get('iu');
         this.iu.scene.setVisible(true);
 
-        new Platform(this, this.player, this.bases, 150, 350);
-        new Platform(this, this.player, this.bases, 850, 350);
-        new Platform(this, this.player, this.bases, 500, 200);
+        new Platform(this, this.player, 150, 350);
+        new Platform(this, this.player, 850, 350);
+        new Platform(this, this.player, 500, 200);
 
-        this.escalera = new Escalera(this, this.player, 700, 390);
-        //new Platform(this, this.player, this.bases, 150, 100);
-        //new Platform(this, this.player, this.bases, 850, 100);
-        this.spawn();
+        this.escalera = new Escalera(this, this.player, 680, 390);
+        this.cofre = new Cofre(this, this.player, 150, 463)
 
     }
 
@@ -58,35 +56,5 @@ export default class Level extends Phaser.Scene {
 
     updateInventoryUI() {
         this.iu.updateInventory(this.player.inventory);
-    }
-
-    /**
-     * Genera una estrella en una de las bases del escenario
-     * @param {Array<Base>} from Lista de bases sobre las que se puede crear una estrella
-     * Si es null, entonces se crea aleatoriamente sobre cualquiera de las bases existentes
-     */
-    spawn(from = null) {
-        Phaser.Math.RND.pick(from || this.bases.children.entries).spawn();
-    }
-
-    /**
-     * Método que se ejecuta al coger una estrella. Se pasa la base
-     * sobre la que estaba la estrella cogida para evitar repeticiones
-     * @param {Base} base La base sobre la que estaba la estrella que se ha cogido
-     */
-    objetoPickt(base) {
-        //this.player.aumentaSalud(50);
-        
-        /*this.player.point();
-        if (this.player.score == this.stars) {
-            this.scene.start('end');
-        }
-        else {
-            let s = this.bases.children.entries;
-            this.spawn(s.filter(o => o !== base));
-
-        }*/
-        let s = this.bases.children.entries;
-        this.spawn(s.filter(o => o !== base));
     }
 }
