@@ -152,7 +152,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         if (Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.cofre.getBounds()) && this.teclaE.isDown && !this.scene.cofre.abierto) {
             this.scene.cofre.abrir();
         }
-        else if (Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.escalera.getBounds()) && (this.cursors.down.isDown || this.cursors.up.isDown)) {
+        else if (Phaser.Geom.Rectangle.ContainsRect(this.scene.escalera.getBounds(), this.getBounds()) && (this.cursors.down.isDown || this.cursors.up.isDown)) {
             if (this.cursors.down.isDown) {
                 this.body.setVelocityY(150);
                 this.anims.play('escalar', true);
@@ -162,7 +162,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
                 this.anims.play('escalar', true);
             }
         }
-        else if(Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.escalera.getBounds()) && !this.body.onFloor()){
+        else if(Phaser.Geom.Rectangle.ContainsRect(this.scene.escalera.getBounds(), this.getBounds()) && !this.body.onFloor()){
             this.body.setVelocityY(-7);
             this.body.setVelocityX(0);
             this.anims.play('escalarParado', true);
