@@ -5,6 +5,7 @@ import platform from '../assets/sprites/platform.png'
 import venda from '../assets/sprites/venda.png'
 import player from '../assets/sprites/personaje.png'
 import inventario from '../assets/sprites/inventario.png'
+import marcadorInventario from '../assets/sprites/marcadorInventario.png'
 import escalera from '../assets/sprites/escalera.png'
 import cofre from '../assets/sprites/cofre.png'
 /**
@@ -33,6 +34,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('venda', venda);
     this.load.spritesheet('player', player, { frameWidth: 212, frameHeight: 415});
     this.load.image('inventario', inventario);
+    this.load.image('marcadorInventario', marcadorInventario);
     this.load.spritesheet('cofre', cofre, { frameWidth: 76, frameHeight: 74});
   }
   

@@ -22,6 +22,9 @@ export default class IU extends Phaser.Scene{
         let offset = 55;       
             
         this.add.image(142, 90, 'inventario');
+
+        //hay que mirar el inventario porque no tiene separacion simetrica
+        this.marcadorInventario = this.add.image(68.5, 90, 'marcadorInventario').setOrigin(0.5, 0.5).setScale(1);
         /*
         this.hueco1 = true;
 
@@ -53,6 +56,16 @@ export default class IU extends Phaser.Scene{
             this.inventoryItems.add(itemImage);
             x += 76; // Espacio entre cada imagen de objeto en el inventario
         }
+    }
+
+    cambiarObjeto(){
+        let aumento = 80;
+        if(x+aumento>230){
+            this.marcadorInventario.x=68.5;
+        }else {
+            this.marcadorInventario.x += aumento;
+        }
+        
     }
 
 }
