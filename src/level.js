@@ -55,6 +55,6 @@ export default class Level extends Phaser.Scene {
     }
 
     updateInventoryUI() {
-        this.iu.updateInventory(this.player.inventory);
+        this.iu.updateInventory();
     }
 }
