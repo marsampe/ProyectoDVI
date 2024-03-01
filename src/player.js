@@ -32,58 +32,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
 
         this.setDepth(2);
-
-        //crear barra de vida
-        this.bar = new Phaser.GameObjects.Graphics(scene);
-        this.bar.x = 10; // Posición X fija
-        this.bar.y = 10; // Posición Y fija
-        this.saludMaxima = 200;
-        this.salud = 100;
-
-        this.draw();
-
-        scene.add.existing(this.bar);
     }
 
-    draw ()
+    usarObjeto()
     {
-        this.bar.clear();
-
-        //  BG
-        this.bar.fillStyle(0x000000);
-        this.bar.fillRect(this.bar.x, this.bar.y, 200, 16);
-
-        //  Health
-
-        this.bar.fillStyle(0xffffff);
-        this.bar.fillRect(this.bar.x + 2, this.bar.y + 2, 200, 12);  
-
-        if (this.salud < 30)
-        {
-            this.bar.fillStyle(0xff0000);
-        }
-        else
-        {
-            this.bar.fillStyle(0x00ff00);
-        }
-
-        //var d = Math.floor(this.p * this.salud);
-
-        this.bar.fillRect(this.bar.x + 2, this.bar.y + 2, this.salud, 12);
-    }
-
-    aumentaSalud (valor)
-    {
-        this.salud += valor;
-
-        if (this.salud > 200)
-        {
-            this.salud = 200;
-        }
-
-        this.draw();
-
-        return (this.salud === 0);
+        this.scene.iu.usarObjeto();
     }
 
     addToInventory(objectName) {
@@ -115,6 +68,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
             this.scene.iu.cambiarObjeto();
 
+        }
+        else if(this.teclaE.isDown && Phaser.Input.Keyboard.JustDown(this.teclaE)){
+            this.scene.iu.usarObjeto();
         }
         else if (Phaser.Geom.Rectangle.ContainsRect(this.scene.escalera.getBounds(), this.getBounds()) && (this.cursors.down.isDown || this.cursors.up.isDown)) {
             if (this.cursors.down.isDown) {

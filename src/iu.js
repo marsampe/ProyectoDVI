@@ -9,6 +9,7 @@ export default class IU extends Phaser.Scene{
         this.inventoryItems = null;
         this.inventory = [];
         this.huecos = [0,0,0];
+        this.posicionMarcador = 0;
 
         
     }
@@ -21,7 +22,18 @@ export default class IU extends Phaser.Scene{
         this.labelHueco2 = this.add.text(215, 120, "");
         this.updateHuecos();
         
-        this.iniciarInventario();        
+        this.iniciarInventario();      
+        
+         //crear barra de vida
+         this.bar = new Phaser.GameObjects.Graphics(this);
+         this.bar.x = 10; // Posición X fija
+         this.bar.y = 10; // Posición Y fija
+         this.saludMaxima = 200;
+         this.salud = 100;
+ 
+         this.draw();
+ 
+         this.add.existing(this.bar);
     }
 
 
@@ -70,19 +82,46 @@ export default class IU extends Phaser.Scene{
         let aumento = 80;
         if(this.marcadorInventario.x + aumento>230){
             this.marcadorInventario.x=68.5;
+            this.posicionMarcador=0;
         }else {
             this.marcadorInventario.x += aumento;
+            this.posicionMarcador++;
         }
     }
 
     usarObjeto(){
+        let item = this.inventory[this.posicionMarcador];
 
+        if(item !=undefined){
+            switch (item) {
+                case 'venda':
+                    if(this.huecos[this.posicionMarcador] > 0){
+                        this.huecos[this.posicionMarcador]--;
+                        this.updateHuecos();
+
+                        //eliminar el dibujo del inventario
+                        if (this.huecos[this.posicionMarcador] === 0) {
+                            this.inventory.splice(this.posicionMarcador, 1);
+                            let itemImage = this.inventoryItems.getAt(this.posicionMarcador);
+                            this.inventoryItems.remove(itemImage);
+                            itemImage.destroy();
+                        }
+
+                    }
+                    this.aumentaSalud(50);
+                    break;
+            
+                default:
+                    break;
+            }
+        }
+        
 
     }
 
     updateHuecos() {
 
-        this.labelHueco0.text =  this.huecos[0];
+        this.labelHueco0.text = this.huecos[0];
         this.labelHueco1.text = this.huecos[1];
         this.labelHueco2.text = this.huecos[2];
      }
@@ -107,5 +146,46 @@ export default class IU extends Phaser.Scene{
                 }     
             }
         }
+    }
+
+    draw ()
+    {
+        this.bar.clear();
+
+        //  BG
+        this.bar.fillStyle(0x000000);
+        this.bar.fillRect(this.bar.x, this.bar.y, 200, 16);
+
+        //  Health
+
+        this.bar.fillStyle(0xffffff);
+        this.bar.fillRect(this.bar.x + 2, this.bar.y + 2, 200, 12);  
+
+        if (this.salud < 30)
+        {
+            this.bar.fillStyle(0xff0000);
+        }
+        else
+        {
+            this.bar.fillStyle(0x00ff00);
+        }
+
+        //var d = Math.floor(this.p * this.salud);
+
+        this.bar.fillRect(this.bar.x + 2, this.bar.y + 2, this.salud, 12);
+    }
+
+    aumentaSalud (valor)
+    {
+        this.salud += valor;
+
+        if (this.salud > 200)
+        {
+            this.salud = 200;
+        }
+
+        this.draw();
+
+        return (this.salud === 0);
     }
 }
