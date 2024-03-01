@@ -26,12 +26,12 @@ export default class Level extends Phaser.Scene {
      */
     create() {
         this.stars = 10;
-        this.player = new Player(this, 300, 400);
+
 
         this.scene.launch('iu');
         this.iu = this.scene.get('iu');
         this.iu.scene.setVisible(true);
-
+        this.player = new Player(this, 300, 400);
         new Platform(this, this.player, 150, 350);
         new Platform(this, this.player, 850, 350);
         new Platform(this, this.player, 500, 200);

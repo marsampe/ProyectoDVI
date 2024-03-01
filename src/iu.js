@@ -7,6 +7,8 @@ export default class IU extends Phaser.Scene{
         super({ key: 'iu' });
 
         this.inventoryItems = null;
+        this.inventory = [];
+        this.huecos = [0,0,0];
     }
 
     create(){
@@ -60,12 +62,16 @@ export default class IU extends Phaser.Scene{
 
     cambiarObjeto(){
         let aumento = 80;
-        if(x+aumento>230){
+        if(this.marcadorInventario.x + aumento>230){
             this.marcadorInventario.x=68.5;
         }else {
             this.marcadorInventario.x += aumento;
         }
-        
+    }
+
+    usarObjeto(){
+
+
     }
 
 }

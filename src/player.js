@@ -14,7 +14,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
      */
     constructor(scene, x, y) {
         super(scene, x, y, 'player');
-        
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.setScale(0.26);
@@ -34,6 +33,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
         this.cursors = this.scene.input.keyboard.createCursorKeys();
         this.teclaE = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
+        this.teclaC = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
         this.updateHuecos();
 
         this.setDepth(2);
@@ -151,6 +151,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
         super.preUpdate(t, dt);
         if (Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.cofre.getBounds()) && this.teclaE.isDown && !this.scene.cofre.abierto) {
             this.scene.cofre.abrir();
+        }else if(this.teclaC.isDown && Phaser.Input.Keyboard.JustDown(this.teclaC)){
+
+            this.scene.iu.cambiarObjeto();
+
         }
         else if (Phaser.Geom.Rectangle.ContainsRect(this.scene.escalera.getBounds(), this.getBounds()) && (this.cursors.down.isDown || this.cursors.up.isDown)) {
             if (this.cursors.down.isDown) {
