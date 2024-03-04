@@ -17,9 +17,9 @@ export default class IU extends Phaser.Scene{
     create(){
 
         // Esta label es la UI en la que pondremos la puntuación del jugador
-        this.labelHueco0 = this.add.text(65, 120, "");
-        this.labelHueco1 = this.add.text(140, 120, "");
-        this.labelHueco2 = this.add.text(215, 120, "");
+        this.labelHueco0 = this.add.text(65, 113, "").setDepth(2);
+        this.labelHueco1 = this.add.text(140, 113, "").setDepth(2);
+        this.labelHueco2 = this.add.text(215, 113, "").setDepth(2);
         this.updateHuecos();
         
         this.iniciarInventario();      
@@ -71,7 +71,7 @@ export default class IU extends Phaser.Scene{
         let x = 70;
         for (let i = 0; i < this.inventory.length; i++) {
             let item = this.inventory[i];
-            let itemImage = this.add.image(x, 92, item); // Suponiendo que los nombres de los objetos coinciden con las claves de las imágenes cargadas
+            let itemImage = this.add.image(x, 90, item); // Suponiendo que los nombres de los objetos coinciden con las claves de las imágenes cargadas
             itemImage.setScale(0.4); // Escala la imagen del objeto si es necesario
             this.inventoryItems.add(itemImage);
             x += 76; // Espacio entre cada imagen de objeto en el inventario
@@ -79,7 +79,7 @@ export default class IU extends Phaser.Scene{
     }
 
     cambiarObjeto(){
-        let aumento = 80;
+        let aumento = 76;
         if(this.marcadorInventario.x + aumento>230){
             this.marcadorInventario.x=68.5;
             this.posicionMarcador=0;

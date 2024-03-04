@@ -18,6 +18,7 @@ export default class venda extends Phaser.GameObjects.Sprite {
         super(scene, x, y, 'venda');
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
+        this.scene.physics.add.collider(this, scene.platforms);
         this.setScale(0.5);
 
         this.body.bounce.y = 0.8; // El valor de rebote, 1 es un rebote perfecto, 0 no rebota

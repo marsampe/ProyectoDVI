@@ -17,7 +17,7 @@ export default class escalera extends Phaser.GameObjects.Sprite {
     super(scene, x, y, 'escalera');
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this, true);
-    this.setScale(0.5);
+    this.setScale(0.55);
     this.setDepth(1);
 }
 

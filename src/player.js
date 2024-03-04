@@ -28,8 +28,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
         this.cursors = this.scene.input.keyboard.createCursorKeys();
         this.teclaE = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
-        this.teclaC = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
-
+        this.teclaQ = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
+        this.teclaTAB = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TAB);
 
         this.setDepth(2);
     }
@@ -62,14 +62,16 @@ export default class Player extends Phaser.GameObjects.Sprite {
      */
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
-        if (Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.cofre.getBounds()) && this.teclaE.isDown && !this.scene.cofre.abierto) {
-            this.scene.cofre.abrir();
-        }else if(this.teclaC.isDown && Phaser.Input.Keyboard.JustDown(this.teclaC)){
-
-            this.scene.iu.cambiarObjeto();
-
+        for(let i = 0; i < this.scene.arrayCofres.length; i++) {
+            if (Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.arrayCofres[i].getBounds()) && this.teclaE.isDown && !this.scene.arrayCofres[i].abierto) {
+                this.scene.arrayCofres[i].abrir();
+            }
         }
-        else if(this.teclaE.isDown && Phaser.Input.Keyboard.JustDown(this.teclaE)){
+
+        if(this.teclaTAB.isDown && Phaser.Input.Keyboard.JustDown(this.teclaTAB)){
+            this.scene.iu.cambiarObjeto();
+        }
+        else if(this.teclaQ.isDown && Phaser.Input.Keyboard.JustDown(this.teclaQ)){
             this.scene.iu.usarObjeto();
         }
         else if (Phaser.Geom.Rectangle.ContainsRect(this.scene.escalera.getBounds(), this.getBounds()) && (this.cursors.down.isDown || this.cursors.up.isDown)) {
