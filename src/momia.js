@@ -18,6 +18,7 @@ export default class Momia extends Phaser.GameObjects.Sprite {
         
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
+        this.body.setAllowGravity(false);
         this.setScale(0.7);
         // Queremos que el jugador no se salga de los límites del mundo
         this.body.setCollideWorldBounds();
@@ -36,7 +37,13 @@ export default class Momia extends Phaser.GameObjects.Sprite {
             ease: 'Linear',
             duration: 3000,
             repeat: -1,
-            yoyo: true
+            yoyo: true,
+            onYoyo: () => {
+                this.flipX = !this.flipX;
+            },
+            onRepeat: () => {
+                this.flipX = !this.flipX;
+            }
         });
     }
 

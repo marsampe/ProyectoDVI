@@ -28,15 +28,15 @@ export default class Level extends Phaser.Scene {
         this.stars = 10;
         this.bases = this.add.group();
         this.player = new Player(this, 300, 400);
-        this.momia= new Momia (this,150,800);
+        this.momia= new Momia(this,400, 121);
         //sthis.momia = new Phaser.Physics.Arcade.Platformer(this, 100, 300, 'momia');
         this.scene.launch('iu');
         this.iu = this.scene.get('iu');
         this.iu.scene.setVisible(true);
 
-        new Platform(this, this.player, this.bases, 150, 350);
-        new Platform(this, this.player, this.bases, 850, 350);
-        new Platform(this, this.player, this.bases, 500, 200);
+        new Platform(this, this.player, this.momia, this.bases, 150, 350);
+        new Platform(this, this.player, this.momia, this.bases, 850, 350);
+        new Platform(this, this.player, this.momia, this.bases, 500, 200);
 
         this.escalera = new Escalera(this, this.player, 700, 390);
         //new Platform(this, this.player, this.bases, 150, 100);
