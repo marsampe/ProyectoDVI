@@ -1,4 +1,3 @@
-import venda from './venda.ts';
 import Phaser from 'phaser'
 
 /**
@@ -15,10 +14,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
      */
     constructor(scene, x, y) {
         super(scene, x, y, 'player');
-        
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
-        this.setScale(0.5);
+        this.setScale(0.26);
         // Queremos que el jugador no se salga de los límites del mundo
         this.body.setCollideWorldBounds();
         this.speed = 300;
@@ -28,97 +26,22 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.inventory = [];
         this.huecos = [0,0,0];
 
-        // Esta label es la UI en la que pondremos la puntuación del jugador
-        this.labelHueco0 = this.scene.add.text(65, 120, "");
-        this.labelHueco1 = this.scene.add.text(140, 120, "");
-        this.labelHueco2 = this.scene.add.text(215, 120, "");
-
         this.cursors = this.scene.input.keyboard.createCursorKeys();
-        this.updateHuecos();
+        this.teclaE = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
+        this.teclaQ = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
+        this.teclaTAB = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TAB);
 
         this.setDepth(2);
-
-        //crear barra de vida
-        this.bar = new Phaser.GameObjects.Graphics(scene);
-        this.bar.x = 10; // Posición X fija
-        this.bar.y = 10; // Posición Y fija
-        this.saludMaxima = 200;
-        this.salud = 100;
-
-        this.draw();
-
-        scene.add.existing(this.bar);
     }
 
-    draw ()
+    usarObjeto()
     {
-        this.bar.clear();
-
-        //  BG
-        this.bar.fillStyle(0x000000);
-        this.bar.fillRect(this.bar.x, this.bar.y, 200, 16);
-
-        //  Health
-
-        this.bar.fillStyle(0xffffff);
-        this.bar.fillRect(this.bar.x + 2, this.bar.y + 2, 200, 12);  
-
-        if (this.salud < 30)
-        {
-            this.bar.fillStyle(0xff0000);
-        }
-        else
-        {
-            this.bar.fillStyle(0x00ff00);
-        }
-
-        //var d = Math.floor(this.p * this.salud);
-
-        this.bar.fillRect(this.bar.x + 2, this.bar.y + 2, this.salud, 12);
+        this.scene.iu.usarObjeto();
     }
 
-    aumentaSalud (valor)
-    {
-        this.salud += valor;
-
-        if (this.salud > 200)
-        {
-            this.salud = 200;
-        }
-
-        this.draw();
-
-        return (this.salud === 0);
-    }
-
-      addToInventory(objectName) {
+    addToInventory(objectName) {
         // Agrega el objeto al inventario solo si aún no lo hemos recolectado
-        if (!this.inventory.includes(objectName)) {
-            if (this.inventory.length < 3){
-                this.inventory.push(objectName); // Agrega el objeto al inventario
-                this.huecos[this.inventory.length-1]++;
-                this.updateHuecos();
-                return true;
-            }
-            
-            
-        }else{
-            for (let index = 0; index < this.inventory.length; index++) {
-                if( objectName == this.inventory[index] && this.huecos[index] < 2){
-                    this.huecos[index]++;
-                    this.updateHuecos();
-                    return true;
-                }else{
-                    return false;
-                }
-
-                    
-
-                
-            }
-
-        }
-        
+      return this.scene.iu.addToInventory(objectName);
     }
 
 
@@ -132,16 +55,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
 
     /**
-     * Actualiza la UI con la puntuación actual
-     */
-    updateHuecos() {
-
-       this.labelHueco0.text =  this.huecos[0];
-        this.labelHueco1.text = this.huecos[1];
-        this.labelHueco2.text = this.huecos[2];
-    }
-
-    /**
      * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
      * Como se puede ver, no se tratan las colisiones con las estrellas, ya que estas colisiones 
      * ya son gestionadas por la estrella (no gestionar las colisiones dos veces)
@@ -149,7 +62,19 @@ export default class Player extends Phaser.GameObjects.Sprite {
      */
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
-        if (Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.escalera.getBounds()) && (this.cursors.down.isDown || this.cursors.up.isDown)) {
+        for(let i = 0; i < this.scene.arrayCofres.length; i++) {
+            if (Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.arrayCofres[i].getBounds()) && this.teclaE.isDown && !this.scene.arrayCofres[i].abierto) {
+                this.scene.arrayCofres[i].abrir();
+            }
+        }
+
+        if(this.teclaTAB.isDown && Phaser.Input.Keyboard.JustDown(this.teclaTAB)){
+            this.scene.iu.cambiarObjeto();
+        }
+        else if(this.teclaQ.isDown && Phaser.Input.Keyboard.JustDown(this.teclaQ)){
+            this.scene.iu.usarObjeto();
+        }
+        else if (Phaser.Geom.Rectangle.ContainsRect(this.scene.escalera.getBounds(), this.getBounds()) && (this.cursors.down.isDown || this.cursors.up.isDown)) {
             if (this.cursors.down.isDown) {
                 this.body.setVelocityY(150);
                 this.anims.play('escalar', true);
@@ -159,7 +84,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
                 this.anims.play('escalar', true);
             }
         }
-        else if(Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.escalera.getBounds()) && !this.body.onFloor()){
+        else if(Phaser.Geom.Rectangle.ContainsRect(this.scene.escalera.getBounds(), this.getBounds()) && !this.body.onFloor()){
             this.body.setVelocityY(-7);
             this.body.setVelocityX(0);
             this.anims.play('escalarParado', true);
