@@ -6,7 +6,7 @@ export default class IU extends Phaser.Scene{
     constructor() {
         super({ key: 'iu' });
 
-        this.inventoryItems = null;
+        this.inventoryItems = [];
         this.inventory = [];
         this.huecos = [0,0,0];
         this.posicionMarcador = 0;
@@ -71,10 +71,11 @@ export default class IU extends Phaser.Scene{
         let x = 70;
         for (let i = 0; i < this.inventory.length; i++) {
             let item = this.inventory[i];
-            let itemImage = this.add.image(x, 90, item); // Suponiendo que los nombres de los objetos coinciden con las claves de las imágenes cargadas
-            itemImage.setScale(0.4); // Escala la imagen del objeto si es necesario
-            this.inventoryItems.add(itemImage);
-            x += 76; // Espacio entre cada imagen de objeto en el inventario
+            if(this.huecos[i] < 2){
+                let itemImage = this.add.image(x, 90, item); // Suponiendo que los nombres de los objetos coinciden con las claves de las imágenes cargadas
+                itemImage.setScale(0.4); // Escala la imagen del objeto si es necesario
+                this.inventoryItems[i] = itemImage;
+            }
         }
     }
 
@@ -102,8 +103,8 @@ export default class IU extends Phaser.Scene{
                         //eliminar el dibujo del inventario
                         if (this.huecos[this.posicionMarcador] === 0) {
                             this.inventory.splice(this.posicionMarcador, 1);
-                            let itemImage = this.inventoryItems.getAt(this.posicionMarcador);
-                            this.inventoryItems.remove(itemImage);
+                            let itemImage = this.inventoryItems[this.posicionMarcador];
+                            this.inventoryItems[itemImage] = null;
                             itemImage.destroy();
                         }
 
