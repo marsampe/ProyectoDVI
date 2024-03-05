@@ -8,6 +8,7 @@ import inventario from '../assets/sprites/inventario.png'
 import marcadorInventario from '../assets/sprites/marcadorInventario.png'
 import escalera from '../assets/sprites/escalera.png'
 import cofre from '../assets/sprites/cofre.png'
+import antorcha from '../assets/sprites/antorcha.png'
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
  * Esta escena se puede mejorar añadiendo una imagen del juego y una 
@@ -32,6 +33,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('platform', platform);
     this.load.image('escalera', escalera);
     this.load.image('venda', venda);
+    this.load.image('antorcha', antorcha);
     this.load.spritesheet('player', player, { frameWidth: 212, frameHeight: 415});
     this.load.image('inventario', inventario);
     this.load.image('marcadorInventario', marcadorInventario);
