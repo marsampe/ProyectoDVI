@@ -2,6 +2,7 @@ import Platform from './platform.js';
 import Escalera from './escalera.js';
 import Cofre from './cofre.js';
 import Player from './player.js';
+import Momia from './momia.js';
 import Phaser from 'phaser'
 
 
@@ -27,7 +28,7 @@ export default class Level extends Phaser.Scene {
      */
     create() {
         this.stars = 10;
-
+        this.momia= new Momia(this,400, 121);
 
         this.scene.launch('iu');
         this.iu = this.scene.get('iu');
@@ -39,6 +40,7 @@ export default class Level extends Phaser.Scene {
         this.platforms.add(new Platform(this, this.player, 150, 350));
         this.platforms.add(new Platform(this, this.player, 850, 400));
         this.platforms.add(new Platform(this, this.player, 500, 200));
+
 
         this.escalera = new Escalera(this, this.player, 680, 385);
         this.cofre1 = new Cofre(this, this.player, 150, 463);
