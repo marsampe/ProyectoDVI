@@ -76,6 +76,7 @@ export default class IU extends Phaser.Scene{
                 itemImage.setScale(0.4); // Escala la imagen del objeto si es necesario
                 this.inventoryItems[i] = itemImage;
             }
+            x = x + 76;
         }
     }
 

@@ -4,6 +4,7 @@ import Phaser from 'phaser'
 import platform from '../assets/sprites/platform.png'
 import venda from '../assets/sprites/venda.png'
 import player from '../assets/sprites/personaje.png'
+import momia from '../assets/sprites/momia.png'
 import inventario from '../assets/sprites/inventario.png'
 import marcadorInventario from '../assets/sprites/marcadorInventario.png'
 import escalera from '../assets/sprites/escalera.png'
@@ -33,6 +34,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('platform', platform);
     this.load.image('escalera', escalera);
     this.load.image('venda', venda);
+    this.load.spritesheet('momia', momia, { frameWidth: 100, frameHeight: 138});
     this.load.image('antorcha', antorcha);
     this.load.spritesheet('player', player, { frameWidth: 212, frameHeight: 415});
     this.load.image('inventario', inventario);
@@ -47,6 +49,14 @@ export default class Boot extends Phaser.Scene {
    */
   create() {
     this.scene.start('level');
+    
+    this.anims.create({
+      key: 'caminarMomia',
+      frames: this.anims.generateFrameNumbers('momia', { start: 0, end: 2 }),
+      frameRate: 5,
+      repeat: -1
+  })
+
 
     this.anims.create({
       key: 'saltarDerecha',
