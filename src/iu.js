@@ -190,4 +190,18 @@ export default class IU extends Phaser.Scene{
 
         return (this.salud === 0);
     }
+
+    reducirSalud(valor){
+
+        this.salud -= valor;
+
+        if (this.salud < 0)
+        {
+            this.salud = 0;
+        }
+
+        this.draw();
+
+        return (this.salud === 0);
+    }
 }

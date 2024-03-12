@@ -30,6 +30,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.teclaE = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
         this.teclaQ = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
         this.teclaTAB = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TAB);
+        
 
         this.setDepth(2);
     }
@@ -44,6 +45,29 @@ export default class Player extends Phaser.GameObjects.Sprite {
       return this.scene.iu.addToInventory(objectName);
     }
 
+    reduceHealth() {
+        this.scene.iu.reducirSalud(50);
+
+        const retrocesoDistance = 30; // Distancia de retroceso en píxeles
+        const retrocesoDuration = 500; // Duración del retroceso en milisegundos
+
+        if (this.ultimaDireccion === 'izquierda') {
+            this.y -= retrocesoDistance;
+            this.x += retrocesoDistance;
+        } else if (this.ultimaDireccion === 'derecha') {
+            this.y -= retrocesoDistance;
+            this.x -= retrocesoDistance;
+        }
+
+        // Agrega una animación para hacerlo más suave
+        this.scene.tweens.add({
+            targets: this,
+            x: this.x, // La posición X actual para que no haya movimiento horizontal
+            duration: retrocesoDuration,
+            ease: 'Linear'
+        });
+    
+    }
 
     /**
      * El jugador ha recogido una estrella por lo que este método añade un punto y
