@@ -11,6 +11,7 @@ import escalera from '../assets/sprites/escalera.png'
 import cofre from '../assets/sprites/cofre.png'
 import antorcha from '../assets/sprites/antorcha.png'
 import trampaEstacas from '../assets/sprites/trampaEstacas.png'
+import trampaLateral from '../assets/sprites/trampaLateral.png'
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
  * Esta escena se puede mejorar añadiendo una imagen del juego y una 
@@ -42,6 +43,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('marcadorInventario', marcadorInventario);
     this.load.image('trampaEstacas', trampaEstacas);
     this.load.spritesheet('cofre', cofre, { frameWidth: 76, frameHeight: 74});
+    this.load.image('trampaLateral', trampaLateral);
   }
   
 
