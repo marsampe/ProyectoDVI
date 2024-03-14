@@ -27,18 +27,18 @@ export default class trampaLateral extends Phaser.GameObjects.Sprite {
     this.scene.physics.add.collider(player, this, this.handleCollision, null, this);
     //this.scene.physics.add.overlap(player, this, this.handleCollision, null, this);
 
-    this.initialBodyY = this.body.y -10;
+    this.initialBodyX = this.body.x;
 
     this.scene.tweens.add({
         targets: this,
-        y: y + 100, 
+        x: x + 100, 
         ease: 'Linear',
-        duration: 3000, // Duración del movimiento en milisegundos
+        duration: 2000, // Duración del movimiento en milisegundos
         yoyo: true, // Hacer un bucle
         repeat: -1, // Repetir indefinidamente
         onUpdate: () => {
             // Actualizar la posición de la hitbox en cada fotograma
-            this.body.y = this.initialBodyY + (this.y - y);
+            this.body.x = this.initialBodyX + (this.x - x);
           }
       });
 
