@@ -5,6 +5,7 @@ import Player from './player.js';
 import Momia from './momia.js';
 import Phaser from 'phaser'
 import trampaEstacas from './trampaEstacas.js';
+import trampaLateral from './trampaLateral.js';
 
 
 /**
@@ -35,7 +36,7 @@ export default class Level extends Phaser.Scene {
         this.iu = this.scene.get('iu');
         this.iu.scene.setVisible(true);
         
-        this.player = new Player(this, 200, 300);
+        this.player = new Player(this, 400, 100);
         this.momia= new Momia(this,400, 121);
         this.platforms = this.physics.add.staticGroup();
         this.platforms.add(new Platform(this, this.player, this.momia, 150, 470));
@@ -45,6 +46,7 @@ export default class Level extends Phaser.Scene {
 
 
         this.trampaEstacas1 = new trampaEstacas(this, this.player, 314, 493);
+        this.trampaLateral1 = new trampaLateral(this, this.player, 300, 270);
         this.escalera = new Escalera(this, this.player, 680, 385);
         this.cofre1 = new Cofre(this, this.player, 150, 405);
         this.arrayCofres.push(this.cofre1);
