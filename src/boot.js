@@ -12,6 +12,7 @@ import cofre from '../assets/sprites/cofre.png'
 import antorcha from '../assets/sprites/antorcha.png'
 import trampaEstacas from '../assets/sprites/trampaEstacas.png'
 import trampaLateral from '../assets/sprites/trampaLateral.png'
+import plataformaRompible from '../assets/sprites/plataformaRompible.png'
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
  * Esta escena se puede mejorar añadiendo una imagen del juego y una 
@@ -44,6 +45,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('trampaEstacas', trampaEstacas);
     this.load.spritesheet('cofre', cofre, { frameWidth: 76, frameHeight: 74});
     this.load.image('trampaLateral', trampaLateral);
+    this.load.spritesheet('plataformaRompible', plataformaRompible, { frameWidth: 32, frameHeight: 22});
   }
   
 
@@ -122,6 +124,13 @@ export default class Boot extends Phaser.Scene {
     frames: this.anims.generateFrameNumbers('cofre', { start: 1, end: 1}),
     frameRate: 0,
     repeat: -1
+  });
+
+  this.anims.create({
+    key: 'romperPlataforma',
+    frames: this.anims.generateFrameNumbers('plataformaRompible', { start: 1, end: 6}),
+    frameRate: 2,
+    repeat: 0
   });
   
   }

@@ -6,6 +6,7 @@ import Momia from './momia.js';
 import Phaser from 'phaser'
 import trampaEstacas from './trampaEstacas.js';
 import trampaLateral from './trampaLateral.js';
+import plataformaRompible from './plataformaRompible.js';
 
 
 /**
@@ -43,6 +44,9 @@ export default class Level extends Phaser.Scene {
         this.platforms.add(new Platform(this, this.player, this.momia, 850, 400));
         this.platforms.add(new Platform(this, this.player, this.momia, 500, 200));
         this.platforms.add(new Platform(this, this.player, this.momia, 475, 470));
+
+        this.plataformasRompibles = this.physics.add.staticGroup();
+        this.plataformasRompibles.add(new plataformaRompible(this, this.player, 300, 200))
 
 
         this.trampaEstacas1 = new trampaEstacas(this, this.player, 314, 493);
