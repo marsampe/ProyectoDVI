@@ -3,7 +3,9 @@ import Phaser from 'phaser'
 
 import platform from '../assets/sprites/platform.png'
 import venda from '../assets/sprites/venda.png'
-import player from '../assets/sprites/personaje.png'
+import personajeAndar from '../assets/sprites/personajeAndar.png'
+import personajeSalto from '../assets/sprites/personajeSalto.png'
+import personajeAtaque from '../assets/sprites/personajeAtaque.png'
 import momia from '../assets/sprites/momia.png'
 import inventario from '../assets/sprites/inventario.png'
 import marcadorInventario from '../assets/sprites/marcadorInventario.png'
@@ -39,7 +41,9 @@ export default class Boot extends Phaser.Scene {
     this.load.image('venda', venda);
     this.load.spritesheet('momia', momia, { frameWidth: 100, frameHeight: 138});
     this.load.image('antorcha', antorcha);
-    this.load.spritesheet('player', player, { frameWidth: 212, frameHeight: 415});
+    this.load.spritesheet('personajeAndar', personajeAndar, { frameWidth: 84, frameHeight: 217});
+    this.load.spritesheet('personajeSalto', personajeSalto, { frameWidth: 116, frameHeight: 217});
+    this.load.spritesheet('personajeAtaque', personajeAtaque, { frameWidth: 186, frameHeight: 217});
     this.load.image('inventario', inventario);
     this.load.image('marcadorInventario', marcadorInventario);
     this.load.image('trampaEstacas', trampaEstacas);
@@ -63,58 +67,30 @@ export default class Boot extends Phaser.Scene {
       repeat: -1
   })
 
-
-    this.anims.create({
-      key: 'saltarDerecha',
-      frames: this.anims.generateFrameNumbers('player', { start: 6, end: 6}),
-      frameRate: 0,
-      repeat: -1
-    });
-
-    this.anims.create({
-      key: 'saltarIzquierda',
-      frames: this.anims.generateFrameNumbers('player', { start: 7, end: 7}),
-      frameRate: 0,
-      repeat: -1
-    });
-
-    this.anims.create({
-    key: 'derecha',
-    frames: this.anims.generateFrameNumbers('player', { start: 0, end: 2 }),
-    frameRate: 8,
-    repeat: -1
-  });
-
   this.anims.create({
-      key: 'izquierda',
-      frames: this.anims.generateFrameNumbers('player', { start: 3, end: 5 }),
+      key: 'saltar',
+      frames: this.anims.generateFrameNumbers('personajeSalto', { start: 0, end: 13}),
+      frameRate: 14,
+      repeat: 0
+    });
+
+    this.anims.create({
+      key: 'atacar',
+      frames: this.anims.generateFrameNumbers('personajeAtaque', { start: 0, end:5}),
       frameRate: 8,
-      repeat: -1
-  });
+      repeat: 0
+    });
 
-  this.anims.create({
-    key: 'paradoDerecha',
-    frames: this.anims.generateFrameNumbers('player', { start: 1, end: 1}),
-    frameRate: 0
-  });
-
-  this.anims.create({
-    key: 'paradoIzquierda',
-    frames: this.anims.generateFrameNumbers('player', { start: 4, end: 4}),
-    frameRate: 0,
+    this.anims.create({
+    key: 'andar',
+    frames: this.anims.generateFrameNumbers('personajeAndar', { start: 0, end: 7 }),
+    frameRate: 15,
     repeat: -1
   });
 
   this.anims.create({
-    key: 'escalar',
-    frames: this.anims.generateFrameNumbers('player', { start: 8, end: 9}),
-    frameRate: 5,
-    repeat: -1
-  });
-
-  this.anims.create({
-    key: 'escalarParado',
-    frames: this.anims.generateFrameNumbers('player', { start: 8, end: 8}),
+    key: 'parado',
+    frames: this.anims.generateFrameNumbers('personajeAndar', { start: 0, end: 0}),
     frameRate: 0,
     repeat: -1
   });

@@ -16,14 +16,14 @@ export default class Player extends Phaser.GameObjects.Sprite {
         super(scene, x, y, 'player');
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
-        this.body.setSize(120, 400);
-        this.body.setOffset(50,0);
-        this.setScale(0.26);
-        
+        this.setScale(0.7);
+        this.anims.play('parado', true);
+        this.body.setSize(50, 120);
+        this.body.setOffset(10, 97);
         // Queremos que el jugador no se salga de los límites del mundo
         this.body.setCollideWorldBounds();
         this.speed = 300;
-        this.jumpSpeed = -200;
+        this.jumpSpeed = -220;
         this.ultimaDireccion = 'derecha'
         //creamos inventario
         this.inventory = [];
@@ -33,6 +33,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.teclaE = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
         this.teclaQ = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
         this.teclaTAB = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TAB);
+        this.teclaS = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
         
 
         this.setDepth(2);
@@ -100,30 +101,34 @@ export default class Player extends Phaser.GameObjects.Sprite {
         }
         else if(this.teclaQ.isDown && Phaser.Input.Keyboard.JustDown(this.teclaQ)){
             this.scene.iu.usarObjeto();
-        }
-        else if (Phaser.Geom.Rectangle.ContainsRect(this.scene.escalera.getBounds(), this.getBounds()) && (this.cursors.down.isDown || this.cursors.up.isDown)) {
-            if (this.cursors.down.isDown) {
-                this.body.setVelocityY(150);
-                this.anims.play('escalar', true);
-            }
-            if (this.cursors.up.isDown) {
-                this.body.setVelocityY(-150);
-                this.anims.play('escalar', true);
-            }
-        }
-        else if(Phaser.Geom.Rectangle.ContainsRect(this.scene.escalera.getBounds(), this.getBounds()) && !this.body.onFloor()){
-            this.body.setVelocityY(-7);
-            this.body.setVelocityX(0);
-            this.anims.play('escalarParado', true);
-        }
+        }else if(this.teclaS.isDown){
+            this.body.setSize(200, 120);
+            this.body.setOffset(0, 97);
+            this.anims.play('atacar', true);
+        } 
         else{
             if (Phaser.Input.Keyboard.JustDown(this.cursors.up)) {
-                if(this.body.onFloor())
+                if(this.body.onFloor()){
                     this.body.setVelocityY(this.jumpSpeed);
+                    if(this.ultimaDireccion== 'izquierda'){
+                        this.anims.play('saltar', true);
+                        this.setFlipX(true);
+                    }
+                    else if(this.ultimaDireccion== 'derecha'){
+                        this.anims.play('saltar', true);
+                        this.setFlipX(false);
+                    }
+                    
+                }
+
             }
+            
             else if (this.cursors.left.isDown) {
                 if(this.body.onFloor()){
-                    this.anims.play('izquierda', true);
+                    this.body.setSize(50, 120);
+                    this.body.setOffset(10, 97);
+                    this.anims.play('andar', true);
+                    this.setFlipX(true);
                     this.body.setVelocityX(-this.speed);
                 }else
                     this.body.setVelocityX(-150);
@@ -132,7 +137,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
             else if (this.cursors.right.isDown) {
                 
                 if(this.body.onFloor()){
-                    this.anims.play('derecha', true);
+                    this.body.setSize(50, 120);
+                    this.body.setOffset(10, 97);
+                    this.anims.play('andar', true);
+                    this.setFlipX(false);
                     this.body.setVelocityX(this.speed);
                 }
                 else
@@ -140,28 +148,69 @@ export default class Player extends Phaser.GameObjects.Sprite {
                 this.ultimaDireccion = 'derecha'
             }
             if(!this.cursors.right.isDown && !this.cursors.left.isDown && !this.cursors.up.isDown){
-                if(!this.body.onFloor()){
-                    if(this.ultimaDireccion== 'izquierda')
-                        this.anims.play('saltarIzquierda', true);
-                    else if(this.ultimaDireccion== 'derecha')
-                        this.anims.play('saltarDerecha', true);
-                    this.body.setVelocityX(0);
-                }
                 if(this.body.onFloor()){
                     this.body.setVelocityX(0);
-                    if(this.ultimaDireccion== 'izquierda')
-                        this.anims.play('paradoIzquierda', true);
-                    else if(this.ultimaDireccion== 'derecha')
-                        this.anims.play('paradoDerecha', true);
+                    this.body.setSize(50, 120);
+                    this.body.setOffset(10, 97);
+                    if(this.ultimaDireccion== 'izquierda'){
+                        this.anims.play('parado', true);
+                        this.setFlipX(true);
+                    }
+                    else if(this.ultimaDireccion== 'derecha'){
+                        this.anims.play('parado', true);
+                        this.setFlipX(false);
+                    }        
                 }
             }
-            if(!this.body.onFloor()){
-                if(this.ultimaDireccion== 'izquierda')
-                    this.anims.play('saltarIzquierda', true);
-                else if(this.ultimaDireccion== 'derecha')
-                    this.anims.play('saltarDerecha', true);
+                
+        }if(this.anims.currentAnim != null && this.anims.currentAnim.key == 'saltar'){
+            if(this.anims.currentFrame.index == 14){
+                this.body.setSize(50, 120);
+                this.body.setOffset(30, 97);
+            }else if(this.anims.currentFrame.index == 1){
+                this.body.setSize(50, 120);
+                this.body.setOffset(30, 97);
+            }
+            else if(this.anims.currentFrame.index == 2){
+                this.body.setSize(50, 120);
+                this.body.setOffset(30, 97);
+            }
+            else if(this.anims.currentFrame.index == 3){
+                this.body.setSize(50, 120);
+                this.body.setOffset(30, 65);
+            }
+            else if(this.anims.currentFrame.index == 4){
+                this.body.setSize(50, 125);
+                this.body.setOffset(30, 39);
+            }
+            else if(this.anims.currentFrame.index == 5){
+                this.body.setSize(50, 125);
+                this.body.setOffset(30, 23);
+            }else if(this.anims.currentFrame.index == 6){
+                this.body.setSize(50, 125);
+                this.body.setOffset(30, 8);
+            }else if(this.anims.currentFrame.index == 7){
+                this.body.setSize(50, 125);
+                this.body.setOffset(30, 3);
+            }else if(this.anims.currentFrame.index == 8){
+                this.body.setSize(50, 125);
+                this.body.setOffset(30, 0);
+            }else if(this.anims.currentFrame.index == 9){
+                this.body.setSize(50, 125);
+                this.body.setOffset(30, 0);
+            }else if(this.anims.currentFrame.index == 10){
+                this.body.setSize(50, 125);
+                this.body.setOffset(30, 5);
+            }else if(this.anims.currentFrame.index == 11){
+                this.body.setSize(50, 125);
+                this.body.setOffset(30, 20);
+            }else if(this.anims.currentFrame.index == 12){
+                this.body.setSize(50, 125);
+                this.body.setOffset(30, 37);
+            }else if(this.anims.currentFrame.index == 13){
+                this.body.setSize(50, 125);
+                this.body.setOffset(30, 60);
             }
         }
-        
     }
 }
