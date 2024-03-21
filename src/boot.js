@@ -5,6 +5,7 @@ import platform from '../assets/sprites/platform.png'
 import venda from '../assets/sprites/venda.png'
 import personajeAndar from '../assets/sprites/personajeAndar.png'
 import personajeSalto from '../assets/sprites/personajeSalto.png'
+import personajeEscalar from '../assets/sprites/personajeEscalar.png'
 import personajeAtaque from '../assets/sprites/personajeAtaque.png'
 import momia from '../assets/sprites/momia.png'
 import inventario from '../assets/sprites/inventario.png'
@@ -44,6 +45,7 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('personajeAndar', personajeAndar, { frameWidth: 84, frameHeight: 217});
     this.load.spritesheet('personajeSalto', personajeSalto, { frameWidth: 116, frameHeight: 217});
     this.load.spritesheet('personajeAtaque', personajeAtaque, { frameWidth: 186, frameHeight: 217});
+    this.load.spritesheet('personajeEscalar', personajeEscalar, { frameWidth: 77, frameHeight: 217});
     this.load.image('inventario', inventario);
     this.load.image('marcadorInventario', marcadorInventario);
     this.load.image('trampaEstacas', trampaEstacas);
@@ -72,6 +74,20 @@ export default class Boot extends Phaser.Scene {
       frames: this.anims.generateFrameNumbers('personajeSalto', { start: 0, end: 13}),
       frameRate: 14,
       repeat: 0
+    });
+
+    this.anims.create({
+      key: 'escalar',
+      frames: this.anims.generateFrameNumbers('personajeEscalar', { start: 0, end: 1}),
+      frameRate: 5,
+      repeat: -1
+    });
+  
+    this.anims.create({
+      key: 'escalarParado',
+      frames: this.anims.generateFrameNumbers('personajeEscalar', { start: 0, end: 0}),
+      frameRate: 0,
+      repeat: -1
     });
 
     this.anims.create({

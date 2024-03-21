@@ -24,8 +24,8 @@ export default class trampaLateral extends Phaser.GameObjects.Sprite {
     this.setDepth(1);
     
     this.player = player;
-    this.scene.physics.add.collider(player, this, this.handleCollision, null, this);
-    //this.scene.physics.add.overlap(player, this, this.handleCollision, null, this);
+    //this.scene.physics.add.collider(player, this, this.handleCollision, null, this);
+    this.scene.physics.add.overlap(player, this, this.handleCollision, null, this);
 
     this.initialBodyX = this.body.x;
 
@@ -58,8 +58,8 @@ export default class trampaLateral extends Phaser.GameObjects.Sprite {
    * @param {Phaser.GameObjects.GameObject} player El jugador
    */
   handleCollision(trampa, player) {
-    // Reducir la vida del jugador
-    this.player.reduceHealth();
-  }
+    if(this.player.herido == false)
+      this.player.reduceHealth();
+    }
 
 }
