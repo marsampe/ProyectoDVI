@@ -1,4 +1,5 @@
 import Phaser from 'phaser'
+import venda from './venda.js';
 
 /**
  * Clase que representa el jugador del juego. El jugador se mueve por el mundo usando los cursores.
@@ -11,9 +12,12 @@ export default class Momia extends Phaser.GameObjects.Sprite {
      * @param {Phaser.Scene} scene Escena a la que pertenece el jugador
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
+     * @param {Player} player Jugador del juego
      */
-    constructor(scene, x, y) {
+    constructor(scene, player, x, y) {
         super(scene, x, y, 'momia');
+
+        this.player = player;
         
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
@@ -21,6 +25,7 @@ export default class Momia extends Phaser.GameObjects.Sprite {
         this.setScale(0.7);
         // Queremos que el jugador no se salga de los límites del mundo
         this.body.setCollideWorldBounds();
+        this.scene.physics.add.overlap(player, this, this.handleCollision, null, this);
         this.speed = 300;
         this.ultimaDireccion = 'derecha'
 
@@ -46,4 +51,25 @@ export default class Momia extends Phaser.GameObjects.Sprite {
         });
     }
 
+    reducirVida() {
+        this.parpadear();
+    }
+
+    parpadear() {
+        let i = 5;
+        setInterval(() => {
+            this.visible = !this.visible;
+            this.setTint(0xED0004);
+            i--;
+            if (i === 0) {
+                this.scene.add.existing(new venda(this.scene, this.x - 50, this.y - 10));
+                this.destroy()
+            }
+        }, 400);
+    }
+
+    handleCollision() {
+        if(this.player.herido == false)
+            this.player.reduceHealth();
+    }
 }

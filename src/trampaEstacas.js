@@ -31,9 +31,9 @@ export default class trampaEstacas extends Phaser.GameObjects.Sprite {
    * @param {Phaser.GameObjects.GameObject} trampa La trampa de estacas
    * @param {Phaser.GameObjects.GameObject} player El jugador
    */
-  handleCollision(trampa, player) {
-    // Reducir la vida del jugador
-    this.player.reduceHealth();
-  }
+    handleCollision(trampa, player) {
+      if(this.player.herido == false)
+        this.player.reduceHealth();
+    }
 
 }

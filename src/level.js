@@ -37,8 +37,8 @@ export default class Level extends Phaser.Scene {
         this.iu = this.scene.get('iu');
         this.iu.scene.setVisible(true);
         
-        this.player = new Player(this, 400, 100);
-        this.momia= new Momia(this,400, 121);
+        this.player = new Player(this, 800, 50);
+        this.momia= new Momia(this, this.player, 400, 400);
         this.platforms = this.physics.add.staticGroup();
         this.platforms.add(new Platform(this, this.player, this.momia, 150, 470));
         this.platforms.add(new Platform(this, this.player, this.momia, 850, 400));
@@ -74,5 +74,10 @@ export default class Level extends Phaser.Scene {
 
     updateInventoryUI() {
         this.iu.updateInventory();
+    }
+
+    escenaFinal(){
+        this.scene.start('end');
+        this.iu.scene.setVisible(false);
     }
 }
