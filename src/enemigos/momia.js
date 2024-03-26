@@ -1,5 +1,5 @@
 import Phaser from 'phaser'
-import venda from './venda.js';
+import venda from '../objetos/venda.js';
 
 /**
  * Clase que representa el jugador del juego. El jugador se mueve por el mundo usando los cursores.

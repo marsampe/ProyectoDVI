@@ -1,6 +1,6 @@
 import Phaser from 'phaser'
-import venda from './venda.js';
-import antorcha from './antorcha.js';
+import venda from '../objetos/venda.js';
+import antorcha from '../objetos/antorcha.js';
 /**
  * Clase que representa las plataformas que aparecen en el escenario de juego.
  * Cada plataforma es responsable de crear la base que aparece sobre ella y en la 

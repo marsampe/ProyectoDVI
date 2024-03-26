@@ -1,7 +1,7 @@
 import Phaser from "phaser";
 
-import background from '../images/fondoInicio.jpg';
-import button from '../images/button.png';
+import background from '../../images/fondoInicio.jpg';
+import button from '../../images/button.png';
 export default class escenaInicial extends Phaser.Scene {
     constructor() {
       super({ key: 'escenaInicial' });
