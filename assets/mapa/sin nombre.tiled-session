@@ -1,0 +1,71 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "tileset.tsx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "file.lastUsedOpenFilter": "Todos los archivos (*)",
+    "fileStates": {
+        "": {
+            "scaleInEditor": 1
+        },
+        "C:/Users/isabe/git/ProyectoDVI/assets/sprites/dungeon-01.json": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -42,
+                "y": 233
+            }
+        },
+        "C:/Users/isabe/git/ProyectoDVI/assets/sprites/dungeon-01.json#dungeon": {
+            "scaleInDock": 2
+        },
+        "PisosJuego.json": {
+            "scale": 1.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 452.33333333333326,
+                "y": 465.3333333333333
+            }
+        },
+        "PisosJuego.json#aaaaa": {
+            "scaleInDock": 1
+        },
+        "mapa.tmx": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 101,
+                "y": 199
+            }
+        },
+        "tileset.tsx": {
+            "scaleInDock": 0.75,
+            "scaleInEditor": 1
+        }
+    },
+    "last.imagePath": "C:/Users/isabe/Downloads",
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "openFiles": [
+        "tileset.tsx",
+        "mapa.tmx",
+        "C:/Users/isabe/git/ProyectoDVI/assets/sprites/dungeon-01.json"
+    ],
+    "project": "sin nombre.tiled-project",
+    "recentFiles": [
+        "tileset.tsx",
+        "C:/Users/isabe/git/ProyectoDVI/assets/sprites/dungeon-01.json",
+        "mapa.tmx",
+        "PisosJuego.json"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}

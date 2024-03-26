@@ -1,0 +1,25 @@
+{
+    "activeFile": "mapa.tmx",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "mapa.tmx": {
+            "scale": 0.35624999999999996,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 238.5964912280702,
+                "y": 161.40350877192986
+            }
+        },
+        "tileset.tsx": {
+            "scaleInDock": 1
+        }
+    },
+    "openFiles": [
+        "mapa.tmx"
+    ],
+    "project": "prueba.tiled-project",
+    "recentFiles": [
+        "mapa.tmx"
+    ]
+}

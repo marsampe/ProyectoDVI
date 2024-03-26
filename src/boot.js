@@ -16,6 +16,10 @@ import antorcha from '../assets/sprites/antorcha.png'
 import trampaEstacas from '../assets/sprites/trampaEstacas.png'
 import trampaLateral from '../assets/sprites/trampaLateral.png'
 import plataformaRompible from '../assets/sprites/plataformaRompible.png'
+import mapa from '../assets/tiles/set.json'
+import cjto from '../assets/tiles/tilesetEgipto.jpg'
+
+
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
  * Esta escena se puede mejorar añadiendo una imagen del juego y una 
@@ -35,6 +39,7 @@ export default class Boot extends Phaser.Scene {
    * Carga de los assets del juego
    */
   preload() {
+    this.load.audio('audio','../assets/sprites/sound.wav');
     // Con setPath podemos establecer el prefijo que se añadirá a todos los load que aparecen a continuación
     this.load.setPath('assets/sprites/');
     this.load.image('platform', platform);
@@ -52,6 +57,11 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('cofre', cofre, { frameWidth: 76, frameHeight: 74});
     this.load.image('trampaLateral', trampaLateral);
     this.load.spritesheet('plataformaRompible', plataformaRompible, { frameWidth: 32, frameHeight: 22});
+ 
+    this.load.image('patronesTilemap',cjto);
+    this.load.tilemapTiledJSON('mapa',mapa);
+
+
   }
   
 
