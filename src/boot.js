@@ -16,8 +16,13 @@ import antorcha from '../assets/sprites/antorcha.png'
 import trampaEstacas from '../assets/sprites/trampaEstacas.png'
 import trampaLateral from '../assets/sprites/trampaLateral.png'
 import plataformaRompible from '../assets/sprites/plataformaRompible.png'
-import mapa from '../assets/tiles/set.json'
-import cjto from '../assets/tiles/tilesetEgipto.jpg'
+
+
+//mapa/////////////
+import mapa from '../assets/tiled/mapa.json'
+import cjto from '../assets/tiled/tilesetEgipto.png'
+import cjtofondo from '../assets/tiled/prueba.png'
+//////////////
 import antidoto from '../assets/sprites/antidoto.png'
 
 /**
@@ -39,9 +44,14 @@ export default class Boot extends Phaser.Scene {
    * Carga de los assets del juego
    */
   preload() {
+   
     this.load.audio('audio','../assets/sprites/sound.wav');
     // Con setPath podemos establecer el prefijo que se añadirá a todos los load que aparecen a continuación
     this.load.setPath('assets/sprites/');
+
+
+
+
     this.load.image('platform', platform);
     this.load.image('escalera', escalera);
     this.load.image('venda', venda);
@@ -58,9 +68,11 @@ export default class Boot extends Phaser.Scene {
     this.load.image('trampaLateral', trampaLateral);
     this.load.spritesheet('plataformaRompible', plataformaRompible, { frameWidth: 32, frameHeight: 22});
     this.load.image('antidoto', antidoto);
-    this.load.image('patronesTilemap',cjto);
-    this.load.tilemapTiledJSON('mapa',mapa);
+    this.load.setPath('assets/tiled/');
 
+    this.load.image('patronesTilemap',cjto);
+    this.load.image('patronesTilemapFondo',cjtofondo);
+    this.load.tilemapTiledJSON('mapa',mapa);
 
   }
   
@@ -70,8 +82,8 @@ export default class Boot extends Phaser.Scene {
    * nivel del juego
    */
   create() {
-    //this.scene.start('level');
-    this.scene.start('escenaTutorial');
+    this.scene.start('level');
+    //this.scene.start('escenaTutorial');
     this.anims.create({
       key: 'caminarMomia',
       frames: this.anims.generateFrameNumbers('momia', { start: 0, end: 2 }),

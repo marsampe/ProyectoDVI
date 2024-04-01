@@ -30,10 +30,15 @@ export default class escenaTutorial extends Phaser.Scene {
      * Creación de los elementos de la escena principal de juego
      */
     create() {
+     /*   let map = this.make.tilemap ({ key: "mapa", tileWidth: 16, tileHeight: 16})
+        let tileset2 = map.addTilesetImage('set','patronesTilemap')
+	
+        let bg = map.createLayer('fondo', tileset2, 0, 0)
+		//this.collisionLayer = map.createLayer('colisiones', tileset2, 0, 0)*/
 ////////////////////////////
-const map= this.make.tilemap({ key: 'mapa'});
-const tilesett = map.addTilesetImage('set', 'patronesTilemap',16,16);
-const layerFondo=map.createLayer('fondoTutorial', tilesett);
+//const map= this.make.tilemap({ key: 'mapa'});
+//const tilesett = map.addTilesetImage('set', 'patronesTilemap',16,16);
+//const layerFondo=map.createLayer('fondo', tilesett);
 ////////////////////////////
 
         this.scene.launch('iu');
@@ -42,6 +47,9 @@ const layerFondo=map.createLayer('fondoTutorial', tilesett);
         this.player = new Player(this, 400, 400);
         this.momia= new Momia(this, this.player, 400, 400);
        
+       
+      //  this.escalera = new Escalera(this, this.player, 680, 385);
+   /*    
 ///capas de objetos
 const motosierra=map.getObjectLayer('motosierras')['objects'];
 const plataformas=map.getObjectLayer('plataformas')['objects'];
@@ -72,7 +80,7 @@ const plataformRompible=map.getObjectLayer('plataformasRompibles')['objects'];
     }
          //is.plataform = this.physics.add.staticGroup();
 
-        
+        */
 //camara
         this.cameras.main.setBounds(0,0, 1200,800);
         this.physics.world.setBounds(0,0, 1200,800);
