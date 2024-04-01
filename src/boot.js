@@ -18,8 +18,9 @@ import trampaLateral from '../assets/sprites/trampaLateral.png'
 import plataformaRompible from '../assets/sprites/plataformaRompible.png'
 import mapa from '../assets/tiles/set.json'
 import cjto from '../assets/tiles/tilesetEgipto.jpg'
+import plata from '../assets/sprites/plata.png'
 
-
+import antidoto from '../assets/sprites/antidoto.png'
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
  * Esta escena se puede mejorar añadiendo una imagen del juego y una 
@@ -57,11 +58,12 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('cofre', cofre, { frameWidth: 76, frameHeight: 74});
     this.load.image('trampaLateral', trampaLateral);
     this.load.spritesheet('plataformaRompible', plataformaRompible, { frameWidth: 32, frameHeight: 22});
- 
+    this.load.image('plata',plata);
     this.load.image('patronesTilemap',cjto);
     this.load.tilemapTiledJSON('mapa',mapa);
 
 
+    this.load.image('antidoto', antidoto);
   }
   
 
@@ -71,7 +73,7 @@ export default class Boot extends Phaser.Scene {
    */
   create() {
     this.scene.start('level');
-    
+   //this.scene.start('escenaTutorial');
     this.anims.create({
       key: 'caminarMomia',
       frames: this.anims.generateFrameNumbers('momia', { start: 0, end: 2 }),
