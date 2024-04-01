@@ -17,12 +17,12 @@ import plataformaRompible from './plataformaRompible.js';
  * El juego termina cuando el jugador ha recogido 10 estrellas.
  * @extends Phaser.Scene
  */
-export default class Level extends Phaser.Scene {
+export default class escenaTutorial extends Phaser.Scene {
     /**
      * Constructor de la escena
      */
     constructor() {
-        super({ key: 'level' });
+        super({ key: 'escenaTutorial' });
         this.arrayCofres = [];
     }
 
@@ -31,52 +31,42 @@ export default class Level extends Phaser.Scene {
      */
     create() {
 ////////////////////////////
-
 const map= this.make.tilemap({ key: 'mapa'});
 const tilesett = map.addTilesetImage('set', 'patronesTilemap',16,16);
-const layer=map.createLayer('Foreground', tilesett);
-//const layerFondo=map.createLayer('plataformas egipcias', tilesett);
+const layerFondo=map.createLayer('fondoTutorial', tilesett);
 ////////////////////////////
-const motosierra=map.getObjectLayer('motosierras')['objects'];
-const plataformas=map.getObjectLayer('plataformas')['objects'];
-const trampasSuelo=map.getObjectLayer('trampas suelo')['objects'];
-const cofres=map.getObjectLayer('cofres')['objects'];
-platEgipcias.x = 100;
-platEgipcias.y = 100;
-console.log(motosierra);
-
-        this.stars = 10;
-
 
         this.scene.launch('iu');
         this.iu = this.scene.get('iu');
         this.iu.scene.setVisible(true);
-        
         this.player = new Player(this, 400, 400);
-        //this.momia= new Momia(this, this.player, 400, 400);
-        this.platforms = this.physics.add.staticGroup();
-      
-    
-        this.plataformasRompibles = this.physics.add.staticGroup();
-        this.plataformasRompibles.add(new plataformaRompible(this, this.player, 300, 200))
-
-
-        this.trampaEstacas1 = new trampaEstacas(this, this.player, 314, 493);
-        this.trampaLateral1 = new trampaLateral(this, this.player, 300, 270);
+       
         this.escalera = new Escalera(this, this.player, 680, 385);
-        //this.cofre1 = new Cofre(this, this.player, 150, 405);
-        
-        //this.cofre2 = new Cofre(this, this.player, 900, 332);
-       // this.arrayCofres.push(this.cofre2);
+       
+///capas de objetos
+const motosierra=map.getObjectLayer('motosierras')['objects'];
+const plataformas=map.getObjectLayer('plataformas')['objects'];
+const trampasSuelo=map.getObjectLayer('trampas suelo')['objects'];
+const cofres=map.getObjectLayer('cofres')['objects'];
+const escaleras=map.getObjectLayer('escaleras')['objects'];
+const plataformRompible=map.getObjectLayer('plataformasRompibles')['objects'];
+
+for (let i = 0; i < plataformRompible.length; i++) {
+    this.plataformasRompibles=new plataformaRompible(this, this.player,  plataformRompible[i].x, plataformRompible[i].y);
+
+     }
+     this.plataformasRompibles = this.physics.add.staticGroup();
+for (let i = 0; i < escaleras.length; i++) {
+    new Escalera(this, this.player,  escaleras[i].x, escaleras[i].y);
+
+     }
        for (let i = 0; i < trampasSuelo.length; i++) {
         this.trampaEstacas1 = new trampaEstacas(this, this.player,  trampasSuelo[i].x, trampasSuelo[i].y);
-       // this.cofre= new Cofre(this, this.player, motosierra[i].x, motosierra[i].y);
-       // this.arrayCofres.push(this.cofre);
-    }
+    
+         }
         for (let i = 0; i < motosierra.length; i++) {
-            this.trampaEstacas1 = new trampaEstacas(this, this.player,  motosierra[i].x, motosierra[i].y);
-           // this.cofre= new Cofre(this, this.player, motosierra[i].x, motosierra[i].y);
-           // this.arrayCofres.push(this.cofre);
+            new trampaLateral(this, this.player,  motosierra[i].x, motosierra[i].y);
+         
         }
         for (let i = 0; i < cofres.length; i++) {
             
@@ -84,15 +74,16 @@ console.log(motosierra);
             this.arrayCofres.push(this.cofre);
         }
         for (let i = 0; i < plataformas.length; i++) {
-           // this.momia= new Momia(this, this.player, plataformas[i].x, plataformas[i].y);
-            new Platform(this, this.player, this.momia,plataformas[i].x , plataformas[i].y);
+            this.physics.add.collider(this.player,  new Platform(this, this.player, this.momia,plataformas[i].x , plataformas[i].y));
         }
+         //is.plataform = this.physics.add.staticGroup();
 
+        
+//camara
         this.cameras.main.setBounds(0,0, 1200,800);
         this.physics.world.setBounds(0,0, 1200,800);
         this.cameras.main.setZoom(1);
-this.cameras.main.startFollow(this.player);
-
+        this.cameras.main.startFollow(this.player);
     }
 
     collectObject(objectName) {
