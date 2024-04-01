@@ -26,68 +26,80 @@ export default class escenaTutorial extends Phaser.Scene {
         this.arrayCofres = [];
     }
 
-    /**
-     * Creación de los elementos de la escena principal de juego
-     */
     create() {
-     /*   let map = this.make.tilemap ({ key: "mapa", tileWidth: 16, tileHeight: 16})
-        let tileset2 = map.addTilesetImage('set','patronesTilemap')
-	
-        let bg = map.createLayer('fondo', tileset2, 0, 0)
-		//this.collisionLayer = map.createLayer('colisiones', tileset2, 0, 0)*/
-////////////////////////////
-//const map= this.make.tilemap({ key: 'mapa'});
-//const tilesett = map.addTilesetImage('set', 'patronesTilemap',16,16);
-//const layerFondo=map.createLayer('fondo', tilesett);
-////////////////////////////
-
-        this.scene.launch('iu');
-        this.iu = this.scene.get('iu');
-        this.iu.scene.setVisible(true);
-        this.player = new Player(this, 400, 400);
-        this.momia= new Momia(this, this.player, 400, 400);
-       
-       
-      //  this.escalera = new Escalera(this, this.player, 680, 385);
-   /*    
-///capas de objetos
-const motosierra=map.getObjectLayer('motosierras')['objects'];
-const plataformas=map.getObjectLayer('plataformas')['objects'];
-const trampasSuelo=map.getObjectLayer('trampas suelo')['objects'];
-const cofres=map.getObjectLayer('cofres')['objects'];
-const escaleras=map.getObjectLayer('escaleras')['objects'];
-const plataformRompible=map.getObjectLayer('plataformasRompibles')['objects'];
-
-    for (let i = 0; i < plataformRompible.length; i++) {
-        this.plataformasRompibles=new plataformaRompible(this, this.player,  plataformRompible[i].x, plataformRompible[i].y);
-    }
-    this.plataformasRompibles = this.physics.add.staticGroup();
-    for (let i = 0; i < escaleras.length; i++) {
-        this.escalera = new Escalera(this, this.player,  escaleras[i].x, escaleras[i].y);
-    }
-    for (let i = 0; i < trampasSuelo.length; i++) {
-        this.trampaEstacas1 = new trampaEstacas(this, this.player,  trampasSuelo[i].x, trampasSuelo[i].y);
-    }
-    for (let i = 0; i < motosierra.length; i++) {
-        new trampaLateral(this, this.player,  motosierra[i].x, motosierra[i].y);
-    }
-    for (let i = 0; i < cofres.length; i++) {
-        this.cofre= new Cofre(this, this.player, cofres[i].x, cofres[i].y);
-        this.arrayCofres.push(this.cofre);
-    }
-    for (let i = 0; i < plataformas.length; i++) {
-        this.physics.add.collider(this.player,  new Platform(this, this.player, this.momia,plataformas[i].x , plataformas[i].y));
-    }
-         //is.plataform = this.physics.add.staticGroup();
-
+        ////////////////////////////
+        
+        const map= this.make.tilemap({ key: 'mapa'});
+        const tilesett = map.addTilesetImage('set', 'patronesTilemap',16,16);
+        const tilesetfondo = map.addTilesetImage('fondo', 'patronesTilemapFondo',16,16);
+        map.createLayer('capafondo', tilesetfondo,16,16);
+        map.createLayer('capadecoración', tilesett,16,16);
+        const plataformas=map.getObjectLayer('plataforma')['objects'];
+        //this.collisionLayer.setCollision([238,239,251,252,254,255])
+        //this.collisionLayer.setCollisionByProperty({colision:true});
+        //const layerFondo=map.createLayer('plataformas egipcias', tilesett);
+        ////////////////////////////
+        /*
+        const motosierra=map.getObjectLayer('motosierras')['objects'];
+        const plataformas=map.getObjectLayer('plataformas')['objects'];
+        const trampasSuelo=map.getObjectLayer('trampas suelo')['objects'];
+        const cofres=map.getObjectLayer('cofres')['objects'];
+        platEgipcias.x = 100;
+        platEgipcias.y = 100;
+        console.log(motosierra);
+        
+                this.stars = 10;
         */
-//camara
+        
+                this.scene.launch('iu');
+                this.iu = this.scene.get('iu');
+                this.iu.scene.setVisible(true);
+                
+                this.player = new Player(this, 600, 400);
+                //this.momia= new Momia(this, this.player, 400, 400);
+                this.platforms = this.physics.add.staticGroup();
+                
+            
+                this.plataformasRompibles = this.physics.add.staticGroup();
+                this.plataformasRompibles.add(new plataformaRompible(this, this.player, 600, 200))
+        
+        
+                //  this.trampaEstacas1 = new trampaEstacas(this, this.player, 314, 493);
+                // this.trampaLateral1 = new trampaLateral(this, this.player, 300, 270);
+                this.escalera = new Escalera(this, this.player, 680, 385);
+                //this.cofre1 = new Cofre(this, this.player, 150, 405);
+                
+                //this.cofre2 = new Cofre(this, this.player, 900, 332);
+                // this.arrayCofres.push(this.cofre2);
+                /*
+                for (let i = 0; i < trampasSuelo.length; i++) {
+                this.trampaEstacas1 = new trampaEstacas(this, this.player,  trampasSuelo[i].x, trampasSuelo[i].y);
+                // this.cofre= new Cofre(this, this.player, motosierra[i].x, motosierra[i].y);
+                // this.arrayCofres.push(this.cofre);
+            }
+                for (let i = 0; i < motosierra.length; i++) {
+                    this.trampaEstacas1 = new trampaEstacas(this, this.player,  motosierra[i].x, motosierra[i].y);
+                    // this.cofre= new Cofre(this, this.player, motosierra[i].x, motosierra[i].y);
+                    // this.arrayCofres.push(this.cofre);
+                }
+                for (let i = 0; i < cofres.length; i++) {
+                    
+                    this.cofre= new Cofre(this, this.player, cofres[i].x, cofres[i].y);
+                    this.arrayCofres.push(this.cofre);
+                }
+                
+        */
+        for (let i = 0; i < plataformas.length; i++) {
+            // this.momia= new Momia(this, this.player, plataformas[i].x, plataformas[i].y);
+            new Platform(this, this.player, this.momia,plataformas[i].x , plataformas[i].y);
+        }  
+
         this.cameras.main.setBounds(0,0, 1200,800);
         this.physics.world.setBounds(0,0, 1200,800);
         this.cameras.main.setZoom(1);
         this.cameras.main.startFollow(this.player);
     }
-
+        
     collectObject(objectName) {
         // Registra el objeto recolectado en algún lugar
         if(this.player.addToInventory(objectName)){
@@ -97,8 +109,6 @@ const plataformRompible=map.getObjectLayer('plataformasRompibles')['objects'];
         else{
             return false;
         }
-
-        
     }
 
     updateInventoryUI() {

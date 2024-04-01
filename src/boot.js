@@ -82,7 +82,8 @@ export default class Boot extends Phaser.Scene {
    * nivel del juego
    */
   create() {
-    this.scene.start('level');
+    let nextScene = this.registry.get('nextScene');
+    this.scene.start(nextScene);
     //this.scene.start('escenaTutorial');
     this.anims.create({
       key: 'caminarMomia',
