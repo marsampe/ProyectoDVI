@@ -4,7 +4,7 @@ import Phaser from 'phaser'
 import platform from '../assets/sprites/platform.png'
 import venda from '../assets/sprites/venda.png'
 import personajeAndar from '../assets/sprites/personajeAndar.png'
-import personajeSalto from '../assets/sprites/personajeSalto.png'
+import personajeSalto from '../assets/sprites/salto.png'
 import personajeEscalar from '../assets/sprites/personajeEscalar.png'
 import personajeAtaque from '../assets/sprites/personajeAtaque.png'
 import momia from '../assets/sprites/momia.png'
@@ -48,7 +48,7 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('momia', momia, { frameWidth: 100, frameHeight: 138});
     this.load.image('antorcha', antorcha);
     this.load.spritesheet('personajeAndar', personajeAndar, { frameWidth: 84, frameHeight: 217});
-    this.load.spritesheet('personajeSalto', personajeSalto, { frameWidth: 116, frameHeight: 217});
+    this.load.spritesheet('personajeSalto', personajeSalto, { frameWidth: 81, frameHeight: 217});
     this.load.spritesheet('personajeAtaque', personajeAtaque, { frameWidth: 186, frameHeight: 217});
     this.load.spritesheet('personajeEscalar', personajeEscalar, { frameWidth: 77, frameHeight: 217});
     this.load.image('inventario', inventario);

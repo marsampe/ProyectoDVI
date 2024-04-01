@@ -40,8 +40,7 @@ const layerFondo=map.createLayer('fondoTutorial', tilesett);
         this.iu = this.scene.get('iu');
         this.iu.scene.setVisible(true);
         this.player = new Player(this, 400, 400);
-       
-        this.escalera = new Escalera(this, this.player, 680, 385);
+        this.momia= new Momia(this, this.player, 400, 400);
        
 ///capas de objetos
 const motosierra=map.getObjectLayer('motosierras')['objects'];
@@ -51,31 +50,26 @@ const cofres=map.getObjectLayer('cofres')['objects'];
 const escaleras=map.getObjectLayer('escaleras')['objects'];
 const plataformRompible=map.getObjectLayer('plataformasRompibles')['objects'];
 
-for (let i = 0; i < plataformRompible.length; i++) {
-    this.plataformasRompibles=new plataformaRompible(this, this.player,  plataformRompible[i].x, plataformRompible[i].y);
-
-     }
-     this.plataformasRompibles = this.physics.add.staticGroup();
-for (let i = 0; i < escaleras.length; i++) {
-    new Escalera(this, this.player,  escaleras[i].x, escaleras[i].y);
-
-     }
-       for (let i = 0; i < trampasSuelo.length; i++) {
+    for (let i = 0; i < plataformRompible.length; i++) {
+        this.plataformasRompibles=new plataformaRompible(this, this.player,  plataformRompible[i].x, plataformRompible[i].y);
+    }
+    this.plataformasRompibles = this.physics.add.staticGroup();
+    for (let i = 0; i < escaleras.length; i++) {
+        this.escalera = new Escalera(this, this.player,  escaleras[i].x, escaleras[i].y);
+    }
+    for (let i = 0; i < trampasSuelo.length; i++) {
         this.trampaEstacas1 = new trampaEstacas(this, this.player,  trampasSuelo[i].x, trampasSuelo[i].y);
-    
-         }
-        for (let i = 0; i < motosierra.length; i++) {
-            new trampaLateral(this, this.player,  motosierra[i].x, motosierra[i].y);
-         
-        }
-        for (let i = 0; i < cofres.length; i++) {
-            
-            this.cofre= new Cofre(this, this.player, cofres[i].x, cofres[i].y);
-            this.arrayCofres.push(this.cofre);
-        }
-        for (let i = 0; i < plataformas.length; i++) {
-            this.physics.add.collider(this.player,  new Platform(this, this.player, this.momia,plataformas[i].x , plataformas[i].y));
-        }
+    }
+    for (let i = 0; i < motosierra.length; i++) {
+        new trampaLateral(this, this.player,  motosierra[i].x, motosierra[i].y);
+    }
+    for (let i = 0; i < cofres.length; i++) {
+        this.cofre= new Cofre(this, this.player, cofres[i].x, cofres[i].y);
+        this.arrayCofres.push(this.cofre);
+    }
+    for (let i = 0; i < plataformas.length; i++) {
+        this.physics.add.collider(this.player,  new Platform(this, this.player, this.momia,plataformas[i].x , plataformas[i].y));
+    }
          //is.plataform = this.physics.add.staticGroup();
 
         

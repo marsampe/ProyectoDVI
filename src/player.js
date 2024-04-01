@@ -90,6 +90,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
      * @override
      */
     preUpdate(t, dt) {
+        this.body.setSize(50, 120);
+        this.body.setOffset(10, 97);
         super.preUpdate(t, dt);
         for(let i = 0; i < this.scene.arrayCofres.length; i++) {
             if (Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.arrayCofres[i].getBounds()) && this.teclaE.isDown && !this.scene.arrayCofres[i].abierto) {
@@ -110,14 +112,13 @@ export default class Player extends Phaser.GameObjects.Sprite {
                 this.scene.momia.reducirVida();
             }
         } 
-        else if (Phaser.Geom.Rectangle.ContainsRect(this.scene.escalera.getBounds(), this.getBounds()) && (this.cursors.down.isDown || this.cursors.up.isDown)) {
-            this.body.setGravityY(-100);
+        else if (Phaser.Geom.Intersects.RectangleToRectangle(this.scene.escalera.getBounds(), this.getBounds()) && (this.cursors.down.isDown || this.cursors.up.isDown)) {
             if (this.cursors.down.isDown) {
-                this.body.setVelocityY(150);
+                this.body.setVelocityY(120);
                 this.anims.play('escalar', true);
             }
             if (this.cursors.up.isDown) {
-                this.body.setVelocityY(-200);
+                this.body.setVelocityY(-120);
                 this.anims.play('escalar', true);
             }
         }
@@ -145,8 +146,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
             
             else if (this.cursors.left.isDown) {
                 if(this.body.onFloor()){
-                    this.body.setSize(50, 120);
-                    this.body.setOffset(10, 97);
                     this.anims.play('andar', true);
                     this.setFlipX(true);
                     this.body.setVelocityX(-this.speed);
@@ -157,8 +156,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
             else if (this.cursors.right.isDown) {
                 
                 if(this.body.onFloor()){
-                    this.body.setSize(50, 120);
-                    this.body.setOffset(10, 97);
                     this.anims.play('andar', true);
                     this.setFlipX(false);
                     this.body.setVelocityX(this.speed);
@@ -170,8 +167,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
             if(!this.cursors.right.isDown && !this.cursors.left.isDown && !this.cursors.up.isDown){
                 if(this.body.onFloor()){
                     this.body.setVelocityX(0);
-                    this.body.setSize(50, 120);
-                    this.body.setOffset(10, 97);
                     if(this.ultimaDireccion== 'izquierda'){
                         this.anims.play('parado', true);
                         this.setFlipX(true);
@@ -183,56 +178,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
                 }
             }
                 
-        }if(this.anims.currentAnim != null && this.anims.currentAnim.key == 'saltar'){
-            if(this.anims.currentFrame.index == 14){
-                this.body.setSize(50, 120);
-                this.body.setOffset(30, 97);
-                this.anims.play('parado', true);
-            }else if(this.anims.currentFrame.index == 1){
-                this.body.setSize(50, 120);
-                this.body.setOffset(30, 97);
-            }
-            else if(this.anims.currentFrame.index == 2){
-                this.body.setSize(50, 120);
-                this.body.setOffset(30, 97);
-            }
-            else if(this.anims.currentFrame.index == 3){
-                this.body.setSize(50, 120);
-                this.body.setOffset(30, 65);
-            }
-            else if(this.anims.currentFrame.index == 4){
-                this.body.setSize(50, 125);
-                this.body.setOffset(30, 39);
-            }
-            else if(this.anims.currentFrame.index == 5){
-                this.body.setSize(50, 125);
-                this.body.setOffset(30, 23);
-            }else if(this.anims.currentFrame.index == 6){
-                this.body.setSize(50, 125);
-                this.body.setOffset(30, 8);
-            }else if(this.anims.currentFrame.index == 7){
-                this.body.setSize(50, 125);
-                this.body.setOffset(30, 3);
-            }else if(this.anims.currentFrame.index == 8){
-                this.body.setSize(50, 125);
-                this.body.setOffset(30, 0);
-            }else if(this.anims.currentFrame.index == 9){
-                this.body.setSize(50, 125);
-                this.body.setOffset(30, 0);
-            }else if(this.anims.currentFrame.index == 10){
-                this.body.setSize(50, 125);
-                this.body.setOffset(30, 5);
-            }else if(this.anims.currentFrame.index == 11){
-                this.body.setSize(50, 125);
-                this.body.setOffset(30, 20);
-            }else if(this.anims.currentFrame.index == 12){
-                this.body.setSize(50, 125);
-                this.body.setOffset(30, 37);
-            }else if(this.anims.currentFrame.index == 13){
-                this.body.setSize(50, 125);
-                this.body.setOffset(30, 60);
-            }
         }
-
     }
 }
