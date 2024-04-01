@@ -26,14 +26,12 @@ export default class cofre extends Phaser.GameObjects.Sprite {
 
   abrir(){
     this.anims.play('abrirCofre', true);
-    let randomNumber = Phaser.Math.Between(0, 2); 
+    let randomNumber = Phaser.Math.Between(0, 1); 
     this.abierto = true;
     if (randomNumber === 0) {
       this.scene.add.existing(new antorcha(this.scene, this.x - 50, this.y - 10));
-  } else if (randomNumber === 1)  {
+  } else {
     this.scene.add.existing(new venda(this.scene, this.x - 50, this.y - 10));
-  }else{
-    this.scene.add.existing(new antidoto(this.scene, this.x - 50, this.y - 10));
   }
     
    
