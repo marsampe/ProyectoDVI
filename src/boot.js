@@ -21,6 +21,7 @@ import plataformaRompible from '../assets/sprites/plataformaRompible.png'
 //mapa/////////////
 import mapa from '../assets/tiled/mapa.json'
 import cjto from '../assets/tiled/tilesetEgipto.png'
+import cjtocarteles from '../assets/tiled/cartel.png'
 import cjtofondo from '../assets/tiled/prueba.png'
 //////////////
 import antidoto from '../assets/sprites/antidoto.png'
@@ -72,6 +73,7 @@ export default class Boot extends Phaser.Scene {
 
     this.load.image('patronesTilemap',cjto);
     this.load.image('patronesTilemapFondo',cjtofondo);
+    this.load.image('patronesTilemapCarteles',cjtocarteles);
     this.load.tilemapTiledJSON('mapa',mapa);
 
   }

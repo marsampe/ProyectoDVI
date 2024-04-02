@@ -66,7 +66,7 @@ console.log(motosierra);
         this.iu.scene.setVisible(true);
         
         this.player = new Player(this, 400, 400);
-        //this.momia= new Momia(this, this.player, 400, 400);
+        this.momia= new Momia(this, this.player, 400, 400);
         this.platforms = this.physics.add.staticGroup();
       
     
