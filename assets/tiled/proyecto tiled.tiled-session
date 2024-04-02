@@ -10,15 +10,18 @@
             "scaleInEditor": 0.5
         },
         "mapa.json": {
-            "scale": 0.25,
-            "selectedLayer": 0,
+            "scale": 0.5,
+            "selectedLayer": 8,
             "viewCenter": {
-                "x": -852,
-                "y": 270
+                "x": 808,
+                "y": 370
             }
         },
         "mapa.json#cartel": {
             "scaleInEditor": 1
+        },
+        "mapa.json#carteles": {
+            "scaleInDock": 0.75
         },
         "mapa.json#fondo": {
             "scaleInDock": 0.125

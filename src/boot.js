@@ -16,7 +16,7 @@ import antorcha from '../assets/sprites/antorcha.png'
 import trampaEstacas from '../assets/sprites/trampaEstacas.png'
 import trampaLateral from '../assets/sprites/trampaLateral.png'
 import plataformaRompible from '../assets/sprites/plataformaRompible.png'
-
+import puerta from '../assets/sprites/puerta.png'
 
 //mapa/////////////
 import mapa from '../assets/tiled/mapa.json'
@@ -55,6 +55,7 @@ export default class Boot extends Phaser.Scene {
 
 
     this.load.image('platform', platform);
+    this.load.image('puerta', puerta);
     this.load.image('escalera', escalera);
     this.load.image('venda', venda);
     this.load.spritesheet('momia', momia, { frameWidth: 100, frameHeight: 138});

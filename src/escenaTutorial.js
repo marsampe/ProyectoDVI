@@ -7,7 +7,7 @@ import Phaser from 'phaser'
 import trampaEstacas from './trampaEstacas.js';
 import trampaLateral from './trampaLateral.js';
 import plataformaRompible from './plataformaRompible.js';
-
+import puerta from './puerta.js';
 
 /**
  * Escena principal del juego. La escena se compone de una serie de plataformas 
@@ -42,39 +42,17 @@ export default class escenaTutorial extends Phaser.Scene {
         const motosierra=map.getObjectLayer('trampalateral')['objects'];
         const momias=map.getObjectLayer('capamomias')['objects'];
         const escaleras=map.getObjectLayer('capaescaleras')['objects'];
-        /*
-        const motosierra=map.getObjectLayer('motosierras')['objects'];
-        const trampasSuelo=map.getObjectLayer('trampas suelo')['objects'];
-        
-        platEgipcias.x = 100;
-        platEgipcias.y = 100;
-        console.log(motosierra);
-        
-                this.stars = 10;
-        */
-        
+        const plataformasRompibles=map.getObjectLayer('plataformasRompibles')['objects'];
+        const door=map.getObjectLayer('puerta')['objects'];
         this.scene.launch('iu');
         this.iu = this.scene.get('iu');
         this.iu.scene.setVisible(true);
         
         this.player = new Player(this, 600, 400);
-        //this.momia= new Momia(this, this.player, 400, 400);
-        this.platforms = this.physics.add.staticGroup();
-        
-
-        this.plataformasRompibles = this.physics.add.staticGroup();
-        this.plataformasRompibles.add(new plataformaRompible(this, this.player, 600, 200))
-
-
-        //  this.trampaEstacas1 = new trampaEstacas(this, this.player, 314, 493);
-        // this.trampaLateral1 = new trampaLateral(this, this.player, 300, 270);
-        //this.cofre1 = new Cofre(this, this.player, 150, 405);
-        
-        //this.cofre2 = new Cofre(this, this.player, 900, 332);
-        // this.arrayCofres.push(this.cofre2);
-        /*  
-        */
-       
+        this.puerta = new puerta(this,this.player, door[0].x, door[0].y);  
+        for (let i = 0; i < plataformasRompibles.length; i++) {
+            new plataformaRompible(this, this.player,  plataformasRompibles[i].x, plataformasRompibles[i].y);  
+        }
         for (let i = 0; i < escaleras.length; i++) {
             this.arrayEscaleras.push(new Escalera(this, this.player, escaleras[i].x,escaleras[i].y));    
         }
