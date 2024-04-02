@@ -1,10 +1,10 @@
 import Boot from './boot.js';
-import escenaInicial from './escenaInicial.js';
-import End from './end.js';
-import Level from './level.js';
+import escenaInicial from './escenas/escenaInicial.js';
+import End from './escenas/end.js';
+import Level from './escenas/level.js';
 import Phaser from 'phaser'
-import IU from './iu.js';
-import escenaTutorial from './escenaTutorial.js';
+import IU from './escenas/iu.js';
+import escenaTutorial from './escenas/escenaTutorial.js';
 
 /**
  * Inicio del juego en Phaser. Creamos el archivo de configuración del juego y creamos

@@ -1,13 +1,13 @@
-import Platform from './platform.js';
-import Escalera from './escalera.js';
-import Cofre from './cofre.js';
-import Player from './player.js';
-import Momia from './momia.js';
+import Platform from '../elementosNivel/platform.js';
+import Escalera from '../elementosNivel/escalera.js';
+import Cofre from '../elementosNivel/cofre.js';
+import Player from '../player.js';
+import Momia from '../enemigos/momia.js';
 import Phaser from 'phaser'
-import trampaEstacas from './trampaEstacas.js';
-import trampaLateral from './trampaLateral.js';
-import plataformaRompible from './plataformaRompible.js';
-import puerta from './puerta.js';
+import trampaEstacas from '../trampas/trampaEstacas.js';
+import trampaLateral from '../trampas/trampaLateral.js';
+import plataformaRompible from '../elementosNivel/plataformaRompible.js';
+import puerta from '../elementosNivel/puerta.js';
 
 /**
  * Escena principal del juego. La escena se compone de una serie de plataformas 
