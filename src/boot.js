@@ -23,6 +23,7 @@ import mapa from '../assets/tiled/mapa.json'
 import cjto from '../assets/tiled/tilesetEgipto.png'
 import cjtocarteles from '../assets/tiled/cartel.png'
 import cjtofondo from '../assets/tiled/prueba.png'
+import cjtocenefa from '../assets/tiled/cenefa.png'
 //////////////
 import antidoto from '../assets/sprites/antidoto.png'
 
@@ -46,7 +47,7 @@ export default class Boot extends Phaser.Scene {
    */
   preload() {
    
-    this.load.audio('audio','../assets/sprites/sound.wav');
+    //this.load.audio('audio','../assets/sprites/sound.wav');
     // Con setPath podemos establecer el prefijo que se añadirá a todos los load que aparecen a continuación
     this.load.setPath('assets/sprites/');
 
@@ -72,7 +73,7 @@ export default class Boot extends Phaser.Scene {
     this.load.setPath('assets/tiled/');
 
     this.load.image('patronesTilemap',cjto);
-    this.load.image('patronesTilemapFondo',cjtofondo);
+    this.load.image('patronesTilemapFondo',cjtocenefa);
     this.load.image('patronesTilemapCarteles',cjtocarteles);
     this.load.tilemapTiledJSON('mapa',mapa);
 

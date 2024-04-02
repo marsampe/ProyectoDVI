@@ -31,7 +31,7 @@ export default class escenaTutorial extends Phaser.Scene {
         
         const map= this.make.tilemap({ key: 'mapa'});
         const tilesett = map.addTilesetImage('set', 'patronesTilemap',16,16);
-        const tilesetfondo = map.addTilesetImage('fondo', 'patronesTilemapFondo',16,16);
+        const tilesetfondo = map.addTilesetImage('cenefas', 'patronesTilemapFondo',16,16);
         const tilesetcarteles = map.addTilesetImage('carteles', 'patronesTilemapCarteles',16,16);
         map.createLayer('capafondo', tilesetfondo,16,16);
         map.createLayer('capadecoración', tilesett,16,16);
@@ -53,56 +53,45 @@ export default class escenaTutorial extends Phaser.Scene {
                 this.stars = 10;
         */
         
-                this.scene.launch('iu');
-                this.iu = this.scene.get('iu');
-                this.iu.scene.setVisible(true);
-                
-                this.player = new Player(this, 600, 400);
-                //this.momia= new Momia(this, this.player, 400, 400);
-                this.platforms = this.physics.add.staticGroup();
-                
-            
-                this.plataformasRompibles = this.physics.add.staticGroup();
-                this.plataformasRompibles.add(new plataformaRompible(this, this.player, 600, 200))
+        this.scene.launch('iu');
+        this.iu = this.scene.get('iu');
+        this.iu.scene.setVisible(true);
         
+        this.player = new Player(this, 600, 400);
+        //this.momia= new Momia(this, this.player, 400, 400);
+        this.platforms = this.physics.add.staticGroup();
         
-                //  this.trampaEstacas1 = new trampaEstacas(this, this.player, 314, 493);
-                // this.trampaLateral1 = new trampaLateral(this, this.player, 300, 270);
-              this.escalera = new Escalera(this, this.player,  escaleras[0].x, escaleras[0].y);
-               this.escalera = new Escalera(this, this.player,  escaleras[1].x, escaleras[1].y);
-                //this.cofre1 = new Cofre(this, this.player, 150, 405);
-                
-                //this.cofre2 = new Cofre(this, this.player, 900, 332);
-                // this.arrayCofres.push(this.cofre2);
-                /*
-            
-               
-                
-                
+
+        this.plataformasRompibles = this.physics.add.staticGroup();
+        this.plataformasRompibles.add(new plataformaRompible(this, this.player, 600, 200))
+
+
+        //  this.trampaEstacas1 = new trampaEstacas(this, this.player, 314, 493);
+        // this.trampaLateral1 = new trampaLateral(this, this.player, 300, 270);
+        //this.cofre1 = new Cofre(this, this.player, 150, 405);
+        
+        //this.cofre2 = new Cofre(this, this.player, 900, 332);
+        // this.arrayCofres.push(this.cofre2);
+        /*  
         */
        
-              /*  for (let i = 0; i < escaleras.length; i++) {
-                    
-                   this.esc= new Escalera(this, this.player, escaleras[i].x,escaleras[i].y);    
-                    }*/
-                for (let i = 0; i < momias.length; i++) {
-                 this.momia= new Momia(this, this.player,  momias[i].x, momias[i].y);
-                     
-                 }
+        for (let i = 0; i < escaleras.length; i++) {
+            this.arrayEscaleras.push(new Escalera(this, this.player, escaleras[i].x,escaleras[i].y));    
+        }
+        for (let i = 0; i < momias.length; i++) {
+            this.momia= new Momia(this, this.player,  momias[i].x, momias[i].y);           
+        }
         for (let i = 0; i < motosierra.length; i++) {
-                   new trampaLateral(this, this.player,  motosierra[i].x, motosierra[i].y);
-                    
-                }
-       for (let i = 0; i < cofres.length; i++) {
-                    
-                    
-                    this.arrayCofres.push( new Cofre(this, this.player, cofres[i].x, cofres[i].y));
-                }
+            new trampaLateral(this, this.player,  motosierra[i].x, motosierra[i].y);  
+        }
+        for (let i = 0; i < cofres.length; i++) {               
+            this.arrayCofres.push( new Cofre(this, this.player, cofres[i].x, cofres[i].y, true));
+        }
         for (let i = 0; i < estacas.length; i++) {
             new trampaEstacas(this, this.player,  estacas[i].x, estacas[i].y);
         }
         for (let i = 0; i < plataformas.length; i++) {
-            new Platform(this, this.player, this.momia,plataformas[i].x , plataformas[i].y);
+            new Platform(this, this.player, this.momia,plataformas[i].x, plataformas[i].y);
         }  
 
         this.cameras.main.setBounds(15,0, 3000,800);

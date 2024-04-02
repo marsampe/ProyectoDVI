@@ -95,7 +95,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         super.preUpdate(t, dt);
         for(let i = 0; i < this.scene.arrayCofres.length; i++) {
             if (Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.arrayCofres[i].getBounds()) && this.teclaE.isDown && !this.scene.arrayCofres[i].abierto) {
-                this.scene.arrayCofres[i].abrir();
+                this.scene.arrayCofres[i].abrir(i);
             }
         }
 
@@ -107,28 +107,30 @@ export default class Player extends Phaser.GameObjects.Sprite {
         }else if(this.teclaS.isDown){
             this.body.setSize(200, 120);
             this.body.setOffset(0, 97);
+            this.y = this.y - 1;
             this.anims.play('atacar', true);
             if (Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.momia)){
                 this.scene.momia.reducirVida();
             }
         } 
-        else if (Phaser.Geom.Intersects.RectangleToRectangle(this.scene.escalera.getBounds(), this.getBounds()) && (this.cursors.down.isDown || this.cursors.up.isDown)) {
-            if (this.cursors.down.isDown) {
-                this.body.setVelocityY(120);
-                this.anims.play('escalar', true);
-                
+        for(let i = 0; i < this.scene.arrayEscaleras.length; i++) {
+            if (Phaser.Geom.Intersects.RectangleToRectangle(this.scene.arrayEscaleras[i].getBounds(), this.getBounds()) && (this.cursors.down.isDown || this.cursors.up.isDown)) {
+                if (this.cursors.down.isDown) {
+                    this.body.setVelocityY(120);
+                    this.anims.play('escalar', true);
+                    
+                }
+                if (this.cursors.up.isDown) {
+                    this.body.setVelocityY(-120);
+                    this.anims.play('escalar', true);
+                }
             }
-            if (this.cursors.up.isDown) {
-                this.body.setVelocityY(-120);
-                this.anims.play('escalar', true);
+            else if(Phaser.Geom.Rectangle.ContainsRect(this.scene.arrayEscaleras[i].getBounds(), this.getBounds()) && !this.body.onFloor()){
+                this.body.setVelocityY(-7);
+                this.body.setVelocityX(0);
+                this.anims.play('escalarParado', true);
             }
         }
-        else if(Phaser.Geom.Rectangle.ContainsRect(this.scene.escalera.getBounds(), this.getBounds()) && !this.body.onFloor()){
-            this.body.setVelocityY(-7);
-            this.body.setVelocityX(0);
-            this.anims.play('escalarParado', true);
-        }
-        else{
             if (Phaser.Input.Keyboard.JustDown(this.cursors.up)) {
                 if(this.body.onFloor()){
                     this.body.setVelocityY(this.jumpSpeed);
@@ -178,7 +180,5 @@ export default class Player extends Phaser.GameObjects.Sprite {
                     }        
                 }
             }
-                
-        }
     }
 }

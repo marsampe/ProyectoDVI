@@ -1,0 +1,14 @@
+{ "columns":38,
+ "image":"cartel.png",
+ "imageheight":411,
+ "imagewidth":608,
+ "margin":0,
+ "name":"carteles",
+ "spacing":0,
+ "tilecount":950,
+ "tiledversion":"1.10.2",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":"1.10"
+}

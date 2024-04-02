@@ -16,28 +16,35 @@ export default class cofre extends Phaser.GameObjects.Sprite {
    * @param {number} x Coordenada x
    * @param {number} y Coordenada y
    */
-  constructor(scene, player, x, y) {
+  constructor(scene, player, x, y, tutorial) {
     super(scene, x, y, 'cofre');
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this, true);
     //this.setScale(0.5);
     this.setDepth(1);
     this.abierto = false;
+    this.tutorial = tutorial;
   }
 
-  abrir(){
+  abrir(id){
     this.anims.play('abrirCofre', true);
-    let randomNumber = Phaser.Math.Between(0, 2); 
     this.abierto = true;
-    if (randomNumber === 0) {
-      this.scene.add.existing(new antorcha(this.scene, this.x - 50, this.y - 10));
-  } else if (randomNumber === 1)  {
-    this.scene.add.existing(new venda(this.scene, this.x - 50, this.y - 10));
-  }else{
-    this.scene.add.existing(new antidoto(this.scene, this.x - 50, this.y - 10));
-  }
-    
-   
+    if(this.tutorial){
+      if(id == 0)
+        this.scene.add.existing(new venda(this.scene, this.x - 50, this.y - 10));
+      else
+        this.scene.add.existing(new antorcha(this.scene, this.x - 50, this.y - 10));
+    }else{
+      let randomNumber = Phaser.Math.Between(0, 2); 
+      this.abierto = true;
+      if (randomNumber === 0) {
+          this.scene.add.existing(new antorcha(this.scene, this.x - 50, this.y - 10));
+      } else if (randomNumber === 1)  {
+        this.scene.add.existing(new venda(this.scene, this.x - 50, this.y - 10));
+      }else{
+        this.scene.add.existing(new antidoto(this.scene, this.x - 50, this.y - 10));
+      }
+    }
   }
 
 
