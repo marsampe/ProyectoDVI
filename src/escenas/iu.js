@@ -12,6 +12,7 @@ export default class IU extends Phaser.Scene{
         this.posicionMarcador = 0;
         this.antorcha = false;
 
+
         
     }
 
@@ -31,6 +32,7 @@ export default class IU extends Phaser.Scene{
          this.bar.y = 10; // Posición Y fija
          this.saludMaxima = 200;
          this.salud = 200;
+
  
          this.draw();
  
@@ -121,7 +123,6 @@ export default class IU extends Phaser.Scene{
                     
                     break;
             }
-            
         }
         
 

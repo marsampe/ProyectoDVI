@@ -37,13 +37,6 @@ const tilesett = map.addTilesetImage('set', 'patronesTilemap',16,16);
 const tilesetfondo = map.addTilesetImage('fondo', 'patronesTilemapFondo',16,16);
 const layer=map.createLayer('capafondo', tilesetfondo,16,16);
 
-
-
-
-
-
-
-
 const plataformas=map.getObjectLayer('plataforma')['objects'];
 //this.collisionLayer.setCollision([238,239,251,252,254,255])
 //this.collisionLayer.setCollisionByProperty({colision:true});
@@ -60,6 +53,7 @@ console.log(motosierra);
 
         this.stars = 10;
 */
+
 
         this.scene.launch('iu');
         this.iu = this.scene.get('iu');

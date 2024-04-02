@@ -11,6 +11,7 @@ export default class escenaInicial extends Phaser.Scene {
   
     preload() {
       this.load.audio('introSound',sound);
+
         this.load.image('background', background);
       this.load.image('button', button);
     }
@@ -51,5 +52,6 @@ export default class escenaInicial extends Phaser.Scene {
         this.registry.set('nextScene', 'escenaTutorial');
         this.scene.start('boot');
       });
+
     }
   }

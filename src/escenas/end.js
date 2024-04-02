@@ -27,6 +27,7 @@ export default class End extends Phaser.Scene {
     // añada este listener pasado un segundo
     this.input.keyboard.on('keydown', function (event) { 
       this.scene.start('escenaInicial');
+
     }, this);
   }
 

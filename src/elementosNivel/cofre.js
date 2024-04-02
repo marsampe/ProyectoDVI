@@ -2,6 +2,7 @@ import Phaser from 'phaser'
 import venda from '../objetos/venda.js';
 import antorcha from '../objetos/antorcha.js';
 import antidoto from '../objetos/antidoto.js';
+
 /**
  * Clase que representa las plataformas que aparecen en el escenario de juego.
  * Cada plataforma es responsable de crear la base que aparece sobre ella y en la 
@@ -16,6 +17,7 @@ export default class cofre extends Phaser.GameObjects.Sprite {
    * @param {number} x Coordenada x
    * @param {number} y Coordenada y
    */
+
   constructor(scene, player, x, y, tutorial) {
     super(scene, x, y, 'cofre');
     this.scene.add.existing(this);
@@ -45,6 +47,7 @@ export default class cofre extends Phaser.GameObjects.Sprite {
         this.scene.add.existing(new antidoto(this.scene, this.x - 50, this.y - 10));
       }
     }
+
   }
 
 
