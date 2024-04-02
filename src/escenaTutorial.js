@@ -27,7 +27,6 @@ export default class escenaTutorial extends Phaser.Scene {
     }
 
     create() {
-        ////////////////////////////
         
         const map= this.make.tilemap({ key: 'mapa'});
         const tilesett = map.addTilesetImage('set', 'patronesTilemap',16,16);
@@ -35,13 +34,10 @@ export default class escenaTutorial extends Phaser.Scene {
         map.createLayer('capafondo', tilesetfondo,16,16);
         map.createLayer('capadecoración', tilesett,16,16);
         const plataformas=map.getObjectLayer('plataforma')['objects'];
-        //this.collisionLayer.setCollision([238,239,251,252,254,255])
-        //this.collisionLayer.setCollisionByProperty({colision:true});
-        //const layerFondo=map.createLayer('plataformas egipcias', tilesett);
-        ////////////////////////////
+        const estacas=map.getObjectLayer('trampaPinchos')['objects'];
+
         /*
         const motosierra=map.getObjectLayer('motosierras')['objects'];
-        const plataformas=map.getObjectLayer('plataformas')['objects'];
         const trampasSuelo=map.getObjectLayer('trampas suelo')['objects'];
         const cofres=map.getObjectLayer('cofres')['objects'];
         platEgipcias.x = 100;
@@ -66,17 +62,13 @@ export default class escenaTutorial extends Phaser.Scene {
         
                 //  this.trampaEstacas1 = new trampaEstacas(this, this.player, 314, 493);
                 // this.trampaLateral1 = new trampaLateral(this, this.player, 300, 270);
-                this.escalera = new Escalera(this, this.player, 680, 385);
+                this.escalera = new Escalera(this, this.player, 100, 385);
                 //this.cofre1 = new Cofre(this, this.player, 150, 405);
                 
                 //this.cofre2 = new Cofre(this, this.player, 900, 332);
                 // this.arrayCofres.push(this.cofre2);
                 /*
-                for (let i = 0; i < trampasSuelo.length; i++) {
-                this.trampaEstacas1 = new trampaEstacas(this, this.player,  trampasSuelo[i].x, trampasSuelo[i].y);
-                // this.cofre= new Cofre(this, this.player, motosierra[i].x, motosierra[i].y);
-                // this.arrayCofres.push(this.cofre);
-            }
+            
                 for (let i = 0; i < motosierra.length; i++) {
                     this.trampaEstacas1 = new trampaEstacas(this, this.player,  motosierra[i].x, motosierra[i].y);
                     // this.cofre= new Cofre(this, this.player, motosierra[i].x, motosierra[i].y);
@@ -89,13 +81,15 @@ export default class escenaTutorial extends Phaser.Scene {
                 }
                 
         */
+        for (let i = 0; i < estacas.length; i++) {
+            new trampaEstacas(this, this.player,  estacas[i].x, estacas[i].y);
+        }
         for (let i = 0; i < plataformas.length; i++) {
-            // this.momia= new Momia(this, this.player, plataformas[i].x, plataformas[i].y);
             new Platform(this, this.player, this.momia,plataformas[i].x , plataformas[i].y);
         }  
 
-        this.cameras.main.setBounds(0,0, 1200,800);
-        this.physics.world.setBounds(0,0, 1200,800);
+        this.cameras.main.setBounds(15,0, 3000,800);
+        this.physics.world.setBounds(0,0, 3000,800);
         this.cameras.main.setZoom(1);
         this.cameras.main.startFollow(this.player);
     }
