@@ -4,6 +4,8 @@ import End from './escenas/end.js';
 import Level from './escenas/level.js';
 import Phaser from 'phaser'
 import IU from './escenas/iu.js';
+import escenaTutorial from './escenas/escenaTutorial.js';
+
 
 /**
  * Inicio del juego en Phaser. Creamos el archivo de configuración del juego y creamos
@@ -18,7 +20,7 @@ let config = {
         autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
     },
     pixelArt: true,
-    scene: [escenaInicial, Boot, Level, End, IU],
+    scene: [escenaInicial, Boot,escenaTutorial, Level, End, IU],
     physics: {
         default: 'arcade',
         arcade: {

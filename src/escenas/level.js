@@ -30,32 +30,77 @@ export default class Level extends Phaser.Scene {
      * Creación de los elementos de la escena principal de juego
      */
     create() {
+////////////////////////////
+
+const map= this.make.tilemap({ key: 'mapa'});
+const tilesett = map.addTilesetImage('set', 'patronesTilemap',16,16);
+const tilesetfondo = map.addTilesetImage('fondo', 'patronesTilemapFondo',16,16);
+const layer=map.createLayer('capafondo', tilesetfondo,16,16);
+
+const plataformas=map.getObjectLayer('plataforma')['objects'];
+//this.collisionLayer.setCollision([238,239,251,252,254,255])
+//this.collisionLayer.setCollisionByProperty({colision:true});
+//const layerFondo=map.createLayer('plataformas egipcias', tilesett);
+////////////////////////////
+/*
+const motosierra=map.getObjectLayer('motosierras')['objects'];
+const plataformas=map.getObjectLayer('plataformas')['objects'];
+const trampasSuelo=map.getObjectLayer('trampas suelo')['objects'];
+const cofres=map.getObjectLayer('cofres')['objects'];
+platEgipcias.x = 100;
+platEgipcias.y = 100;
+console.log(motosierra);
+
         this.stars = 10;
+*/
 
 
         this.scene.launch('iu');
         this.iu = this.scene.get('iu');
         this.iu.scene.setVisible(true);
         
-        this.player = new Player(this, 800, 50);
+        this.player = new Player(this, 400, 400);
         this.momia= new Momia(this, this.player, 400, 400);
         this.platforms = this.physics.add.staticGroup();
-        this.platforms.add(new Platform(this, this.player, this.momia, 150, 470));
-        this.platforms.add(new Platform(this, this.player, this.momia, 850, 400));
-        this.platforms.add(new Platform(this, this.player, this.momia, 500, 200));
-        this.platforms.add(new Platform(this, this.player, this.momia, 475, 470));
-
+      
+    
         this.plataformasRompibles = this.physics.add.staticGroup();
-        this.plataformasRompibles.add(new plataformaRompible(this, this.player, 300, 200))
+        this.plataformasRompibles.add(new plataformaRompible(this, this.player, 600, 200))
 
 
-        this.trampaEstacas1 = new trampaEstacas(this, this.player, 314, 493);
-        this.trampaLateral1 = new trampaLateral(this, this.player, 300, 270);
+      //  this.trampaEstacas1 = new trampaEstacas(this, this.player, 314, 493);
+       // this.trampaLateral1 = new trampaLateral(this, this.player, 300, 270);
         this.escalera = new Escalera(this, this.player, 680, 385);
-        this.cofre1 = new Cofre(this, this.player, 150, 405);
-        this.arrayCofres.push(this.cofre1);
-        this.cofre2 = new Cofre(this, this.player, 900, 332);
-        this.arrayCofres.push(this.cofre2);
+        //this.cofre1 = new Cofre(this, this.player, 150, 405);
+        
+        //this.cofre2 = new Cofre(this, this.player, 900, 332);
+       // this.arrayCofres.push(this.cofre2);
+       /*
+       for (let i = 0; i < trampasSuelo.length; i++) {
+        this.trampaEstacas1 = new trampaEstacas(this, this.player,  trampasSuelo[i].x, trampasSuelo[i].y);
+       // this.cofre= new Cofre(this, this.player, motosierra[i].x, motosierra[i].y);
+       // this.arrayCofres.push(this.cofre);
+    }
+        for (let i = 0; i < motosierra.length; i++) {
+            this.trampaEstacas1 = new trampaEstacas(this, this.player,  motosierra[i].x, motosierra[i].y);
+           // this.cofre= new Cofre(this, this.player, motosierra[i].x, motosierra[i].y);
+           // this.arrayCofres.push(this.cofre);
+        }
+        for (let i = 0; i < cofres.length; i++) {
+            
+            this.cofre= new Cofre(this, this.player, cofres[i].x, cofres[i].y);
+            this.arrayCofres.push(this.cofre);
+        }
+      
+*/
+for (let i = 0; i < plataformas.length; i++) {
+    // this.momia= new Momia(this, this.player, plataformas[i].x, plataformas[i].y);
+     new Platform(this, this.player, this.momia,plataformas[i].x , plataformas[i].y);
+ }  
+        this.cameras.main.setBounds(0,0, 1200,800);
+        this.physics.world.setBounds(0,0, 1200,800);
+        this.cameras.main.setZoom(1);
+this.cameras.main.startFollow(this.player);
 
     }
 

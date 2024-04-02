@@ -24,7 +24,9 @@ export default class plataformaRompible extends Phaser.GameObjects.Sprite {
     this.body.setOffset(-15, -16);
     this.setDepth(1);
 
-    this.destroyDelay = 6000; // Establece el tiempo de espera antes de que la plataforma se destruya (en milisegundos)
+
+    this.destroyDelay = 3000; // Establece el tiempo de espera antes de que la plataforma se destruya (en milisegundos)
+
     this.destructionTimer = null; // Temporizador para destrucción progresiva
     this.totalFrames = 6; // Número total de fotogramas en el spritesheet
     this.currentFrame = 0; // Fotograma actual

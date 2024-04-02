@@ -1,0 +1,56 @@
+{
+    "activeFile": "mapa.json",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "file.lastUsedOpenFilter": "Todos los archivos (*)",
+    "fileStates": {
+        "": {
+            "scaleInDock": 1,
+            "scaleInEditor": 0.5
+        },
+        "mapa.json": {
+            "scale": 0.5,
+            "selectedLayer": 8,
+            "viewCenter": {
+                "x": 808,
+                "y": 370
+            }
+        },
+        "mapa.json#cartel": {
+            "scaleInEditor": 1
+        },
+        "mapa.json#carteles": {
+            "scaleInDock": 0.75
+        },
+        "mapa.json#fondo": {
+            "scaleInDock": 0.125
+        },
+        "mapa.json#set": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "set.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        }
+    },
+    "last.exportedFilePath": "C:/Users/isabe/git/ProyectoDVI/assets/tiled",
+    "last.imagePath": "C:/Users/isabe/git/ProyectoDVI/assets/tiled",
+    "map.lastUsedExportFilter": "Todos los archivos (*)",
+    "openFiles": [
+        "mapa.json"
+    ],
+    "project": "proyecto tiled.tiled-project",
+    "recentFiles": [
+        "mapa.json",
+        "set.tsx"
+    ],
+    "tileset.embedInMap": true,
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    },
+    "tileset.transparentColor": "#000000",
+    "tileset.useTransparentColor": false
+}

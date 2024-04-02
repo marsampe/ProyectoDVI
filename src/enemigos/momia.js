@@ -26,26 +26,34 @@ export default class Momia extends Phaser.GameObjects.Sprite {
         // Queremos que el jugador no se salga de los límites del mundo
         this.body.setCollideWorldBounds();
         this.scene.physics.add.overlap(player, this, this.handleCollision, null, this);
-        this.speed = 300;
+
+        this.speed = 600;
+
         this.ultimaDireccion = 'derecha'
 
         this.saludMaxima = 200;
         this.salud = 100;
 
 
+        //this.flipX=true;
+
         this.anims.play('caminarMomia', true);
 
         this.scene.tweens.add({
             targets: this,
-            x: 600,
+
+            x: x+100,
+
             ease: 'Linear',
             duration: 3000,
             repeat: -1,
             yoyo: true,
             onYoyo: () => {
+                
                 this.flipX = !this.flipX;
             },
-            onRepeat: () => {
+           onRepeat: () => {
+
                 this.flipX = !this.flipX;
             }
         });

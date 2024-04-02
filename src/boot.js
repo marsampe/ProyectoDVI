@@ -4,7 +4,7 @@ import Phaser from 'phaser'
 import platform from '../assets/sprites/platform.png'
 import venda from '../assets/sprites/venda.png'
 import personajeAndar from '../assets/sprites/personajeAndar.png'
-import personajeSalto from '../assets/sprites/personajeSalto.png'
+import personajeSalto from '../assets/sprites/salto.png'
 import personajeEscalar from '../assets/sprites/personajeEscalar.png'
 import personajeAtaque from '../assets/sprites/personajeAtaque.png'
 import momia from '../assets/sprites/momia.png'
@@ -16,6 +16,17 @@ import antorcha from '../assets/sprites/antorcha.png'
 import trampaEstacas from '../assets/sprites/trampaEstacas.png'
 import trampaLateral from '../assets/sprites/trampaLateral.png'
 import plataformaRompible from '../assets/sprites/plataformaRompible.png'
+import puerta from '../assets/sprites/puerta.png'
+
+//mapa/////////////
+import mapa from '../assets/tiled/mapa.json'
+import cjto from '../assets/tiled/tilesetEgipto.png'
+import cjtocarteles from '../assets/tiled/cartel.png'
+import cjtofondo from '../assets/tiled/prueba.png'
+import cjtocenefa from '../assets/tiled/cenefa.png'
+//////////////
+import antidoto from '../assets/sprites/antidoto.png'
+
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
  * Esta escena se puede mejorar añadiendo una imagen del juego y una 
@@ -35,15 +46,22 @@ export default class Boot extends Phaser.Scene {
    * Carga de los assets del juego
    */
   preload() {
+   
+    //this.load.audio('audio','../assets/sprites/sound.wav');
     // Con setPath podemos establecer el prefijo que se añadirá a todos los load que aparecen a continuación
     this.load.setPath('assets/sprites/');
+
+
+
+
     this.load.image('platform', platform);
+    this.load.image('puerta', puerta);
     this.load.image('escalera', escalera);
     this.load.image('venda', venda);
     this.load.spritesheet('momia', momia, { frameWidth: 100, frameHeight: 138});
     this.load.image('antorcha', antorcha);
     this.load.spritesheet('personajeAndar', personajeAndar, { frameWidth: 84, frameHeight: 217});
-    this.load.spritesheet('personajeSalto', personajeSalto, { frameWidth: 116, frameHeight: 217});
+    this.load.spritesheet('personajeSalto', personajeSalto, { frameWidth: 81, frameHeight: 217});
     this.load.spritesheet('personajeAtaque', personajeAtaque, { frameWidth: 186, frameHeight: 217});
     this.load.spritesheet('personajeEscalar', personajeEscalar, { frameWidth: 77, frameHeight: 217});
     this.load.image('inventario', inventario);
@@ -52,6 +70,14 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('cofre', cofre, { frameWidth: 76, frameHeight: 74});
     this.load.image('trampaLateral', trampaLateral);
     this.load.spritesheet('plataformaRompible', plataformaRompible, { frameWidth: 32, frameHeight: 22});
+    this.load.image('antidoto', antidoto);
+    this.load.setPath('assets/tiled/');
+
+    this.load.image('patronesTilemap',cjto);
+    this.load.image('patronesTilemapFondo',cjtocenefa);
+    this.load.image('patronesTilemapCarteles',cjtocarteles);
+    this.load.tilemapTiledJSON('mapa',mapa);
+
   }
   
 
@@ -60,8 +86,9 @@ export default class Boot extends Phaser.Scene {
    * nivel del juego
    */
   create() {
-    this.scene.start('level');
-    
+    let nextScene = this.registry.get('nextScene');
+    this.scene.start(nextScene);
+    //this.scene.start('escenaTutorial');
     this.anims.create({
       key: 'caminarMomia',
       frames: this.anims.generateFrameNumbers('momia', { start: 0, end: 2 }),

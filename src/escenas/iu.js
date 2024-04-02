@@ -10,6 +10,8 @@ export default class IU extends Phaser.Scene{
         this.inventory = [];
         this.huecos = [0,0,0];
         this.posicionMarcador = 0;
+        this.antorcha = false;
+
 
         
     }
@@ -29,7 +31,8 @@ export default class IU extends Phaser.Scene{
          this.bar.x = 10; // Posición X fija
          this.bar.y = 10; // Posición Y fija
          this.saludMaxima = 200;
-         this.salud = 100;
+         this.salud = 200;
+
  
          this.draw();
  
@@ -110,10 +113,14 @@ export default class IU extends Phaser.Scene{
                         }
 
                     }
+                    
                     this.aumentaSalud(50);
                     break;
-            
+                case 'antorcha':
+                    //this.antorcha = true;
+                    break;
                 default:
+                    
                     break;
             }
         }
@@ -131,6 +138,9 @@ export default class IU extends Phaser.Scene{
     addToInventory(objectName) {
         // Agrega el objeto al inventario solo si aún no lo hemos recolectado
         if (!this.inventory.includes(objectName)) {
+            if(objectName == 'antorcha'){
+                this.antorcha= true;
+            }
             if (this.inventory.length < 3){
                 this.inventory.push(objectName); // Agrega el objeto al inventario
                 this.huecos[this.inventory.length-1]++;
@@ -163,7 +173,7 @@ export default class IU extends Phaser.Scene{
         this.bar.fillStyle(0xffffff);
         this.bar.fillRect(this.bar.x + 2, this.bar.y + 2, 200, 12);  
 
-        if (this.salud < 30)
+        if (this.salud < 60)
         {
             this.bar.fillStyle(0xff0000);
         }
@@ -203,5 +213,15 @@ export default class IU extends Phaser.Scene{
         this.draw();
 
         return (this.salud === 0);
+    }
+
+
+    reseteoIU(){
+        this.inventoryItems = [];
+        this.inventory = [];
+        this.huecos = [0,0,0];
+        this.posicionMarcador = 0;
+        this.antorcha = false;
+
     }
 }

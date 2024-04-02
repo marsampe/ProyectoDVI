@@ -34,10 +34,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.teclaQ = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
         this.teclaTAB = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TAB);
         this.teclaS = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+        this.teclaSPresionada = false;
         
-
         this.herido = false;
-        this.salud = 100;
+        this.salud = 200;
 
         this.setDepth(2);
     }
@@ -54,9 +54,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     reduceHealth() {
         this.scene.iu.reducirSalud(50);
-        this.salud = this.salud - 50;
+        this.salud = this.scene.iu.salud;
         if (this.salud == 0) {
             this.scene.escenaFinal();
+            this.reseteo();
+            this.scene.iu.reseteoIU();
         }
         this.herido = true;
         let i = 5;
@@ -90,10 +92,33 @@ export default class Player extends Phaser.GameObjects.Sprite {
      * @override
      */
     preUpdate(t, dt) {
+        this.body.setSize(50, 120);
+        this.body.setOffset(10, 97);
+
         super.preUpdate(t, dt);
+
         for(let i = 0; i < this.scene.arrayCofres.length; i++) {
             if (Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.arrayCofres[i].getBounds()) && this.teclaE.isDown && !this.scene.arrayCofres[i].abierto) {
-                this.scene.arrayCofres[i].abrir();
+                this.scene.arrayCofres[i].abrir(i);
+            }
+        }
+
+        for(let i = 0; i < this.scene.arrayEscaleras.length; i++) {
+            if (Phaser.Geom.Intersects.RectangleToRectangle(this.scene.arrayEscaleras[i].getBounds(), this.getBounds()) && (this.cursors.down.isDown || this.cursors.up.isDown)) {
+                if (this.cursors.down.isDown) {
+                    this.body.setVelocityY(120);
+                    this.anims.play('escalar', true);
+                    
+                }
+                if (this.cursors.up.isDown) {
+                    this.body.setVelocityY(-120);
+                    this.anims.play('escalar', true);
+                }
+            }
+            else if(Phaser.Geom.Rectangle.ContainsRect(this.scene.arrayEscaleras[i].getBounds(), this.getBounds()) && !this.body.onFloor()){
+                this.body.setVelocityY(-7);
+                this.body.setVelocityX(0);
+                this.anims.play('escalarParado', true);
             }
         }
 
@@ -102,137 +127,73 @@ export default class Player extends Phaser.GameObjects.Sprite {
         }
         else if(this.teclaQ.isDown && Phaser.Input.Keyboard.JustDown(this.teclaQ)){
             this.scene.iu.usarObjeto();
-        }else if(this.teclaS.isDown){
+        }else if(this.teclaS.isDown && this.scene.iu.antorcha){
+
+            this.anims.play('atacar', true);          
             this.body.setSize(200, 120);
             this.body.setOffset(0, 97);
-            this.anims.play('atacar', true);
-            if (Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.momia)){
+
+            if (Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.momia.getBounds())){
                 this.scene.momia.reducirVida();
             }
-        } 
-        else if (Phaser.Geom.Rectangle.ContainsRect(this.scene.escalera.getBounds(), this.getBounds()) && (this.cursors.down.isDown || this.cursors.up.isDown)) {
-            this.body.setGravityY(-100);
-            if (this.cursors.down.isDown) {
-                this.body.setVelocityY(150);
-                this.anims.play('escalar', true);
-            }
-            if (this.cursors.up.isDown) {
-                this.body.setVelocityY(-200);
-                this.anims.play('escalar', true);
-            }
         }
-        else if(Phaser.Geom.Rectangle.ContainsRect(this.scene.escalera.getBounds(), this.getBounds()) && !this.body.onFloor()){
-            this.body.setVelocityY(-7);
-            this.body.setVelocityX(0);
-            this.anims.play('escalarParado', true);
-        }
-        else{
-            if (Phaser.Input.Keyboard.JustDown(this.cursors.up)) {
-                if(this.body.onFloor()){
-                    this.body.setVelocityY(this.jumpSpeed);
-                    if(this.ultimaDireccion== 'izquierda'){
-                        this.anims.play('saltar', true);
-                        this.setFlipX(true);
-                    }
-                    else if(this.ultimaDireccion== 'derecha'){
-                        this.anims.play('saltar', true);
-                        this.setFlipX(false);
-                    }
-                    
-                }
-
-            }
-            
-            else if (this.cursors.left.isDown) {
-                if(this.body.onFloor()){
-                    this.body.setSize(50, 120);
-                    this.body.setOffset(10, 97);
-                    this.anims.play('andar', true);
+        if (Phaser.Input.Keyboard.JustDown(this.cursors.up)) {
+            if(this.body.onFloor()){
+                this.body.setVelocityY(this.jumpSpeed);
+                if(this.ultimaDireccion== 'izquierda'){
+                    this.anims.play('saltar', true);
                     this.setFlipX(true);
-                    this.body.setVelocityX(-this.speed);
-                }else
-                    this.body.setVelocityX(-150);
-                this.ultimaDireccion = 'izquierda'
-            }
-            else if (this.cursors.right.isDown) {
-                
-                if(this.body.onFloor()){
-                    this.body.setSize(50, 120);
-                    this.body.setOffset(10, 97);
-                    this.anims.play('andar', true);
+                }
+                else if(this.ultimaDireccion== 'derecha'){
+                    this.anims.play('saltar', true);
                     this.setFlipX(false);
-                    this.body.setVelocityX(this.speed);
                 }
-                else
-                    this.body.setVelocityX(150);
-                this.ultimaDireccion = 'derecha'
-            }
-            if(!this.cursors.right.isDown && !this.cursors.left.isDown && !this.cursors.up.isDown){
-                if(this.body.onFloor()){
-                    this.body.setVelocityX(0);
-                    this.body.setSize(50, 120);
-                    this.body.setOffset(10, 97);
-                    if(this.ultimaDireccion== 'izquierda'){
-                        this.anims.play('parado', true);
-                        this.setFlipX(true);
-                    }
-                    else if(this.ultimaDireccion== 'derecha'){
-                        this.anims.play('parado', true);
-                        this.setFlipX(false);
-                    }        
-                }
-            }
                 
-        }if(this.anims.currentAnim != null && this.anims.currentAnim.key == 'saltar'){
-            if(this.anims.currentFrame.index == 14){
-                this.body.setSize(50, 120);
-                this.body.setOffset(30, 97);
-                this.anims.play('parado', true);
-            }else if(this.anims.currentFrame.index == 1){
-                this.body.setSize(50, 120);
-                this.body.setOffset(30, 97);
             }
-            else if(this.anims.currentFrame.index == 2){
-                this.body.setSize(50, 120);
-                this.body.setOffset(30, 97);
+
+        }
+        
+        else if (this.cursors.left.isDown) {
+            if(this.body.onFloor()){
+                this.anims.play('andar', true);
+                this.setFlipX(true);
+                this.body.setVelocityX(-this.speed);
+            }else
+                this.body.setVelocityX(-150);
+            this.ultimaDireccion = 'izquierda'
+        }
+        else if (this.cursors.right.isDown) {
+            
+            if(this.body.onFloor()){
+                this.anims.play('andar', true);
+                this.setFlipX(false);
+                this.body.setVelocityX(this.speed);
             }
-            else if(this.anims.currentFrame.index == 3){
-                this.body.setSize(50, 120);
-                this.body.setOffset(30, 65);
-            }
-            else if(this.anims.currentFrame.index == 4){
-                this.body.setSize(50, 125);
-                this.body.setOffset(30, 39);
-            }
-            else if(this.anims.currentFrame.index == 5){
-                this.body.setSize(50, 125);
-                this.body.setOffset(30, 23);
-            }else if(this.anims.currentFrame.index == 6){
-                this.body.setSize(50, 125);
-                this.body.setOffset(30, 8);
-            }else if(this.anims.currentFrame.index == 7){
-                this.body.setSize(50, 125);
-                this.body.setOffset(30, 3);
-            }else if(this.anims.currentFrame.index == 8){
-                this.body.setSize(50, 125);
-                this.body.setOffset(30, 0);
-            }else if(this.anims.currentFrame.index == 9){
-                this.body.setSize(50, 125);
-                this.body.setOffset(30, 0);
-            }else if(this.anims.currentFrame.index == 10){
-                this.body.setSize(50, 125);
-                this.body.setOffset(30, 5);
-            }else if(this.anims.currentFrame.index == 11){
-                this.body.setSize(50, 125);
-                this.body.setOffset(30, 20);
-            }else if(this.anims.currentFrame.index == 12){
-                this.body.setSize(50, 125);
-                this.body.setOffset(30, 37);
-            }else if(this.anims.currentFrame.index == 13){
-                this.body.setSize(50, 125);
-                this.body.setOffset(30, 60);
+            else
+                this.body.setVelocityX(150);
+            this.ultimaDireccion = 'derecha'
+        }
+        if(!this.cursors.right.isDown && !this.cursors.left.isDown && !this.cursors.up.isDown && !this.teclaS.isDown){
+            
+            if(this.body.onFloor()){
+                this.body.setVelocityX(0);
+                if(this.ultimaDireccion== 'izquierda'){
+                    this.anims.play('parado', true);
+                    this.setFlipX(true);
+                }
+                else if(this.ultimaDireccion== 'derecha'){
+                    this.anims.play('parado', true);
+                    this.setFlipX(false);
+                }        
             }
         }
+        
+    }
 
+
+    reseteo(){
+        this.inventory = [];
+        this.huecos = [0,0,0];
+        this.scene.iu.salud = 200;
     }
 }
