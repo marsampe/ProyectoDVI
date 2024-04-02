@@ -18,7 +18,7 @@ export default class puerta extends Phaser.GameObjects.Sprite {
     //this.body.setCircle(35);
     
     this.body.setSize(70, 80);
-    this.body.setOffset(50, 50);
+    this.body.setOffset(80, 80);
 
     this.setScale(0.5);
     this.setDepth(1);
