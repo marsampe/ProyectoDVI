@@ -172,7 +172,7 @@ export default class IU extends Phaser.Scene{
         this.bar.fillStyle(0xffffff);
         this.bar.fillRect(this.bar.x + 2, this.bar.y + 2, 200, 12);  
 
-        if (this.salud < 30)
+        if (this.salud < 60)
         {
             this.bar.fillStyle(0xff0000);
         }
