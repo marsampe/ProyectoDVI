@@ -35,12 +35,14 @@ export default class puerta extends Phaser.GameObjects.Sprite {
    * @param {Phaser.GameObjects.GameObject} player El jugador
    */
   handleCollision(puerta, player) {
-    
+
     this.scene.tweens.add({
       targets: this.scene.cameras.main,
       alpha: 0,
       duration: 1000,
       onComplete: () => {
+        this.player.reseteo();
+        this.scene.iu.reseteoIU();
         this.scene.scene.start('escenaInicial');
     }
   });
