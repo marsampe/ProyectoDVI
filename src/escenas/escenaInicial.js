@@ -40,7 +40,7 @@ export default class escenaInicial extends Phaser.Scene {
       this.startButton.setScale(6, 3.5);
       this.add.text(445, 270, 'Start Game', { fontFamily: "fontFamily", fontSize: '26px', color: '#ffffff' });
       this.startButton.on('pointerdown', () => {
-        this.registry.set('nextScene', 'level');
+        this.registry.set('nextScene', 'nivelUno');
         this.scene.start('boot');
       });
 

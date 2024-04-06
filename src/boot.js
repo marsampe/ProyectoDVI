@@ -2,6 +2,7 @@ import Phaser from 'phaser'
 
 
 import platform from '../assets/sprites/platform.png'
+import column from '../assets/sprites/column.png'
 import venda from '../assets/sprites/venda.png'
 import personajeAndar from '../assets/sprites/personajeAndar.png'
 import personajeSalto from '../assets/sprites/salto.png'
@@ -22,7 +23,6 @@ import puerta from '../assets/sprites/puerta.png'
 import mapa from '../assets/tiled/mapa.json'
 import cjto from '../assets/tiled/tilesetEgipto.png'
 import cjtocarteles from '../assets/tiled/cartel.png'
-import cjtofondo from '../assets/tiled/prueba.png'
 import cjtocenefa from '../assets/tiled/cenefa.png'
 //////////////
 import antidoto from '../assets/sprites/antidoto.png'
@@ -55,6 +55,7 @@ export default class Boot extends Phaser.Scene {
 
 
     this.load.image('platform', platform);
+    this.load.image('column', column);
     this.load.image('puerta', puerta);
     this.load.image('escalera', escalera);
     this.load.image('venda', venda);
