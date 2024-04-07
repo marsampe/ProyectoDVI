@@ -9,7 +9,7 @@ import trampaLateral from '../trampas/trampaLateral.js';
 import plataformaRompible from '../elementosNivel/plataformaRompible.js';
 import puerta from '../elementosNivel/puerta.js';
 import Column from '../elementosNivel/column.js';
-
+import flecha from '../trampas/flechas.js';
 //mapa/////////////
 
 import mapa from '../../assets/tiled/mapa.json'
@@ -46,14 +46,13 @@ export default class nivelUno extends Phaser.Scene {
         const tilesett = map.addTilesetImage('set', 'patronesTilemap',16,16);
         const tilesetfondo = map.addTilesetImage('cenefas', 'patronesTilemapFondo',16,16);
         map.createLayer('niveluno/capafondoniveluno', tilesetfondo,16,16);
-       // map.createLayer('capadecoracion', tilesett,16,16);
+        map.createLayer('niveluno/capadecoracionniveluno', tilesett,16,16);
+         const motosierra=map.getObjectLayer('niveluno/capatrampalateral')['objects'];
+         const flechas=map.getObjectLayer('niveluno/capaflechas')['objects'];
+    
+        const estacas=map.getObjectLayer('niveluno/capaestacas')['objects'];
        /*
-        const estacas=map.getObjectLayer('trampaPinchos')['objects'];
-       
-        const motosierra=map.getObjectLayer('trampalateral')['objects'];
-       
-       
-       
+    
         const door=map.getObjectLayer('puerta')['objects'];
 */ 
  const cofres=map.getObjectLayer('niveluno/capacofresniveluno')['objects'];
@@ -68,8 +67,13 @@ const escaleras=map.getObjectLayer('niveluno/capaescalerasniveluno')['objects'];
         this.iu.scene.setVisible(true);
         
         this.player = new Player(this, 180, 400);
+        
+      //  this.flecha = new flecha(this,this.player, 190, 400);
        // this.puerta = new puerta(this,this.player, door[0].x, door[0].y);  
-        for (let i = 0; i < plataformasRompibles.length; i++) {
+       for (let i = 0; i < flechas.length; i++) {
+        new flecha(this, this.player,  flechas[i].x, flechas[i].y);  
+    }
+       for (let i = 0; i < plataformasRompibles.length; i++) {
             new plataformaRompible(this, this.player,  plataformasRompibles[i].x, plataformasRompibles[i].y);  
         }
         for (let i = 0; i < escaleras.length; i++) {
@@ -82,14 +86,14 @@ const escaleras=map.getObjectLayer('niveluno/capaescalerasniveluno')['objects'];
         }
         for (let i = 0; i < momias.length; i++) {
             this.momia= new Momia(this, this.player,  momias[i].x, momias[i].y);           
-        }/*
+        }
         for (let i = 0; i < motosierra.length; i++) {
             new trampaLateral(this, this.player,  motosierra[i].x, motosierra[i].y);  
         }
-        
+    
         for (let i = 0; i < estacas.length; i++) {
             new trampaEstacas(this, this.player,  estacas[i].x, estacas[i].y);
-        }*/
+        }
         for (let i = 0; i < plataformas.length; i++) {
             new Platform(this, this.player, this.momia,plataformas[i].x, plataformas[i].y);
         }  

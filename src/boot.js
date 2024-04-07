@@ -26,7 +26,7 @@ import cjtocarteles from '../assets/tiled/cartel.png'
 import cjtocenefa from '../assets/tiled/cenefa.png'
 //////////////
 import antidoto from '../assets/sprites/antidoto.png'
-
+import flecha from '../assets/sprites/flecha.png'
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
  * Esta escena se puede mejorar añadiendo una imagen del juego y una 
@@ -72,6 +72,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('trampaLateral', trampaLateral);
     this.load.spritesheet('plataformaRompible', plataformaRompible, { frameWidth: 32, frameHeight: 22});
     this.load.image('antidoto', antidoto);
+    this.load.image('flecha', flecha);
     this.load.setPath('assets/tiled/');
 
     this.load.image('patronesTilemap',cjto);

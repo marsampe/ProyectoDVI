@@ -18,17 +18,17 @@
                 35
             ],
             "expandedObjectLayers": [
-                28,
                 3,
-                20,
+                19,
                 29,
-                19
+                20,
+                28
             ],
-            "scale": 0.33,
-            "selectedLayer": 9,
+            "scale": 0.75,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 948.4848484848485,
-                "y": 251.51515151515156
+                "x": 791.3333333333333,
+                "y": 458
             }
         },
         "mapa.json#cartel": {
