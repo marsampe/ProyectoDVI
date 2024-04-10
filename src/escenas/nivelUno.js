@@ -48,13 +48,13 @@ export default class nivelUno extends Phaser.Scene {
         map.createLayer('niveluno/capafondoniveluno', tilesetfondo,16,16);
         map.createLayer('niveluno/capadecoracionniveluno', tilesett,16,16);
          const motosierra=map.getObjectLayer('niveluno/capatrampalateral')['objects'];
-         const flechas=map.getObjectLayer('niveluno/capaflechas')['objects'];
+        const flechas=map.getObjectLayer('niveluno/capaflechas')['objects'];
     
         const estacas=map.getObjectLayer('niveluno/capaestacas')['objects'];
-       /*
+       
     
-        const door=map.getObjectLayer('puerta')['objects'];
-*/ 
+        const door=map.getObjectLayer('niveluno/capapuertasniveluno')['objects'];
+
  const cofres=map.getObjectLayer('niveluno/capacofresniveluno')['objects'];
 const escaleras=map.getObjectLayer('niveluno/capaescalerasniveluno')['objects'];
  const plataformas=map.getObjectLayer('niveluno/capaplataformasniveluno')['objects'];
@@ -68,8 +68,8 @@ const escaleras=map.getObjectLayer('niveluno/capaescalerasniveluno')['objects'];
         
         this.player = new Player(this, 180, 400);
         
-      //  this.flecha = new flecha(this,this.player, 190, 400);
-       // this.puerta = new puerta(this,this.player, door[0].x, door[0].y);  
+      // this.flecha = new flecha(this,this.player, 190, 350);
+       this.puerta = new puerta(this,this.player, door[0].x, door[0].y);  
        for (let i = 0; i < flechas.length; i++) {
         new flecha(this, this.player,  flechas[i].x, flechas[i].y);  
     }

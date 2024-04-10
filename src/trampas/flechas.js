@@ -13,21 +13,21 @@ export default class flecha extends Phaser.GameObjects.Sprite {
   constructor(scene, player, x, y) {
     super(scene, x, y, 'flecha');
     this.scene.add.existing(this);
-    this.scene.physics.add.existing(this, true);
-    this.body.setSize(10, 50);
-    this.body.setOffset(10, 50);
+    this.scene.physics.add.existing(this);
+    this.body.setSize(60,80);
+    this.body.setOffset(80, 100);
     this.setScale(0.2);
     this.setDepth(1);
     this.angle = 45;
     this.player = player;
 
     
-   // this.scene.physics.add.collider(player, this, this.handleCollision, null, this);
+   //this.scene.physics.add.collider(player, this, this.handleCollision, null, this);
     this.scene.physics.add.overlap(player, this, this.handleCollision, null, this);
-
 this.scene.tweens.add({
     targets: this,
-    y: y+220, // Posición vertical final (por ejemplo, la parte inferior de la pantalla)
+    y: y+150, // Posición vertical final (por ejemplo, la parte inferior de la pantalla)
+    ease: 'Linear',
     duration: 1500, // Duración de la animación en milisegundos
     repeat: -1, // Repetir indefinidamente
     yoyo: false, // No invertir la animación al final
