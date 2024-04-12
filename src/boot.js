@@ -6,7 +6,8 @@ import venda from '../assets/sprites/venda.png'
 import personajeAndar from '../assets/sprites/personajeAndar.png'
 import personajeSalto from '../assets/sprites/salto.png'
 import personajeEscalar from '../assets/sprites/personajeEscalar.png'
-import personajeAtaque from '../assets/sprites/personajeAtaque.png'
+import personajeAtaqueAntorcha from '../assets/sprites/personajeAtaque.png'
+import personajeAtaquePuno from '../assets/sprites/personajeAtaquePuno.png'
 import momia from '../assets/sprites/momia.png'
 import inventario from '../assets/sprites/inventario.png'
 import marcadorInventario from '../assets/sprites/marcadorInventario.png'
@@ -62,7 +63,8 @@ export default class Boot extends Phaser.Scene {
     this.load.image('antorcha', antorcha);
     this.load.spritesheet('personajeAndar', personajeAndar, { frameWidth: 84, frameHeight: 217});
     this.load.spritesheet('personajeSalto', personajeSalto, { frameWidth: 81, frameHeight: 217});
-    this.load.spritesheet('personajeAtaque', personajeAtaque, { frameWidth: 186, frameHeight: 217});
+    this.load.spritesheet('personajeAtaqueAntorcha', personajeAtaqueAntorcha, { frameWidth: 186, frameHeight: 217});
+    this.load.spritesheet('personajeAtaquePuno', personajeAtaquePuno, { frameWidth: 102, frameHeight: 217});
     this.load.spritesheet('personajeEscalar', personajeEscalar, { frameWidth: 77, frameHeight: 217});
     this.load.image('inventario', inventario);
     this.load.image('marcadorInventario', marcadorInventario);
@@ -118,8 +120,15 @@ export default class Boot extends Phaser.Scene {
     });
 
     this.anims.create({
-      key: 'atacar',
-      frames: this.anims.generateFrameNumbers('personajeAtaque', { start: 0, end:5}),
+      key: 'atacarAntorcha',
+      frames: this.anims.generateFrameNumbers('personajeAtaqueAntorcha', { start: 0, end:5}),
+      frameRate: 8,
+      repeat: 0
+    });
+
+    this.anims.create({
+      key: 'atacarPuno',
+      frames: this.anims.generateFrameNumbers('personajeAtaquePuno', { start: 0, end:4}),
       frameRate: 8,
       repeat: 0
     });

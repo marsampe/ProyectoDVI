@@ -36,6 +36,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.teclaS = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
         this.teclaSPresionada = false;
         
+        this.atacando = false;
         this.herido = false;
         this.salud = 200;
 
@@ -129,12 +130,23 @@ export default class Player extends Phaser.GameObjects.Sprite {
             this.scene.iu.usarObjeto();
         }else if(this.teclaS.isDown && this.scene.iu.antorcha){
 
-            this.anims.play('atacar', true);          
+            this.anims.play('atacarAntorcha', true);          
             this.body.setSize(200, 120);
             this.body.setOffset(0, 97);
 
             if (Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.momia.getBounds())){
                 this.scene.momia.reducirVida();
+            }
+        }else if(this.teclaS.isDown && !this.scene.iu.antorcha){
+
+            this.anims.play('atacarPuno', true);          
+            this.body.setSize(100, 120);
+            this.body.setOffset(0, 97);
+
+            if (Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.momia.getBounds())){
+                this.scene.momia.reducirVida();
+                if(this.herido == false)
+                    this.reduceHealth();
             }
         }
         if (Phaser.Input.Keyboard.JustDown(this.cursors.up)) {
@@ -187,7 +199,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
                 }        
             }
         }
-        
+        if (this.anims.currentAnim.key === 'atacarPuno' || this.anims.currentAnim.key === 'atacarAntorcha' ) {
+            this.atacando = true;
+        }else{
+            this.atacando = false;
+        }
     }
 
 
