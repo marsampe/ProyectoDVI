@@ -41,6 +41,13 @@ export default class Serpiente extends Phaser.GameObjects.Sprite {
 
         this.patrullando = true;
 
+        this.enfriamientoDespuesDeAtaque = false; // Variable para controlar el enfriamiento después de un ataque
+        this.tiempoDeEnfriamiento = 4000;
+        this.anteriorAnimacion;
+        this.puedeAtacar = true;
+        this.body.setSize(this.width-10, this.height-15, true);
+        this.atacando=false;
+
     }
 
 
@@ -58,7 +65,7 @@ export default class Serpiente extends Phaser.GameObjects.Sprite {
             this.body.setVelocityX(0);
             this.anims.play('caminarSerpiente', false);
         }
-
+        console.log(this.puedeAtacar);
     }
 
     persigueJugador() {
@@ -70,28 +77,50 @@ export default class Serpiente extends Phaser.GameObjects.Sprite {
         const distanciaAbsolutaX = Math.abs(distanciaX);
         const velocidadMaxima = this.speed;
         const aceleracion = 0.5;
-        const distanciaDeAtaque = 70;
+        const distanciaDeAtaque = 60;
 
 
-        let velocidadX = distanciaAbsolutaX * aceleracion;
-        velocidadX = Phaser.Math.Clamp(velocidadX, 0, velocidadMaxima);
-        this.body.setVelocityX(velocidadX * direccionX);
+       
 
         if (distanciaAbsolutaX < distanciaDeAtaque) {
+
+            if(this.anims.currentAnim.key == 'ataqueSerpiente' && this.anteriorAnimacion=== 3 && this.puedeAtacar){
+                this.anims.stop();
+                this.anims.play('caminarSerpiente', false);
+                
+                this.body.setVelocityX(0); // Detener movimiento
+                this.bloqueoSerpiente();
+                this.atacando = false;
+
+            }else if(this.puedeAtacar){
             // Si la serpiente está dentro de la distancia de ataque, ataca al jugador
+            
+                this.anims.play('ataqueSerpiente', true);
+                this.body.setVelocityX(0);
+                this.scene.time.delayedCall(500, () => {
+                    // Cambiar el tamaño de la hitbox en el tercer fotograma de la animación de ataque
+                    if (this.anims.currentFrame.index === 2 || this.anims.currentFrame.index === 3) {
+                        this.body.setSize(this.width * 1.5, this.height, true); // Aumentar el tamaño de colisión
+                        this.atacando =true;
+                    }
+                    this.anteriorAnimacion = this.anims.currentFrame.index ;
 
-            this.anims.play('ataqueSerpiente', true);
-            this.body.setVelocityX(0);
-            this.scene.time.delayedCall(500, () => {
-                // Cambiar el tamaño de la hitbox en el tercer fotograma de la animación de ataque
-                if (this.anims.currentFrame.index === 2 || this.anims.currentFrame.index === 3) {
-                    this.body.setSize(this.width * 1.5, this.height, true); // Aumentar el tamaño de colisión
 
-                }
-            }, null, this);
+                }, null, this);
+
+            
+            }else {
+                this.body.setSize(this.width-10, this.height-15, true);
+
+            }
         } else {    
+            let velocidadX = distanciaAbsolutaX * aceleracion;
+            velocidadX = Phaser.Math.Clamp(velocidadX, 0, velocidadMaxima);
+            this.body.setVelocityX(velocidadX * direccionX);
+
+
             // Cambiar a la animación de caminar
-            this.body.setSize(this.width, this.height, true);
+            this.body.setSize(this.width-10, this.height-15, true);
             this.anims.play('caminarSerpiente', true);
         }
        
@@ -99,6 +128,17 @@ export default class Serpiente extends Phaser.GameObjects.Sprite {
         this.persiguiendoJugador = true;
 
         this.scene.tweens.killTweensOf(this);
+    }
+
+    bloqueoSerpiente(){
+
+        this.puedeAtacar = false; // La serpiente no puede atacar hasta que pase el enfriamiento
+
+        // Iniciar el contador de tiempo de enfriamiento
+        this.scene.time.delayedCall(this.tiempoDeEnfriamiento, () => {
+            this.enfriamientoDespuesDeAtaque = false; // Después de 3 segundos, volver a permitir el ataque
+            this.puedeAtacar = true; // La serpiente puede volver a atacar
+        }, null, this);
     }
 
     reducirVida() {
@@ -119,12 +159,18 @@ export default class Serpiente extends Phaser.GameObjects.Sprite {
     }
 
     handleCollision() {
-        this.player.paralizar();
         
-        if(this.player.herido == false)
+       
+        if(this.player.herido == false){
+            if(this.atacando){
+                this.player.paralizar();
+            }
             this.player.reduceHealth();
-            this.player.paralizar();
             
+            const direccionRetroceso = this.flipX ? -1 : 1; // Si la serpiente mira hacia la izquierda, el jugador se empujará hacia la derecha y viceversa
+            const fuerzaRetroceso = 25; // Puedes ajustar la intensidad del retroceso según sea necesario
+            this.player.body.setVelocityX(fuerzaRetroceso * direccionRetroceso);
+        }
     }
 
     patrulla(){
