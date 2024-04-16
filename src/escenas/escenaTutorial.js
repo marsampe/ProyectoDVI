@@ -8,6 +8,7 @@ import trampaEstacas from '../trampas/trampaEstacas.js';
 import trampaLateral from '../trampas/trampaLateral.js';
 import plataformaRompible from '../elementosNivel/plataformaRompible.js';
 import puerta from '../elementosNivel/puerta.js';
+import Serpiente from '../enemigos/serpiente.js';
 
 /**
  * Escena principal del juego. La escena se compone de una serie de plataformas 
@@ -25,6 +26,13 @@ export default class escenaTutorial extends Phaser.Scene {
         super({ key: 'escenaTutorial' });
         this.arrayCofres = [];
         this.arrayEscaleras = [];
+    }
+
+    update() {
+    
+        // Llamar al método detectarJugador de la serpiente en cada fotograma
+        this.serpiente.update();
+        //this.serpiente.persigueJugador(this.player);
     }
 
     create() {
@@ -71,6 +79,8 @@ export default class escenaTutorial extends Phaser.Scene {
         for (let i = 0; i < plataformas.length; i++) {
             new Platform(this, this.player, this.momia,plataformas[i].x, plataformas[i].y);
         }  
+
+        this.serpiente= new Serpiente(this, this.player,  900, 700); 
 
         this.cameras.main.setBounds(15,0, 3000,800);
         this.physics.world.setBounds(0,0, 3000,800);

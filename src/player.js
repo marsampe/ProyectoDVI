@@ -38,6 +38,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         
         this.herido = false;
         this.salud = 200;
+        this.envenenado = false;
 
         this.setDepth(2);
     }
@@ -137,57 +138,75 @@ export default class Player extends Phaser.GameObjects.Sprite {
                 this.scene.momia.reducirVida();
             }
         }
-        if (Phaser.Input.Keyboard.JustDown(this.cursors.up)) {
-            if(this.body.onFloor()){
-                this.body.setVelocityY(this.jumpSpeed);
-                if(this.ultimaDireccion== 'izquierda'){
-                    this.anims.play('saltar', true);
+
+        if (!this.envenenado) {
+            if (Phaser.Input.Keyboard.JustDown(this.cursors.up)) {
+                if(this.body.onFloor()){
+                    this.body.setVelocityY(this.jumpSpeed);
+                    if(this.ultimaDireccion== 'izquierda'){
+                        this.anims.play('saltar', true);
+                        this.setFlipX(true);
+                    }
+                    else if(this.ultimaDireccion== 'derecha'){
+                        this.anims.play('saltar', true);
+                        this.setFlipX(false);
+                    }
+                    
+                }
+    
+            }
+            
+            else if (this.cursors.left.isDown) {
+                if(this.body.onFloor()){
+                    this.anims.play('andar', true);
                     this.setFlipX(true);
-                }
-                else if(this.ultimaDireccion== 'derecha'){
-                    this.anims.play('saltar', true);
-                    this.setFlipX(false);
-                }
+                    this.body.setVelocityX(-this.speed);
+                }else
+                    this.body.setVelocityX(-150);
+                this.ultimaDireccion = 'izquierda'
+            }
+            else if (this.cursors.right.isDown) {
                 
+                if(this.body.onFloor()){
+                    this.anims.play('andar', true);
+                    this.setFlipX(false);
+                    this.body.setVelocityX(this.speed);
+                }
+                else
+                    this.body.setVelocityX(150);
+                this.ultimaDireccion = 'derecha'
+            }
+            if(!this.cursors.right.isDown && !this.cursors.left.isDown && !this.cursors.up.isDown && !this.teclaS.isDown){
+                
+                if(this.body.onFloor()){
+                    this.body.setVelocityX(0);
+                    if(this.ultimaDireccion== 'izquierda'){
+                        this.anims.play('parado', true);
+                        this.setFlipX(true);
+                    }
+                    else if(this.ultimaDireccion== 'derecha'){
+                        this.anims.play('parado', true);
+                        this.setFlipX(false);
+                    }        
+                }
             }
 
         }
+
         
-        else if (this.cursors.left.isDown) {
-            if(this.body.onFloor()){
-                this.anims.play('andar', true);
-                this.setFlipX(true);
-                this.body.setVelocityX(-this.speed);
-            }else
-                this.body.setVelocityX(-150);
-            this.ultimaDireccion = 'izquierda'
-        }
-        else if (this.cursors.right.isDown) {
-            
-            if(this.body.onFloor()){
-                this.anims.play('andar', true);
-                this.setFlipX(false);
-                this.body.setVelocityX(this.speed);
-            }
-            else
-                this.body.setVelocityX(150);
-            this.ultimaDireccion = 'derecha'
-        }
-        if(!this.cursors.right.isDown && !this.cursors.left.isDown && !this.cursors.up.isDown && !this.teclaS.isDown){
-            
-            if(this.body.onFloor()){
-                this.body.setVelocityX(0);
-                if(this.ultimaDireccion== 'izquierda'){
-                    this.anims.play('parado', true);
-                    this.setFlipX(true);
-                }
-                else if(this.ultimaDireccion== 'derecha'){
-                    this.anims.play('parado', true);
-                    this.setFlipX(false);
-                }        
-            }
-        }
         
+    }
+
+    paralizar() {
+        // Detener el movimiento del jugador
+        this.envenenado = true;
+        this.body.setVelocity(0, 0);
+        this.anims.play('parado', true);
+        
+        // Establecer un temporizador para reactivar el movimiento después de 2 segundos
+        this.scene.time.delayedCall(2000, () => {
+            this.envenenado = false;
+        }, null, this);
     }
 
 
