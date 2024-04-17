@@ -18,6 +18,7 @@ import trampaEstacas from '../assets/sprites/trampaEstacas.png'
 import trampaLateral from '../assets/sprites/trampaLateral.png'
 import plataformaRompible from '../assets/sprites/plataformaRompible.png'
 import puerta from '../assets/sprites/puerta.png'
+import liquido from '../assets/sprites/liquido.png'
 
 //mapa/////////////
 import mapa from '../assets/tiled/mapa.json'
@@ -66,6 +67,7 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('personajeAtaqueAntorcha', personajeAtaqueAntorcha, { frameWidth: 186, frameHeight: 217});
     this.load.spritesheet('personajeAtaquePuno', personajeAtaquePuno, { frameWidth: 102, frameHeight: 217});
     this.load.spritesheet('personajeEscalar', personajeEscalar, { frameWidth: 77, frameHeight: 217});
+    this.load.spritesheet('liquido', liquido, { frameWidth: 1000, frameHeight: 500});
     this.load.image('inventario', inventario);
     this.load.image('marcadorInventario', marcadorInventario);
     this.load.image('trampaEstacas', trampaEstacas);
@@ -96,6 +98,13 @@ export default class Boot extends Phaser.Scene {
       frames: this.anims.generateFrameNumbers('momia', { start: 0, end: 2 }),
       frameRate: 5,
       repeat: -1
+  })
+
+  this.anims.create({
+    key: 'liquido',
+    frames: this.anims.generateFrameNumbers('liquido', { start: 0, end: 1 }),
+    frameRate: 2,
+    repeat: -1
   })
 
   this.anims.create({

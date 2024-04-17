@@ -3,6 +3,7 @@ import Escalera from '../elementosNivel/escalera.js';
 import Cofre from '../elementosNivel/cofre.js';
 import Player from '../player.js';
 import Momia from '../enemigos/momia.js';
+import Liquido from '../elementosNivel/liquido.js';
 import Phaser from 'phaser'
 import trampaEstacas from '../trampas/trampaEstacas.js';
 import trampaLateral from '../trampas/trampaLateral.js';
@@ -49,6 +50,7 @@ export default class escenaTutorial extends Phaser.Scene {
         this.iu.scene.setVisible(true);
         
         this.player = new Player(this, 600, 400);
+        this.liquido = new Liquido(this, this.player, 1500, 1700).setDepth(2);
         this.puerta = new puerta(this,this.player, door[0].x, door[0].y);  
         for (let i = 0; i < plataformasRompibles.length; i++) {
             new plataformaRompible(this, this.player,  plataformasRompibles[i].x, plataformasRompibles[i].y);  
