@@ -23,12 +23,12 @@ import cjtocenefa from '../../assets/tiled/cenefa.png'
  * El juego termina cuando el jugador ha recogido 10 estrellas.
  * @extends Phaser.Scene
  */
-export default class nivelUno extends Phaser.Scene {
+export default class nivelDos extends Phaser.Scene {
     /**
      * Constructor de la escena
      */
     constructor() {
-        super({ key: 'nivelUno' });
+        super({ key: 'nivelTres' });
         this.arrayCofres = [];
         this.arrayEscaleras = [];
     }
@@ -37,7 +37,7 @@ export default class nivelUno extends Phaser.Scene {
 
     this.load.image('patronesTilemap',cjto);
     this.load.image('patronesTilemapFondo',cjtocenefa);
-    //this.load.tilemapTiledJSON('mapaniveluno',mapa);
+    this.load.tilemapTiledJSON('mapaniveluno',mapa);
 
     }
     create() {
@@ -53,7 +53,7 @@ export default class nivelUno extends Phaser.Scene {
         const estacas=map.getObjectLayer('niveluno/capaestacas')['objects'];
        
     
-        //const door=map.getObjectLayer('niveluno/capapuertasniveluno')['objects'];
+        const door=map.getObjectLayer('niveluno/capapuertasniveluno')['objects'];
 
  const cofres=map.getObjectLayer('niveluno/capacofresniveluno')['objects'];
 const escaleras=map.getObjectLayer('niveluno/capaescalerasniveluno')['objects'];
@@ -68,8 +68,8 @@ const escaleras=map.getObjectLayer('niveluno/capaescalerasniveluno')['objects'];
         
         this.player = new Player(this, 180, 400);
         
-      // this.flecha = new flecha(this,this.player, 190, 350);
-       this.puerta = new puerta(this,this.player, 300,400);  
+      // this.flecha = new flecha(this,this.player, 190, 350);door[0].x door[0].y
+       this.puerta = new puerta(this,this.player,350 ,400);  
        for (let i = 0; i < flechas.length; i++) {
         new flecha(this, this.player,  flechas[i].x, flechas[i].y);  
     }
@@ -97,9 +97,7 @@ const escaleras=map.getObjectLayer('niveluno/capaescalerasniveluno')['objects'];
         for (let i = 0; i < plataformas.length; i++) {
             new Platform(this, this.player, this.momia,plataformas[i].x, plataformas[i].y);
         }  
-      /*  for (let i = 0; i < door.length; i++) {
-            this.puerta = new puerta(this,this.player, door[0].x, door[0].y);      }  
-*/
+
         this.cameras.main.setBounds(15,0, 3000,800);
         this.physics.world.setBounds(0,0, 3000,800);
         this.cameras.main.setZoom(1);

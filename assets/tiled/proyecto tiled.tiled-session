@@ -15,20 +15,20 @@
         },
         "mapa.json": {
             "expandedGroupLayers": [
-                35
+                45
             ],
             "expandedObjectLayers": [
-                3,
-                19,
-                29,
+                28,
                 20,
-                28
+                19,
+                3,
+                29
             ],
             "scale": 0.75,
-            "selectedLayer": 5,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 791.3333333333333,
-                "y": 458
+                "x": 1043.3333333333333,
+                "y": 536.6666666666667
             }
         },
         "mapa.json#cartel": {
@@ -38,7 +38,7 @@
             "scaleInDock": 0.75
         },
         "mapa.json#cenefas": {
-            "scaleInDock": 0.75
+            "scaleInDock": 0.5
         },
         "mapa.json#fondo": {
             "scaleInDock": 0.125

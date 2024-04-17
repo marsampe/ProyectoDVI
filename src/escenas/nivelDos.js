@@ -11,6 +11,7 @@ import puerta from '../elementosNivel/puerta.js';
 import Column from '../elementosNivel/column.js';
 import flecha from '../trampas/flechas.js';
 //mapa/////////////
+import platformdiseño from '../../assets/sprites/platformNivel2.png'
 
 import mapa from '../../assets/tiled/mapa.json'
 import cjto from '../../assets/tiled/tilesetEgipto.png'
@@ -23,12 +24,12 @@ import cjtocenefa from '../../assets/tiled/cenefa.png'
  * El juego termina cuando el jugador ha recogido 10 estrellas.
  * @extends Phaser.Scene
  */
-export default class nivelUno extends Phaser.Scene {
+export default class nivelDos extends Phaser.Scene {
     /**
      * Constructor de la escena
      */
     constructor() {
-        super({ key: 'nivelUno' });
+        super({ key: 'nivelDos' });
         this.arrayCofres = [];
         this.arrayEscaleras = [];
     }
@@ -37,6 +38,8 @@ export default class nivelUno extends Phaser.Scene {
 
     this.load.image('patronesTilemap',cjto);
     this.load.image('patronesTilemapFondo',cjtocenefa);
+    this.load.setPath('assets/sprites/');
+    this.load.image('platform', platformdiseño);
     //this.load.tilemapTiledJSON('mapaniveluno',mapa);
 
     }
@@ -45,31 +48,27 @@ export default class nivelUno extends Phaser.Scene {
         const map= this.make.tilemap({ key: 'mapa'});
         const tilesett = map.addTilesetImage('set', 'patronesTilemap',16,16);
         const tilesetfondo = map.addTilesetImage('cenefas', 'patronesTilemapFondo',16,16);
-        map.createLayer('niveluno/capafondoniveluno', tilesetfondo,16,16);
-        map.createLayer('niveluno/capadecoracionniveluno', tilesett,16,16);
-         const motosierra=map.getObjectLayer('niveluno/capatrampalateral')['objects'];
-        const flechas=map.getObjectLayer('niveluno/capaflechas')['objects'];
-    
-        const estacas=map.getObjectLayer('niveluno/capaestacas')['objects'];
-       
-    
-        //const door=map.getObjectLayer('niveluno/capapuertasniveluno')['objects'];
-
- const cofres=map.getObjectLayer('niveluno/capacofresniveluno')['objects'];
-const escaleras=map.getObjectLayer('niveluno/capaescalerasniveluno')['objects'];
- const plataformas=map.getObjectLayer('niveluno/capaplataformasniveluno')['objects'];
- const columnas=map.getObjectLayer('niveluno/capacolumnasniveluno')['objects'];
- const momias=map.getObjectLayer('niveluno/capamomiasniveluno')['objects'];
- const plataformasRompibles=map.getObjectLayer('niveluno/capaplataformasrompiblesniveluno')['objects'];
+        map.createLayer('niveldos/capafondoniveldos', tilesetfondo,16,16);
+       map.createLayer('niveldos/capadecoracion', tilesett,16,16);
+       const motosierra=map.getObjectLayer('niveldos/capatrampalateral')['objects'];
+        const flechas=map.getObjectLayer('niveldos/capaflechas')['objects'];
+        const estacas=map.getObjectLayer('niveldos/capaestacas')['objects'];
+        const door=map.getObjectLayer('niveldos/capapuertasniveldos')['objects'];
+        const cofres=map.getObjectLayer('niveldos/capacofresniveldos')['objects'];
+        const escaleras=map.getObjectLayer('niveldos/capaescalerasniveldos')['objects'];
+        const plataformas=map.getObjectLayer('niveldos/capaplataformasniveldos')['objects'];
+        const columnas=map.getObjectLayer('niveldos/capacolumnasniveldos')['objects'];
+        const momias=map.getObjectLayer('niveldos/capamomiasniveldos')['objects'];
+        const plataformasRompibles=map.getObjectLayer('niveldos/capaplataformasrompiblesniveldos')['objects'];
 
         this.scene.launch('iu');
         this.iu = this.scene.get('iu');
         this.iu.scene.setVisible(true);
         
-        this.player = new Player(this, 180, 400);
-        
-      // this.flecha = new flecha(this,this.player, 190, 350);
-       this.puerta = new puerta(this,this.player, 300,400);  
+        this.player = new Player(this, 10, 600);
+       
+      // this.flecha = new flecha(this,this.player, 190, 350)//;door[0].x door[0].y
+       //this.puerta = new puerta(this,this.player,350 ,400);  
        for (let i = 0; i < flechas.length; i++) {
         new flecha(this, this.player,  flechas[i].x, flechas[i].y);  
     }
@@ -97,9 +96,7 @@ const escaleras=map.getObjectLayer('niveluno/capaescalerasniveluno')['objects'];
         for (let i = 0; i < plataformas.length; i++) {
             new Platform(this, this.player, this.momia,plataformas[i].x, plataformas[i].y);
         }  
-      /*  for (let i = 0; i < door.length; i++) {
-            this.puerta = new puerta(this,this.player, door[0].x, door[0].y);      }  
-*/
+
         this.cameras.main.setBounds(15,0, 3000,800);
         this.physics.world.setBounds(0,0, 3000,800);
         this.cameras.main.setZoom(1);
