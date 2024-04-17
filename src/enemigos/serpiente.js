@@ -1,5 +1,5 @@
 import Phaser from 'phaser'
-import venda from '../objetos/venda.js';
+import antidoto from '../objetos/antidoto.js';
 
 /**
  * Clase que representa el jugador del juego. El jugador se mueve por el mundo usando los cursores.
@@ -65,7 +65,6 @@ export default class Serpiente extends Phaser.GameObjects.Sprite {
             this.body.setVelocityX(0);
             this.anims.play('caminarSerpiente', false);
         }
-        console.log(this.puedeAtacar);
     }
 
     persigueJugador() {
@@ -152,8 +151,9 @@ export default class Serpiente extends Phaser.GameObjects.Sprite {
             this.setTint(0xED0004);
             i--;
             if (i === 0) {
-                this.scene.add.existing(new venda(this.scene, this.x - 50, this.y - 10));
-                this.destroy()
+                this.scene.add.existing(new antidoto(this.scene, this.x - 50, this.y - 10));
+                this.destroy();
+                
             }
         }, 400);
     }
@@ -168,7 +168,7 @@ export default class Serpiente extends Phaser.GameObjects.Sprite {
             this.player.reduceHealth();
             
             const direccionRetroceso = this.flipX ? -1 : 1; // Si la serpiente mira hacia la izquierda, el jugador se empujará hacia la derecha y viceversa
-            const fuerzaRetroceso = 25; // Puedes ajustar la intensidad del retroceso según sea necesario
+            const fuerzaRetroceso = 100; // Puedes ajustar la intensidad del retroceso según sea necesario
             this.player.body.setVelocityX(fuerzaRetroceso * direccionRetroceso);
         }
     }

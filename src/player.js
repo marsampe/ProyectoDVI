@@ -127,16 +127,32 @@ export default class Player extends Phaser.GameObjects.Sprite {
             this.scene.iu.cambiarObjeto();
         }
         else if(this.teclaQ.isDown && Phaser.Input.Keyboard.JustDown(this.teclaQ)){
-            this.scene.iu.usarObjeto();
+            let item = this.scene.iu.usarObjeto();
+
+            if(item == 'antidoto'){
+                this.envenenado= false;
+            }
+
         }else if(this.teclaS.isDown && this.scene.iu.antorcha){
 
             this.anims.play('atacar', true);          
             this.body.setSize(200, 120);
             this.body.setOffset(0, 97);
 
-            if (Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.momia.getBounds())){
-                this.scene.momia.reducirVida();
+            for(let i = 0; i < this.scene.arrayMomias.length; i++) {
+                if (Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.arrayMomias[i].getBounds())) {
+                    this.scene.arrayMomias[i].reducirVida();
+                    this.scene.arrayMomias.splice(i, 1);
+                }
             }
+
+            for(let i = 0; i < this.scene.arraySerpientes.length; i++) {
+                if (Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.arraySerpientes[i].getBounds())) {
+                    this.scene.arraySerpientes[i].reducirVida();
+                    this.scene.arraySerpientes.splice(i, 1);
+                }
+            }
+
         }
 
         if (!this.envenenado) {
@@ -204,7 +220,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.anims.play('parado', true);
         
         // Establecer un temporizador para reactivar el movimiento después de 2 segundos
-        this.scene.time.delayedCall(2000, () => {
+        this.scene.time.delayedCall(5000, () => {
             this.envenenado = false;
         }, null, this);
     }
@@ -214,5 +230,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.inventory = [];
         this.huecos = [0,0,0];
         this.scene.iu.salud = 200;
+        this.arrayMomias=[];
+        this.arraySerpientes=[];
+        this.arrayCofres=[];
     }
 }

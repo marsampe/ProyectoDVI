@@ -9,6 +9,7 @@ import trampaLateral from '../trampas/trampaLateral.js';
 import plataformaRompible from '../elementosNivel/plataformaRompible.js';
 import puerta from '../elementosNivel/puerta.js';
 import Serpiente from '../enemigos/serpiente.js';
+import antidoto from '../objetos/antidoto.js';
 
 /**
  * Escena principal del juego. La escena se compone de una serie de plataformas 
@@ -26,12 +27,16 @@ export default class escenaTutorial extends Phaser.Scene {
         super({ key: 'escenaTutorial' });
         this.arrayCofres = [];
         this.arrayEscaleras = [];
+        this.arrayMomias = [];
+        this.arraySerpientes = [];
     }
 
     update() {
     
         // Llamar al método detectarJugador de la serpiente en cada fotograma
-        this.serpiente.update();
+        for(let i = 0; i<this.arraySerpientes.length; i++){
+            this.arraySerpientes[i].update();
+        }
         //this.serpiente.persigueJugador(this.player);
     }
 
@@ -65,7 +70,7 @@ export default class escenaTutorial extends Phaser.Scene {
             this.arrayEscaleras.push(new Escalera(this, this.player, escaleras[i].x,escaleras[i].y));    
         }
         for (let i = 0; i < momias.length; i++) {
-            this.momia= new Momia(this, this.player,  momias[i].x, momias[i].y);           
+            this.arrayMomias.push(new Momia(this, this.player,  momias[i].x, momias[i].y));           
         }
         for (let i = 0; i < motosierra.length; i++) {
             new trampaLateral(this, this.player,  motosierra[i].x, motosierra[i].y);  
@@ -80,7 +85,10 @@ export default class escenaTutorial extends Phaser.Scene {
             new Platform(this, this.player, this.momia,plataformas[i].x, plataformas[i].y);
         }  
 
-        this.serpiente= new Serpiente(this, this.player,  900, 720); 
+        this.arraySerpientes.push( new Serpiente(this, this.player,  1100, 250)); 
+        this.arraySerpientes.push( new Serpiente(this, this.player,  900, 250)); 
+
+        new antidoto(this, 900, 720);
 
         this.cameras.main.setBounds(15,0, 3000,800);
         this.physics.world.setBounds(0,0, 3000,800);
@@ -106,5 +114,8 @@ export default class escenaTutorial extends Phaser.Scene {
     escenaFinal(){
         this.scene.start('end');
         this.iu.scene.setVisible(false);
+        this.arrayMomias=[];
+        this.arraySerpientes=[];
+        this.arrayCofres = [];
     }
 }

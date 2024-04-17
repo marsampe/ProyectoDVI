@@ -96,7 +96,6 @@ export default class IU extends Phaser.Scene{
 
     usarObjeto(){
         let item = this.inventory[this.posicionMarcador];
-
         if(item !=undefined){
             switch (item) {
                 case 'venda':
@@ -113,19 +112,34 @@ export default class IU extends Phaser.Scene{
                         }
 
                     }
-                    
                     this.aumentaSalud(50);
                     break;
                 case 'antorcha':
                     //this.antorcha = true;
                     break;
+                case 'antidoto':
+                    if(this.huecos[this.posicionMarcador] > 0){
+                        this.huecos[this.posicionMarcador]--;
+                        this.updateHuecos();
+
+                        //eliminar el dibujo del inventario
+                        if (this.huecos[this.posicionMarcador] === 0) {
+                            this.inventory.splice(this.posicionMarcador, 1);
+                            let itemImage = this.inventoryItems[this.posicionMarcador];
+                            this.inventoryItems[itemImage] = null;
+                            itemImage.destroy();
+                        }
+
+                    }
+                    break;
                 default:
                     
                     break;
             }
+            
         }
         
-
+        return item;
     }
 
     updateHuecos() {
