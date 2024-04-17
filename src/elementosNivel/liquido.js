@@ -29,8 +29,17 @@ export default class Liquido extends Phaser.GameObjects.Sprite {
         targets: this,
         y: 0,
         ease: 'Linear',
-        duration: 100000,
+        duration: 150000,
     });
+
+    this.scene.tweens.add({
+      targets: this,
+      x: { from: 1500, to: 1550 }, // Mueve de izquierda a derecha
+      ease: 'Linear',
+      duration: 2000, // Ajusta la duración según tus necesidades
+      yoyo: true, // Vuelve a la posición inicial después de llegar al final
+      repeat: -1 // Repite la animación indefinidamente
+  });
 
   }
 
