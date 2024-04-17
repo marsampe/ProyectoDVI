@@ -218,6 +218,18 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.envenenado = true;
         this.body.setVelocity(0, 0);
         this.anims.play('parado', true);
+        let i = 14;
+        let parpadeo = setInterval(() => {
+            this.visible = !this.visible;
+            this.setTint(0x7FFF00);
+            i--;
+            if (i === 0) {
+                clearInterval(parpadeo);
+                this.clearTint();
+                this.visible = true;
+                this.herido = false;
+            }
+        }, 400);
         
         // Establecer un temporizador para reactivar el movimiento después de 2 segundos
         this.scene.time.delayedCall(5000, () => {

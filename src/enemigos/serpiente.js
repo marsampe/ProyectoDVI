@@ -55,9 +55,10 @@ export default class Serpiente extends Phaser.GameObjects.Sprite {
     update() {
         
         const distanciaX = Math.abs(this.player.x - this.x);
+        const distanciaY = Math.abs(this.player.y - this.y);
         const rangoDePersecucion = 200;
 
-        if (distanciaX < rangoDePersecucion) {
+        if (distanciaX < rangoDePersecucion && distanciaY < rangoDePersecucion) {
             this.persigueJugador();
         }else if(!this.patrullando){
             

@@ -86,9 +86,8 @@ export default class escenaTutorial extends Phaser.Scene {
         }  
 
         this.arraySerpientes.push( new Serpiente(this, this.player,  1100, 250)); 
-        this.arraySerpientes.push( new Serpiente(this, this.player,  900, 250)); 
+        this.arraySerpientes.push( new Serpiente(this, this.player,  900, 720)); 
 
-        new antidoto(this, 900, 720);
 
         this.cameras.main.setBounds(15,0, 3000,800);
         this.physics.world.setBounds(0,0, 3000,800);
