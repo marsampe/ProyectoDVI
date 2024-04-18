@@ -10,6 +10,8 @@ import plataformaRompible from '../elementosNivel/plataformaRompible.js';
 import puerta from '../elementosNivel/puerta.js';
 import Serpiente from '../enemigos/serpiente.js';
 import antidoto from '../objetos/antidoto.js';
+import venda from '../objetos/venda.js';
+import antorcha from '../objetos/antorcha.js';
 
 /**
  * Escena principal del juego. La escena se compone de una serie de plataformas 
@@ -86,7 +88,11 @@ export default class escenaTutorial extends Phaser.Scene {
         }  
 
         this.arraySerpientes.push( new Serpiente(this, this.player,  1100, 250)); 
-        this.arraySerpientes.push( new Serpiente(this, this.player,  900, 720)); 
+        //this.arraySerpientes.push( new Serpiente(this, this.player,  900, 720)); 
+
+        new venda(this, 500, 720);
+        new venda(this, 700, 720);
+        new venda(this, 900, 720);
 
 
         this.cameras.main.setBounds(15,0, 3000,800);

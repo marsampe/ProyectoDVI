@@ -18,6 +18,7 @@ import trampaEstacas from '../assets/sprites/trampaEstacas.png'
 import trampaLateral from '../assets/sprites/trampaLateral.png'
 import plataformaRompible from '../assets/sprites/plataformaRompible.png'
 import puerta from '../assets/sprites/puerta.png'
+import vacio from '../assets/sprites/vacio.png'
 
 //mapa/////////////
 import mapa from '../assets/tiled/mapa.json'
@@ -73,6 +74,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('trampaLateral', trampaLateral);
     this.load.spritesheet('plataformaRompible', plataformaRompible, { frameWidth: 32, frameHeight: 22});
     this.load.image('antidoto', antidoto);
+    this.load.image('vacio', vacio);
     this.load.setPath('assets/tiled/');
 
     this.load.image('patronesTilemap',cjto);
