@@ -45,22 +45,22 @@ export default class nivelDos extends Phaser.Scene {
         const map= this.make.tilemap({ key: 'mapa'});
         const tilesett = map.addTilesetImage('set', 'patronesTilemap',16,16);
         const tilesetfondo = map.addTilesetImage('cenefas', 'patronesTilemapFondo',16,16);
-        map.createLayer('niveluno/capafondoniveluno', tilesetfondo,16,16);
-        map.createLayer('niveluno/capadecoracionniveluno', tilesett,16,16);
-         const motosierra=map.getObjectLayer('niveluno/capatrampalateral')['objects'];
-        const flechas=map.getObjectLayer('niveluno/capaflechas')['objects'];
+        map.createLayer('niveltres/capafondoniveltres', tilesetfondo,16,16);
+        map.createLayer('niveltres/capadecoracionniveltres', tilesett,16,16);
+         const motosierra=map.getObjectLayer('niveltres/capatrampalateral')['objects'];
+        const flechas=map.getObjectLayer('niveltres/capaflechas')['objects'];
     
-        const estacas=map.getObjectLayer('niveluno/capaestacas')['objects'];
+        const estacas=map.getObjectLayer('niveltres/capaestacas')['objects'];
        
     
-        const door=map.getObjectLayer('niveluno/capapuertasniveluno')['objects'];
+        const door=map.getObjectLayer('niveltres/capapuertasniveltres')['objects'];
 
- const cofres=map.getObjectLayer('niveluno/capacofresniveluno')['objects'];
-const escaleras=map.getObjectLayer('niveluno/capaescalerasniveluno')['objects'];
- const plataformas=map.getObjectLayer('niveluno/capaplataformasniveluno')['objects'];
- const columnas=map.getObjectLayer('niveluno/capacolumnasniveluno')['objects'];
- const momias=map.getObjectLayer('niveluno/capamomiasniveluno')['objects'];
- const plataformasRompibles=map.getObjectLayer('niveluno/capaplataformasrompiblesniveluno')['objects'];
+ const cofres=map.getObjectLayer('niveltres/capacofresniveltres')['objects'];
+const escaleras=map.getObjectLayer('niveltres/capaescalerasniveltres')['objects'];
+ const plataformas=map.getObjectLayer('niveltres/capaplataformasniveltres')['objects'];
+ const columnas=map.getObjectLayer('niveltres/capacolumnasniveltres')['objects'];
+ const momias=map.getObjectLayer('niveltres/capamomiasniveltres')['objects'];
+ const plataformasRompibles=map.getObjectLayer('niveltres/capaplataformasrompiblesniveltres')['objects'];
 
         this.scene.launch('iu');
         this.iu = this.scene.get('iu');

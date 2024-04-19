@@ -15,7 +15,14 @@ export default class Column extends Phaser.GameObjects.Sprite {
    */
   
   constructor(scene, player, momia, x, y) {
-    super(scene, x, y, 'column');
+    if(scene.scene.key=="nivelTres"){
+      super(scene, x, y, 'columnNivel3');
+    }else if(scene.scene.key=="nivelDos"){
+      super(scene, x, y, 'columnNivel2');
+    }
+    else{
+       super(scene, x, y, 'column');
+    }
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this, true);
     this.scene.physics.add.collider(this, player);

@@ -18,17 +18,17 @@
                 45
             ],
             "expandedObjectLayers": [
-                28,
+                29,
+                3,
                 20,
                 19,
-                3,
-                29
+                28
             ],
-            "scale": 0.75,
+            "scale": 0.5,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 1043.3333333333333,
-                "y": 536.6666666666667
+                "x": 1425,
+                "y": 380
             }
         },
         "mapa.json#cartel": {
@@ -44,7 +44,7 @@
             "scaleInDock": 0.125
         },
         "mapa.json#set": {
-            "scaleInDock": 1,
+            "scaleInDock": 0.75,
             "scaleInEditor": 1
         },
         "mapaNivel1.json": {

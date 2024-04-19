@@ -11,7 +11,6 @@ import puerta from '../elementosNivel/puerta.js';
 import Column from '../elementosNivel/column.js';
 import flecha from '../trampas/flechas.js';
 //mapa/////////////
-import platformdiseño from '../../assets/sprites/platformNivel2.png'
 
 import mapa from '../../assets/tiled/mapa.json'
 import cjto from '../../assets/tiled/tilesetEgipto.png'
@@ -38,9 +37,8 @@ export default class nivelDos extends Phaser.Scene {
 
     this.load.image('patronesTilemap',cjto);
     this.load.image('patronesTilemapFondo',cjtocenefa);
-    this.load.setPath('assets/sprites/');
-    this.load.image('platform', platformdiseño);
-    //this.load.tilemapTiledJSON('mapaniveluno',mapa);
+  
+
 
     }
     create() {
@@ -68,7 +66,7 @@ export default class nivelDos extends Phaser.Scene {
         this.player = new Player(this, 10, 600);
        
       // this.flecha = new flecha(this,this.player, 190, 350)//;door[0].x door[0].y
-       //this.puerta = new puerta(this,this.player,350 ,400);  
+       this.puerta = new puerta(this,this.player,3100 ,100);  
        for (let i = 0; i < flechas.length; i++) {
         new flecha(this, this.player,  flechas[i].x, flechas[i].y);  
     }
@@ -99,7 +97,7 @@ export default class nivelDos extends Phaser.Scene {
 
         this.cameras.main.setBounds(15,0, 3000,800);
         this.physics.world.setBounds(0,0, 3000,800);
-        this.cameras.main.setZoom(1);
+        this.cameras.main.setZoom(0.85);
         this.cameras.main.startFollow(this.player);
     }
         

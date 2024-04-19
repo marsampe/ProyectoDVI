@@ -18,7 +18,10 @@ import trampaEstacas from '../assets/sprites/trampaEstacas.png'
 import trampaLateral from '../assets/sprites/trampaLateral.png'
 import plataformaRompible from '../assets/sprites/plataformaRompible.png'
 import puerta from '../assets/sprites/puerta.png'
-
+import platform2 from '../assets/sprites/platformNivel2.png'
+import platform3 from '../assets/sprites/platformNivel3.png'
+import column2 from '../assets/sprites/columnNivel2.png'
+import column3 from '../assets/sprites/columnNivel3.png'
 //mapa/////////////
 import mapa from '../assets/tiled/mapa.json'
 import cjto from '../assets/tiled/tilesetEgipto.png'
@@ -53,9 +56,12 @@ export default class Boot extends Phaser.Scene {
 
 
 
-
+    this.load.image('platformNivel3', platform3);
+    this.load.image('platformNivel2', platform2);
     this.load.image('platform', platform);
     this.load.image('column', column);
+    this.load.image('columnNivel2', column2);
+    this.load.image('columnNivel3', column3);
     this.load.image('puerta', puerta);
     this.load.image('escalera', escalera);
     this.load.image('venda', venda);

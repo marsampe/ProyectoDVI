@@ -37,7 +37,7 @@ export default class nivelUno extends Phaser.Scene {
 
     this.load.image('patronesTilemap',cjto);
     this.load.image('patronesTilemapFondo',cjtocenefa);
-    //this.load.tilemapTiledJSON('mapaniveluno',mapa);
+   
 
     }
     create() {
@@ -102,7 +102,7 @@ const escaleras=map.getObjectLayer('niveluno/capaescalerasniveluno')['objects'];
 */
         this.cameras.main.setBounds(15,0, 3000,800);
         this.physics.world.setBounds(0,0, 3000,800);
-        this.cameras.main.setZoom(1);
+        this.cameras.main.setZoom(0.85);
         this.cameras.main.startFollow(this.player);
     }
         
