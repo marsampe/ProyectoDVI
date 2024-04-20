@@ -46,7 +46,7 @@ export default class nivelDos extends Phaser.Scene {
         const tilesett = map.addTilesetImage('set', 'patronesTilemap',16,16);
         const tilesetfondo = map.addTilesetImage('cenefas', 'patronesTilemapFondo',16,16);
         map.createLayer('niveltres/capafondoniveltres', tilesetfondo,16,16);
-        map.createLayer('niveltres/capadecoracionniveltres', tilesett,16,16);
+        map.createLayer('niveltres/capadecoracion', tilesett,16,16);
          const motosierra=map.getObjectLayer('niveltres/capatrampalateral')['objects'];
         const flechas=map.getObjectLayer('niveltres/capaflechas')['objects'];
     
@@ -66,10 +66,10 @@ const escaleras=map.getObjectLayer('niveltres/capaescalerasniveltres')['objects'
         this.iu = this.scene.get('iu');
         this.iu.scene.setVisible(true);
         
-        this.player = new Player(this, 180, 400);
+        this.player = new Player(this, 120, 0);
         
       // this.flecha = new flecha(this,this.player, 190, 350);door[0].x door[0].y
-       this.puerta = new puerta(this,this.player,350 ,400);  
+       //this.puerta = new puerta(this,this.player,350 ,400);  
        for (let i = 0; i < flechas.length; i++) {
         new flecha(this, this.player,  flechas[i].x, flechas[i].y);  
     }
