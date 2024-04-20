@@ -6,8 +6,8 @@ export default class IU extends Phaser.Scene{
     constructor() {
         super({ key: 'iu' });
 
-        this.inventoryItems = [];
-        this.inventory = [];
+        this.inventory = [null, null, null];
+        this.inventoryItems = [null, null, null];
         this.huecos = [0,0,0];
         this.posicionMarcador = 0;
         this.antorcha = false;
@@ -24,6 +24,7 @@ export default class IU extends Phaser.Scene{
         this.labelHueco2 = this.add.text(215, 113, "").setDepth(2);
         this.updateHuecos();
         
+
         this.iniciarInventario();      
         
          //crear barra de vida
@@ -48,15 +49,7 @@ export default class IU extends Phaser.Scene{
 
         //hay que mirar el inventario porque no tiene separacion simetrica
         this.marcadorInventario = this.add.image(68.5, 90, 'marcadorInventario').setOrigin(0.5, 0.5).setScale(1);
-        /*
-        this.hueco1 = true;
 
-        this.hueco2 = true;
-        
-        this.hueco3 = true;
-
-        */
-        
 
     }
 
@@ -68,19 +61,47 @@ export default class IU extends Phaser.Scene{
             this.inventoryItems = this.add.container(0, 0).setDepth(1).setName('inventoryItems');
         }
 
-        //this.inventoryItems.removeAll(true);
 
+        let x = 70;
+        for(let i = 0; i < this.inventory.length; i++){
+
+            let item = this.inventory[i];
+            if(item != undefined){
+                let itemImage = this.inventoryItems[i];
+                if (!itemImage) {
+                    itemImage = this.add.image(x, 90, item);
+                    itemImage.setScale(0.4);
+                    this.inventoryItems[i] = itemImage;
+                } else {
+                    itemImage.setTexture(item); // Actualiza la textura de la imagen existente
+                }
+            }else{
+                let itemImage = this.inventoryItems[i];
+                if (itemImage) {
+                    itemImage.destroy();
+                    this.inventoryItems[i] = null;
+                }
+            }
+            x = x + 76;
+        }
+
+
+
+        /*
         // Itera sobre los objetos en el inventario y agrega imágenes en la interfaz de usuario
         let x = 70;
         for (let i = 0; i < this.inventory.length; i++) {
             let item = this.inventory[i];
-            if(this.huecos[i] < 2){
+            if(item && this.huecos[i] < 2){
                 let itemImage = this.add.image(x, 90, item); // Suponiendo que los nombres de los objetos coinciden con las claves de las imágenes cargadas
                 itemImage.setScale(0.4); // Escala la imagen del objeto si es necesario
                 this.inventoryItems[i] = itemImage;
+            }else{
+                this.add.image(x, 90);
             }
-            x = x + 76;
+            
         }
+        */
     }
 
     cambiarObjeto(){
@@ -96,8 +117,8 @@ export default class IU extends Phaser.Scene{
 
     usarObjeto(){
         let item = this.inventory[this.posicionMarcador];
-
         if(item !=undefined){
+            
             switch (item) {
                 case 'venda':
                     if(this.huecos[this.posicionMarcador] > 0){
@@ -105,26 +126,47 @@ export default class IU extends Phaser.Scene{
                         this.updateHuecos();
 
                         //eliminar el dibujo del inventario
-                        if (this.huecos[this.posicionMarcador] === 0) {
-                            this.inventory.splice(this.posicionMarcador, 1);
-                            let itemImage = this.inventoryItems[this.posicionMarcador];
-                            this.inventoryItems[itemImage] = null;
-                            itemImage.destroy();
+                        if(this.huecos[this.posicionMarcador]=== 0){
+                            this.eliminarObjeto();
                         }
 
                     }
-                    
                     this.aumentaSalud(50);
                     break;
                 case 'antorcha':
                     //this.antorcha = true;
                     break;
+                case 'antidoto':
+                    if(this.huecos[this.posicionMarcador] > 0){
+                        this.huecos[this.posicionMarcador]--;
+                        this.updateHuecos();
+
+                        //eliminar el dibujo del inventario
+                       if(this.huecos[this.posicionMarcador]=== 0){
+                            this.eliminarObjeto();
+                       }
+
+                    }
+                    break;
                 default:
                     
                     break;
             }
+            
         }
         
+        return item;
+    }
+
+    eliminarObjeto(){
+        
+        this.inventory[this.posicionMarcador] = null;
+        let imagenItem = this.inventoryItems[this.posicionMarcador];
+        if (imagenItem) {
+            imagenItem.destroy();
+            this.inventoryItems[this.posicionMarcador] = null;
+        }
+        this.updateInventory();
 
     }
 
@@ -141,23 +183,35 @@ export default class IU extends Phaser.Scene{
             if(objectName == 'antorcha'){
                 this.antorcha= true;
             }
-            if (this.inventory.length < 3){
-                this.inventory.push(objectName); // Agrega el objeto al inventario
-                this.huecos[this.inventory.length-1]++;
-                this.updateHuecos();
-                return true;
-            }
-        }else{
-            for (let index = 0; index < this.inventory.length; index++) {
-                if( objectName == this.inventory[index] && this.huecos[index] < 2){
-                    this.huecos[index]++;
+
+            for(let i=0; i<this.inventory.length; i++){
+                let item = this.inventory[i];
+                if(item == undefined){
+                    this.inventory[i] = objectName;
+                    this.huecos[i]++;
                     this.updateHuecos();
                     return true;
-                }else{
-                    return false;
-                }     
+                }
             }
+            return false;
+            
+        }else{
+            for(let i=0; i<this.inventory.length; i++){
+                let item = this.inventory[i];
+                if(item == objectName){
+                    if(this.huecos[i]<3){
+                        this.huecos[i]++;
+                        this.updateHuecos();
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            return false;
         }
+
+        
+        this.updateInventory();
     }
 
     draw ()

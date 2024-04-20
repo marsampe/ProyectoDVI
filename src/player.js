@@ -39,6 +39,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.atacando = false;
         this.herido = false;
         this.salud = 200;
+        this.envenenado = false;
 
         this.setDepth(2);
     }
@@ -127,15 +128,23 @@ export default class Player extends Phaser.GameObjects.Sprite {
             this.scene.iu.cambiarObjeto();
         }
         else if(this.teclaQ.isDown && Phaser.Input.Keyboard.JustDown(this.teclaQ)){
-            this.scene.iu.usarObjeto();
+            let item = this.scene.iu.usarObjeto();
+
+            if(item == 'antidoto'){
+                this.envenenado= false;
+            }
+
         }else if(this.teclaS.isDown && this.scene.iu.antorcha){
 
             this.anims.play('atacarAntorcha', true);          
             this.body.setSize(200, 120);
             this.body.setOffset(0, 97);
 
-            if (Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.momia.getBounds())){
-                this.scene.momia.reducirVida();
+            for(let i = 0; i < this.scene.arrayMomias.length; i++) {
+                if (Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.arrayMomias[i].getBounds())) {
+                    this.scene.arrayMomias[i].reducirVida();
+                    this.scene.arrayMomias.splice(i, 1);
+                }
             }
         }else if(this.teclaS.isDown && !this.scene.iu.antorcha){
 
@@ -155,49 +164,70 @@ export default class Player extends Phaser.GameObjects.Sprite {
                 if(this.ultimaDireccion== 'izquierda'){
                     this.anims.play('saltar', true);
                     this.setFlipX(true);
+
+            for(let i = 0; i < this.scene.arraySerpientes.length; i++) {
+                if (Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.arraySerpientes[i].getBounds())) {
+                    this.scene.arraySerpientes[i].reducirVida();
+                    this.scene.arraySerpientes.splice(i, 1);
                 }
-                else if(this.ultimaDireccion== 'derecha'){
-                    this.anims.play('saltar', true);
-                    this.setFlipX(false);
-                }
-                
             }
 
         }
-        
-        else if (this.cursors.left.isDown) {
-            if(this.body.onFloor()){
-                this.anims.play('andar', true);
-                this.setFlipX(true);
-                this.body.setVelocityX(-this.speed);
-            }else
-                this.body.setVelocityX(-150);
-            this.ultimaDireccion = 'izquierda'
-        }
-        else if (this.cursors.right.isDown) {
-            
-            if(this.body.onFloor()){
-                this.anims.play('andar', true);
-                this.setFlipX(false);
-                this.body.setVelocityX(this.speed);
-            }
-            else
-                this.body.setVelocityX(150);
-            this.ultimaDireccion = 'derecha'
-        }
-        if(!this.cursors.right.isDown && !this.cursors.left.isDown && !this.cursors.up.isDown && !this.teclaS.isDown){
-            
-            if(this.body.onFloor()){
-                this.body.setVelocityX(0);
-                if(this.ultimaDireccion== 'izquierda'){
-                    this.anims.play('parado', true);
-                    this.setFlipX(true);
+    }
+}
+
+        if (!this.envenenado) {
+            if (Phaser.Input.Keyboard.JustDown(this.cursors.up)) {
+                if(this.body.onFloor()){
+                    this.body.setVelocityY(this.jumpSpeed);
+                    if(this.ultimaDireccion== 'izquierda'){
+                        this.anims.play('saltar', true);
+                        this.setFlipX(true);
+                    }
+                    else if(this.ultimaDireccion== 'derecha'){
+                        this.anims.play('saltar', true);
+                        this.setFlipX(false);
+                    }
+                    
                 }
-                else if(this.ultimaDireccion== 'derecha'){
-                    this.anims.play('parado', true);
-                    this.setFlipX(false);
-                }        
+    
             }
+            
+            else if (this.cursors.left.isDown) {
+                if(this.body.onFloor()){
+                    this.anims.play('andar', true);
+                    this.setFlipX(true);
+                    this.body.setVelocityX(-this.speed);
+                }else
+                    this.body.setVelocityX(-150);
+                this.ultimaDireccion = 'izquierda'
+            }
+            else if (this.cursors.right.isDown) {
+                
+                if(this.body.onFloor()){
+                    this.anims.play('andar', true);
+                    this.setFlipX(false);
+                    this.body.setVelocityX(this.speed);
+                }
+                else
+                    this.body.setVelocityX(150);
+                this.ultimaDireccion = 'derecha'
+            }
+            if(!this.cursors.right.isDown && !this.cursors.left.isDown && !this.cursors.up.isDown && !this.teclaS.isDown){
+                
+                if(this.body.onFloor()){
+                    this.body.setVelocityX(0);
+                    if(this.ultimaDireccion== 'izquierda'){
+                        this.anims.play('parado', true);
+                        this.setFlipX(true);
+                    }
+                    else if(this.ultimaDireccion== 'derecha'){
+                        this.anims.play('parado', true);
+                        this.setFlipX(false);
+                    }        
+                }
+            }
+
         }
         if (this.anims.currentAnim.key === 'atacarPuno' || this.anims.currentAnim.key === 'atacarAntorcha' ) {
             this.atacando = true;
@@ -205,11 +235,41 @@ export default class Player extends Phaser.GameObjects.Sprite {
             this.atacando = false;
         }
     }
+        
+        
+    
+
+    paralizar() {
+        // Detener el movimiento del jugador
+        this.envenenado = true;
+        this.body.setVelocity(0, 0);
+        this.anims.play('parado', true);
+        let i = 14;
+        let parpadeo = setInterval(() => {
+            this.visible = !this.visible;
+            this.setTint(0x7FFF00);
+            i--;
+            if (i === 0) {
+                clearInterval(parpadeo);
+                this.clearTint();
+                this.visible = true;
+                this.herido = false;
+            }
+        }, 400);
+        
+        // Establecer un temporizador para reactivar el movimiento después de 2 segundos
+        this.scene.time.delayedCall(5000, () => {
+            this.envenenado = false;
+        }, null, this);
+    }
 
 
     reseteo(){
         this.inventory = [];
         this.huecos = [0,0,0];
         this.scene.iu.salud = 200;
+        this.arrayMomias=[];
+        this.arraySerpientes=[];
+        this.arrayCofres=[];
     }
 }
