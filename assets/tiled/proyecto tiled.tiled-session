@@ -1,4 +1,8 @@
 {
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
     "activeFile": "mapa.json",
     "expandedProjectPaths": [
         "."
@@ -10,11 +14,21 @@
             "scaleInEditor": 0.5
         },
         "mapa.json": {
+            "expandedGroupLayers": [
+                45
+            ],
+            "expandedObjectLayers": [
+                29,
+                3,
+                20,
+                19,
+                28
+            ],
             "scale": 0.5,
-            "selectedLayer": 8,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 808,
-                "y": 370
+                "x": 1425,
+                "y": 380
             }
         },
         "mapa.json#cartel": {
@@ -23,12 +37,29 @@
         "mapa.json#carteles": {
             "scaleInDock": 0.75
         },
+        "mapa.json#cenefas": {
+            "scaleInDock": 0.5
+        },
         "mapa.json#fondo": {
             "scaleInDock": 0.125
         },
         "mapa.json#set": {
-            "scaleInDock": 1,
+            "scaleInDock": 0.75,
             "scaleInEditor": 1
+        },
+        "mapaNivel1.json": {
+            "scale": 0.33,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 1096.969696969697,
+                "y": 434.8484848484849
+            }
+        },
+        "mapaNivel1.json#cenefas": {
+            "scaleInDock": 1
+        },
+        "mapaNivel1.json#set": {
+            "scaleInDock": 1
         },
         "set.tsx": {
             "scaleInDock": 1,
@@ -37,13 +68,19 @@
     },
     "last.exportedFilePath": "C:/Users/isabe/git/ProyectoDVI/assets/tiled",
     "last.imagePath": "C:/Users/isabe/git/ProyectoDVI/assets/tiled",
+    "map.height": 49,
     "map.lastUsedExportFilter": "Todos los archivos (*)",
+    "map.lastUsedFormat": "json",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 200,
     "openFiles": [
         "mapa.json"
     ],
     "project": "proyecto tiled.tiled-project",
     "recentFiles": [
         "mapa.json",
+        "mapaNivel1.json",
         "set.tsx"
     ],
     "tileset.embedInMap": true,

@@ -4,7 +4,7 @@ import Phaser from 'phaser'
  * Cada plataforma es responsable de crear la base que aparece sobre ella y en la 
  * que, durante el juego, puede aparecer una estrella
  */
-export default class Platform extends Phaser.GameObjects.Sprite {
+export default class Column extends Phaser.GameObjects.Sprite {
   
   /**
    * Constructor de la Plataforma
@@ -16,12 +16,13 @@ export default class Platform extends Phaser.GameObjects.Sprite {
   
   constructor(scene, player, momia, x, y) {
     if(scene.scene.key=="nivelTres"){
-      super(scene, x, y, 'platformNivel3');}
-   else if (scene.scene.key=="nivelDos"){
-      super(scene, x, y, 'platformNivel2');
-    }else{
-    super(scene, x, y, 'platform');}
-    console.log(scene.scene.key);
+      super(scene, x, y, 'columnNivel3');
+    }else if(scene.scene.key=="nivelDos"){
+      super(scene, x, y, 'columnNivel2');
+    }
+    else{
+       super(scene, x, y, 'column');
+    }
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this, true);
     this.scene.physics.add.collider(this, player);

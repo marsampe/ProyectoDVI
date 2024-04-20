@@ -2,6 +2,7 @@ import Phaser from 'phaser'
 
 
 import platform from '../assets/sprites/platform.png'
+import column from '../assets/sprites/column.png'
 import venda from '../assets/sprites/venda.png'
 import personajeAndar from '../assets/sprites/personajeAndar.png'
 import personajeSalto from '../assets/sprites/salto.png'
@@ -18,16 +19,18 @@ import trampaEstacas from '../assets/sprites/trampaEstacas.png'
 import trampaLateral from '../assets/sprites/trampaLateral.png'
 import plataformaRompible from '../assets/sprites/plataformaRompible.png'
 import puerta from '../assets/sprites/puerta.png'
-
+import platform2 from '../assets/sprites/platformNivel2.png'
+import platform3 from '../assets/sprites/platformNivel3.png'
+import column2 from '../assets/sprites/columnNivel2.png'
+import column3 from '../assets/sprites/columnNivel3.png'
 //mapa/////////////
 import mapa from '../assets/tiled/mapa.json'
 import cjto from '../assets/tiled/tilesetEgipto.png'
 import cjtocarteles from '../assets/tiled/cartel.png'
-import cjtofondo from '../assets/tiled/prueba.png'
 import cjtocenefa from '../assets/tiled/cenefa.png'
 //////////////
 import antidoto from '../assets/sprites/antidoto.png'
-
+import flecha from '../assets/sprites/flecha.png'
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
  * Esta escena se puede mejorar añadiendo una imagen del juego y una 
@@ -54,8 +57,12 @@ export default class Boot extends Phaser.Scene {
 
 
 
-
+    this.load.image('platformNivel3', platform3);
+    this.load.image('platformNivel2', platform2);
     this.load.image('platform', platform);
+    this.load.image('column', column);
+    this.load.image('columnNivel2', column2);
+    this.load.image('columnNivel3', column3);
     this.load.image('puerta', puerta);
     this.load.image('escalera', escalera);
     this.load.image('venda', venda);
@@ -73,6 +80,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('trampaLateral', trampaLateral);
     this.load.spritesheet('plataformaRompible', plataformaRompible, { frameWidth: 32, frameHeight: 22});
     this.load.image('antidoto', antidoto);
+    this.load.image('flecha', flecha);
     this.load.setPath('assets/tiled/');
 
     this.load.image('patronesTilemap',cjto);

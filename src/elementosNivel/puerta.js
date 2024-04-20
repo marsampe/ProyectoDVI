@@ -14,17 +14,11 @@ export default class puerta extends Phaser.GameObjects.Sprite {
     super(scene, x, y, 'puerta');
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this, true);
-    
-    //this.body.setCircle(35);
-    
     this.body.setSize(70, 80);
     this.body.setOffset(80, 80);
-
     this.setScale(0.5);
     this.setDepth(1);
-    
     this.player = player;
-    //this.scene.physics.add.collider(player, this, this.handleCollision, null, this);
     this.scene.physics.add.overlap(player, this, this.handleCollision, null, this);
 
   }
@@ -41,10 +35,16 @@ export default class puerta extends Phaser.GameObjects.Sprite {
       alpha: 0,
       duration: 1000,
       onComplete: () => {
-        this.player.reseteo();
-        this.scene.iu.reseteoIU();
-        this.scene.scene.start('escenaInicial');
+       this.player.reseteo();
+       this.scene.iu.reseteoIU(); 
+       let escena = this.scene.scene.key;
+     if(escena=='nivelUno'){ 
+      this.scene.scene.start('nivelDos');
+    } else if(escena=='nivelDos'){ 
+      this.scene.scene.start('nivelTres');
+    } else if(escena=='nivelTres'){ 
+      this.scene.scene.start('escenaGanador');
+    }
     }
   });
-
 }}
