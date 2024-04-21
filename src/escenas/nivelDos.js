@@ -117,7 +117,7 @@ export default class nivelDos extends Phaser.Scene {
     }
 
     escenaFinal(){
-        this.scene.start('end');
+        this.scene.start('nivelDos');
         this.iu.scene.setVisible(false);
     }
 }

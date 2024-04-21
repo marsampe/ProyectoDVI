@@ -120,7 +120,7 @@ const escaleras=map.getObjectLayer('niveltres/capaescalerasniveltres')['objects'
     }
 
     escenaFinal(){
-        this.scene.start('end');
+        this.scene.start('nivelTres');
         this.iu.scene.setVisible(false);
     }
 }
