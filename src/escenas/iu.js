@@ -1,6 +1,3 @@
-
-
-
 export default class IU extends Phaser.Scene{
 
     constructor() {
@@ -11,9 +8,10 @@ export default class IU extends Phaser.Scene{
         this.huecos = [0,0,0];
         this.posicionMarcador = 0;
         this.antorcha = false;
+    }
 
-
-        
+    init(data){
+        this.nivel = data.nivel;
     }
 
     create(){
@@ -26,31 +24,34 @@ export default class IU extends Phaser.Scene{
         
 
         this.iniciarInventario();      
-        
-         //crear barra de vida
-         this.bar = new Phaser.GameObjects.Graphics(this);
-         this.bar.x = 10; // Posición X fija
-         this.bar.y = 10; // Posición Y fija
-         this.saludMaxima = 200;
-         this.salud = 200;
+        this.add.sprite(110, 25, 'barraVida').setScale(3).setDepth(1);
 
- 
+         //crear barra de vida
+         this.barVida = new Phaser.GameObjects.Graphics(this);
+         this.barVida.x = 15; // Posición X fija
+         this.barVida.y = 8; // Posición Y fija
+         this.saludVida = 180;
+
+         if(this.nivel == 2){
+            //crear barra de escudo
+         this.add.sprite(350, 25, 'barraEscudo').setScale(3).setDepth(1);
+         this.barEscudo = new Phaser.GameObjects.Graphics(this);
+         this.barEscudo.x = 135; // Posición X fija
+         this.barEscudo.y = 8; // Posición Y fija
+         this.saludEscudo = 180;
+         }
+
          this.draw();
- 
-         this.add.existing(this.bar);
+         this.add.existing(this.barVida)
+
+         if(this.nivel == 2)
+            this.add.existing(this.barEscudo)
     }
 
-
     iniciarInventario(){
-        let espacioCeldas = 4; 
-        let offset = 55;       
-            
         this.add.image(142, 90, 'inventario');
-
         //hay que mirar el inventario porque no tiene separacion simetrica
         this.marcadorInventario = this.add.image(68.5, 90, 'marcadorInventario').setOrigin(0.5, 0.5).setScale(1);
-
-
     }
 
     updateInventory() {
@@ -84,24 +85,6 @@ export default class IU extends Phaser.Scene{
             }
             x = x + 76;
         }
-
-
-
-        /*
-        // Itera sobre los objetos en el inventario y agrega imágenes en la interfaz de usuario
-        let x = 70;
-        for (let i = 0; i < this.inventory.length; i++) {
-            let item = this.inventory[i];
-            if(item && this.huecos[i] < 2){
-                let itemImage = this.add.image(x, 90, item); // Suponiendo que los nombres de los objetos coinciden con las claves de las imágenes cargadas
-                itemImage.setScale(0.4); // Escala la imagen del objeto si es necesario
-                this.inventoryItems[i] = itemImage;
-            }else{
-                this.add.image(x, 90);
-            }
-            
-        }
-        */
     }
 
     cambiarObjeto(){
@@ -131,7 +114,7 @@ export default class IU extends Phaser.Scene{
                         }
 
                     }
-                    this.aumentaSalud(50);
+                    this.aumentaSalud(30);
                     break;
                 case 'antorcha':
                     //this.antorcha = true;
@@ -216,57 +199,57 @@ export default class IU extends Phaser.Scene{
 
     draw ()
     {
-        this.bar.clear();
-
-        //  BG
-        this.bar.fillStyle(0x000000);
-        this.bar.fillRect(this.bar.x, this.bar.y, 200, 16);
-
-        //  Health
-
-        this.bar.fillStyle(0xffffff);
-        this.bar.fillRect(this.bar.x + 2, this.bar.y + 2, 200, 12);  
-
-        if (this.salud < 60)
-        {
-            this.bar.fillStyle(0xff0000);
-        }
+        this.barVida.clear();
+ 
+        if (this.saludVida < 60)
+            this.barVida.fillStyle(0xff0000);
         else
-        {
-            this.bar.fillStyle(0x00ff00);
+            this.barVida.fillStyle(0x00ff00);
+
+        this.barVida.fillRect(this.barVida.x + 2, this.barVida.y + 2, this.saludVida, 17);
+
+        if(this.nivel == 2){
+            this.barEscudo.clear(); 
+            if(this.saludEscudo > 0){
+                this.barEscudo.fillStyle(0x0000FF);
+            }
+            if(this.saludEscudo <= 0)
+                this.saludEscudo = 0
+            this.barEscudo.fillRect(this.barEscudo.x + 2, this.barEscudo.y + 2, this.saludEscudo, 17);
         }
-
-        //var d = Math.floor(this.p * this.salud);
-
-        this.bar.fillRect(this.bar.x + 2, this.bar.y + 2, this.salud, 12);
     }
 
     aumentaSalud (valor)
     {
-        this.salud += valor;
+        this.saludVida += valor;
 
-        if (this.salud > 200)
+        if (this.saludVida > 180)
         {
-            this.salud = 200;
+            this.saludVida = 180;
         }
 
         this.draw();
 
-        return (this.salud === 0);
+        return (this.saludVida === 0);
     }
 
     reducirSalud(valor){
 
-        this.salud -= valor;
+        if(this.saludEscudo > 0){
+            this.saludEscudo -= valor*2;
+        }
+        else{
+            this.saludVida = this.saludVida - valor;
+        }
 
-        if (this.salud < 0)
+        if (this.saludVida < 0)
         {
-            this.salud = 0;
+            this.saludVida = 0;
         }
 
         this.draw();
 
-        return (this.salud === 0);
+        return (this.saludVida === 0);
     }
 
 

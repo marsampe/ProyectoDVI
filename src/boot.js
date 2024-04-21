@@ -25,6 +25,8 @@ import platform3 from '../assets/sprites/platformNivel3.png'
 import column2 from '../assets/sprites/columnNivel2.png'
 import column3 from '../assets/sprites/columnNivel3.png'
 import vacio from '../assets/sprites/vacio.png'
+import barraVida from '../assets/sprites/barraVida.png'
+import barraEscudo from '../assets/sprites/barraEscudo.png'
 
 //mapa/////////////
 import mapa from '../assets/tiled/mapa.json'
@@ -86,6 +88,8 @@ export default class Boot extends Phaser.Scene {
     this.load.image('antidoto', antidoto);
     this.load.image('flecha', flecha);
     this.load.image('vacio', vacio);
+    this.load.image('barraVida', barraVida);
+    this.load.image('barraEscudo', barraEscudo);
     this.load.setPath('assets/tiled/');
 
     this.load.image('patronesTilemap',cjto);

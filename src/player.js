@@ -55,8 +55,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
 
     reduceHealth() {
-        this.scene.iu.reducirSalud(50);
-        this.salud = this.scene.iu.salud;
+        this.scene.iu.reducirSalud(60);
+        this.salud = this.scene.iu.saludVida;
         if (this.salud == 0) {
             this.scene.escenaFinal();
             this.reseteo();
@@ -146,6 +146,12 @@ export default class Player extends Phaser.GameObjects.Sprite {
                     this.scene.arrayMomias.splice(i, 1);
                 }
             }
+            for(let i = 0; i < this.scene.arraySerpientes.length; i++) {
+                if (Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.arraySerpientes[i].getBounds())) {
+                    this.scene.arraySerpientes[i].reducirVida();
+                    this.scene.arraySerpientes.splice(i, 1);
+                }
+            }
         }else if(this.teclaS.isDown && !this.scene.iu.antorcha){
 
             this.anims.play('atacarPuno', true);          
@@ -164,14 +170,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
                 if(this.ultimaDireccion== 'izquierda'){
                     this.anims.play('saltar', true);
                     this.setFlipX(true);
-
-            for(let i = 0; i < this.scene.arraySerpientes.length; i++) {
-                if (Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.arraySerpientes[i].getBounds())) {
-                    this.scene.arraySerpientes[i].reducirVida();
-                    this.scene.arraySerpientes.splice(i, 1);
-                }
-            }
-
         }
     }
 }

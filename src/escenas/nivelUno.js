@@ -62,7 +62,7 @@ const escaleras=map.getObjectLayer('niveluno/capaescalerasniveluno')['objects'];
  const momias=map.getObjectLayer('niveluno/capamomiasniveluno')['objects'];
  const plataformasRompibles=map.getObjectLayer('niveluno/capaplataformasrompiblesniveluno')['objects'];
 
-        this.scene.launch('iu');
+        this.scene.launch('iu', { nivel: 1 });
         this.iu = this.scene.get('iu');
         this.iu.scene.setVisible(true);
         

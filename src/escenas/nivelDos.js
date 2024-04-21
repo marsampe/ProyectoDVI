@@ -59,7 +59,7 @@ export default class nivelDos extends Phaser.Scene {
         const momias=map.getObjectLayer('niveldos/capamomiasniveldos')['objects'];
         const plataformasRompibles=map.getObjectLayer('niveldos/capaplataformasrompiblesniveldos')['objects'];
 
-        this.scene.launch('iu');
+        this.scene.launch('iu', { nivel: 2 });
         this.iu = this.scene.get('iu');
         this.iu.scene.setVisible(true);
         
