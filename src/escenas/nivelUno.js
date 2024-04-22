@@ -69,7 +69,7 @@ const escaleras=map.getObjectLayer('niveluno/capaescalerasniveluno')['objects'];
         this.player = new Player(this, 180, 400);
         
       // this.flecha = new flecha(this,this.player, 190, 350);
-       this.puerta = new puerta(this,this.player, 300,400);  
+       this.puerta = new puerta(this,this.player, 2950,95);  
        for (let i = 0; i < flechas.length; i++) {
         new flecha(this, this.player,  flechas[i].x, flechas[i].y);  
     }
@@ -122,7 +122,7 @@ const escaleras=map.getObjectLayer('niveluno/capaescalerasniveluno')['objects'];
     }
 
     escenaFinal(){
-        this.scene.start('end');
+        this.scene.start('nivelUno');
         this.iu.scene.setVisible(false);
     }
 }
