@@ -9,6 +9,7 @@ import trampaLateral from '../trampas/trampaLateral.js';
 import plataformaRompible from '../elementosNivel/plataformaRompible.js';
 import puerta from '../elementosNivel/puerta.js';
 import Serpiente from '../enemigos/serpiente.js';
+import Escarabajo from '../enemigos/escarabajo.js';
 import antidoto from '../objetos/antidoto.js';
 import venda from '../objetos/venda.js';
 import antorcha from '../objetos/antorcha.js';
@@ -31,6 +32,7 @@ export default class escenaTutorial extends Phaser.Scene {
         this.arrayEscaleras = [];
         this.arrayMomias = [];
         this.arraySerpientes = [];
+        this.arrayEscarabajos = [];
     }
 
     update() {
@@ -39,7 +41,9 @@ export default class escenaTutorial extends Phaser.Scene {
         for(let i = 0; i<this.arraySerpientes.length; i++){
             this.arraySerpientes[i].update();
         }
-        //this.serpiente.persigueJugador(this.player);
+        for(let i = 0; i<this.arrayEscarabajos.length; i++){
+            this.arrayEscarabajos[i].update();
+        }
     }
 
     create() {
@@ -87,12 +91,14 @@ export default class escenaTutorial extends Phaser.Scene {
             new Platform(this, this.player, this.momia,plataformas[i].x, plataformas[i].y);
         }  
 
-        this.arraySerpientes.push( new Serpiente(this, this.player,  1100, 250)); 
+        //this.arraySerpientes.push( new Serpiente(this, this.player,  1100, 250)); 
         //this.arraySerpientes.push( new Serpiente(this, this.player,  900, 720)); 
 
-        new venda(this, 500, 720);
-        new venda(this, 700, 720);
-        new venda(this, 900, 720);
+        this.arrayEscarabajos.push(new Escarabajo(this, this.player,  900, 700));
+
+        //new venda(this, 500, 720);
+        //new venda(this, 700, 720);
+        //new venda(this, 900, 720);
 
 
         this.cameras.main.setBounds(15,0, 3000,800);
@@ -122,5 +128,6 @@ export default class escenaTutorial extends Phaser.Scene {
         this.arrayMomias=[];
         this.arraySerpientes=[];
         this.arrayCofres = [];
+        this.arrayEscarabajos = [];
     }
 }

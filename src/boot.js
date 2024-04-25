@@ -11,6 +11,7 @@ import personajeAtaqueAntorcha from '../assets/sprites/personajeAtaque.png'
 import personajeAtaquePuno from '../assets/sprites/personajeAtaquePuno.png'
 import momia from '../assets/sprites/momia.png'
 import serpiente from '../assets/sprites/serpiente.png'
+import escarabajo from '../assets/sprites/escarabajo.png'
 import inventario from '../assets/sprites/inventario.png'
 import marcadorInventario from '../assets/sprites/marcadorInventario.png'
 import escalera from '../assets/sprites/escalera.png'
@@ -73,6 +74,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('venda', venda);
     this.load.spritesheet('momia', momia, { frameWidth: 100, frameHeight: 138});
     this.load.spritesheet('serpiente', serpiente, { frameWidth: 69, frameHeight: 58});
+    this.load.spritesheet('escarabajo', escarabajo,{frameWidth: 214, frameHeight: 93});
     this.load.image('antorcha', antorcha);
     this.load.spritesheet('personajeAndar', personajeAndar, { frameWidth: 84, frameHeight: 217});
     this.load.spritesheet('personajeSalto', personajeSalto, { frameWidth: 81, frameHeight: 217});
@@ -125,6 +127,20 @@ export default class Boot extends Phaser.Scene {
 this.anims.create({
   key: 'ataqueSerpiente',
   frames: this.anims.generateFrameNumbers('serpiente', { start: 2, end: 4 }),
+  frameRate: 5,
+  repeat: -1
+})
+
+this.anims.create({
+  key: 'caminarEscarabajo',
+  frames: this.anims.generateFrameNumbers('escarabajo', { start: 0, end: 3 }),
+  frameRate: 5,
+  repeat: -1
+})
+
+this.anims.create({
+  key: 'ataqueEscarabajo',
+  frames: this.anims.generateFrameNumbers('escarabajo', { start: 4, end: 5 }),
   frameRate: 5,
   repeat: -1
 })
