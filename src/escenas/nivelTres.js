@@ -31,6 +31,8 @@ export default class nivelDos extends Phaser.Scene {
         super({ key: 'nivelTres' });
         this.arrayCofres = [];
         this.arrayEscaleras = [];
+        this.arrayMomias = [];
+        this.arraySerpientes = [];
     }
     preload() {
         this.load.setPath('assets/tiled/');
@@ -55,12 +57,15 @@ export default class nivelDos extends Phaser.Scene {
     
         const door=map.getObjectLayer('niveltres/capapuertasniveltres')['objects'];
 
- const cofres=map.getObjectLayer('niveltres/capacofresniveltres')['objects'];
-const escaleras=map.getObjectLayer('niveltres/capaescalerasniveltres')['objects'];
- const plataformas=map.getObjectLayer('niveltres/capaplataformasniveltres')['objects'];
- const columnas=map.getObjectLayer('niveltres/capacolumnasniveltres')['objects'];
- const momias=map.getObjectLayer('niveltres/capamomiasniveltres')['objects'];
- const plataformasRompibles=map.getObjectLayer('niveltres/capaplataformasrompiblesniveltres')['objects'];
+        const cofres=map.getObjectLayer('niveltres/capacofresniveltres')['objects'];
+        const escaleras=map.getObjectLayer('niveltres/capaescalerasniveltres')['objects'];
+        const plataformas=map.getObjectLayer('niveltres/capaplataformasniveltres')['objects'];
+        const columnas=map.getObjectLayer('niveltres/capacolumnasniveltres')['objects'];
+        const momias=map.getObjectLayer('niveltres/capamomiasniveltres')['objects'];
+
+        //serpientes igual que momias
+        //escarabajos
+        const plataformasRompibles=map.getObjectLayer('niveltres/capaplataformasrompiblesniveltres')['objects'];
 
         this.scene.launch('iu');
         this.iu = this.scene.get('iu');
@@ -85,8 +90,11 @@ const escaleras=map.getObjectLayer('niveltres/capaescalerasniveltres')['objects'
             this.arrayCofres.push( new Cofre(this, this.player, cofres[i].x, cofres[i].y, true));
         }
         for (let i = 0; i < momias.length; i++) {
-            this.momia= new Momia(this, this.player,  momias[i].x, momias[i].y);           
+            this.arrayMomias.push(new Momia(this, this.player,  momias[i].x, momias[i].y));           
         }
+        /*for (let i = 0; i < serpientes.length; i++) {
+            this.arraySerpientes.push(new Serpiente(this, this.player,  serpientes[i].x, serpientes[i].y));           
+        }*/
         for (let i = 0; i < motosierra.length; i++) {
             new trampaLateral(this, this.player,  motosierra[i].x, motosierra[i].y);  
         }
@@ -121,6 +129,10 @@ const escaleras=map.getObjectLayer('niveltres/capaescalerasniveltres')['objects'
 
     escenaFinal(){
         this.scene.start('end');
+        this.arrayCofres = [];
+        this.arrayEscaleras = [];
+        this.arrayMomias = [];
+        this.arraySerpientes = [];
         this.iu.scene.setVisible(false);
     }
 }

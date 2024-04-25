@@ -59,7 +59,7 @@ export default class trampaLateral extends Phaser.GameObjects.Sprite {
    */
   handleCollision(trampa, player) {
     if(this.player.herido == false)
-      this.player.reduceHealth();
+      this.player.reduceHealth(30);
     }
 
 }

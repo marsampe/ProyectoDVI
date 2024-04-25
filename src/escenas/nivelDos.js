@@ -31,6 +31,8 @@ export default class nivelDos extends Phaser.Scene {
         super({ key: 'nivelDos' });
         this.arrayCofres = [];
         this.arrayEscaleras = [];
+        this.arrayMomias = [];
+        this.arraySerpientes = [];
     }
     preload() {
         this.load.setPath('assets/tiled/');
@@ -47,8 +49,8 @@ export default class nivelDos extends Phaser.Scene {
         const tilesett = map.addTilesetImage('set', 'patronesTilemap',16,16);
         const tilesetfondo = map.addTilesetImage('cenefas', 'patronesTilemapFondo',16,16);
         map.createLayer('niveldos/capafondoniveldos', tilesetfondo,16,16);
-       map.createLayer('niveldos/capadecoracion', tilesett,16,16);
-       const motosierra=map.getObjectLayer('niveldos/capatrampalateral')['objects'];
+        map.createLayer('niveldos/capadecoracion', tilesett,16,16);
+        const motosierra=map.getObjectLayer('niveldos/capatrampalateral')['objects'];
         const flechas=map.getObjectLayer('niveldos/capaflechas')['objects'];
         const estacas=map.getObjectLayer('niveldos/capaestacas')['objects'];
         const door=map.getObjectLayer('niveldos/capapuertasniveldos')['objects'];
@@ -57,6 +59,7 @@ export default class nivelDos extends Phaser.Scene {
         const plataformas=map.getObjectLayer('niveldos/capaplataformasniveldos')['objects'];
         const columnas=map.getObjectLayer('niveldos/capacolumnasniveldos')['objects'];
         const momias=map.getObjectLayer('niveldos/capamomiasniveldos')['objects'];
+                //serpientes igual que momias
         const plataformasRompibles=map.getObjectLayer('niveldos/capaplataformasrompiblesniveldos')['objects'];
 
         this.scene.launch('iu', { nivel: 2 });
@@ -82,8 +85,11 @@ export default class nivelDos extends Phaser.Scene {
             this.arrayCofres.push( new Cofre(this, this.player, cofres[i].x, cofres[i].y, true));
         }
         for (let i = 0; i < momias.length; i++) {
-            this.momia= new Momia(this, this.player,  momias[i].x, momias[i].y);           
+            this.arrayMomias.push(new Momia(this, this.player,  momias[i].x, momias[i].y));           
         }
+        /*for (let i = 0; i < serpientes.length; i++) {
+            this.arraySerpientes.push(new Serpiente(this, this.player,  serpientes[i].x, serpientes[i].y));           
+        }*/
         for (let i = 0; i < motosierra.length; i++) {
             new trampaLateral(this, this.player,  motosierra[i].x, motosierra[i].y);  
         }
@@ -118,6 +124,10 @@ export default class nivelDos extends Phaser.Scene {
 
     escenaFinal(){
         this.scene.start('end');
+        this.arrayCofres = [];
+        this.arrayEscaleras = [];
+        this.arrayMomias = [];
+        this.arraySerpientes = [];
         this.iu.scene.setVisible(false);
     }
 }
