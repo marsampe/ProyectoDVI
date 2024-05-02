@@ -11,6 +11,7 @@ import puerta from '../elementosNivel/puerta.js';
 import Column from '../elementosNivel/column.js';
 import flecha from '../trampas/flechas.js';
 import Serpiente from '../enemigos/serpiente.js';
+
 //mapa/////////////
 
 import mapa from '../../assets/tiled/mapa.json'
@@ -36,6 +37,7 @@ export default class nivelDos extends Phaser.Scene {
         this.arraySerpientes = [];
     }
     preload() {
+       
         this.load.setPath('assets/tiled/');
 
     this.load.image('patronesTilemap',cjto);
@@ -45,7 +47,14 @@ export default class nivelDos extends Phaser.Scene {
 
     }
     create() {
-        
+        //musica
+      this.music = this.sound.add('sonido2');
+      this.music.volume=0.2;
+      if (!this.musicEnabled){
+        this.music.loop=true;
+        this.music.play();
+
+      }
         const map= this.make.tilemap({ key: 'mapa'});
         const tilesett = map.addTilesetImage('set', 'patronesTilemap',16,16);
         const tilesetfondo = map.addTilesetImage('cenefas', 'patronesTilemapFondo',16,16);
@@ -108,7 +117,9 @@ export default class nivelDos extends Phaser.Scene {
         this.cameras.main.setZoom(0.85);
         this.cameras.main.startFollow(this.player);
     }
-        
+    pararMusica(){
+        this.music.stop();
+    }
     collectObject(objectName) {
         // Registra el objeto recolectado en algún lugar
         if(this.player.addToInventory(objectName)){

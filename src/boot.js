@@ -32,6 +32,7 @@ import sonidoDanoEnemigo from '../sound/danyoMonstruo.mp3'
 import sonidoSerpiente from '../sound/sonidoSerpiente.mp3'
 import sonidoSalto from '../sound/salto.mp3'
 import sonidoObjeto from '../sound/sonidoObjeto.mp3'
+import sound2 from '../sound/sonidoNivelDos.mp3';
 //mapa/////////////
 import mapa from '../assets/tiled/mapa.json'
 import cjto from '../assets/tiled/tilesetEgipto.png'
@@ -65,6 +66,7 @@ export default class Boot extends Phaser.Scene {
     this.load.audio('danoserpiente',sonidoSerpiente);
     this.load.audio('salto',sonidoSalto);
     this.load.audio('objeto',sonidoObjeto);
+    this.load.audio('sonido2',sound2);
     //this.load.audio('audio','../assets/sprites/sound.wav');
     // Con setPath podemos establecer el prefijo que se añadirá a todos los load que aparecen a continuación
     this.load.setPath('assets/sprites/');

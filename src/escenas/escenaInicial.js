@@ -15,13 +15,15 @@ export default class escenaInicial extends Phaser.Scene {
         this.load.image('background', background);
       this.load.image('button', button);
     }
-
+    pararMusica(){
+      this.scene.music.stop();
+  }
       
     create() {
       this.scene.bringToTop();
       //musica
       this.music = this.sound.add('introSound');
-      this.music.volume=0.2;
+      this.music.volume=0.09;
       if (!this.musicEnabled){
         this.music.loop=true;
         this.music.play();
@@ -43,6 +45,7 @@ export default class escenaInicial extends Phaser.Scene {
       this.startButton.on('pointerdown', () => {
         this.registry.set('nextScene', 'nivelUno');
         this.scene.start('boot');
+        this.music.stop();
       });
 
       //boton tutorial
@@ -50,8 +53,9 @@ export default class escenaInicial extends Phaser.Scene {
       this.tutorialButton.setScale(6, 3.5);
       this.add.text(445, 340, 'Tutorial', { fontFamily: "fontFamily", fontSize: '26px', color: '#ffffff' });
       this.tutorialButton.on('pointerdown', () => {
-        this.registry.set('nextScene', 'nivelDos');
+        this.registry.set('nextScene', 'escenaTutorial');
         this.scene.start('boot');
+      
       });
 
     }

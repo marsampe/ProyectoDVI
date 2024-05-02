@@ -28,6 +28,8 @@ export default class puerta extends Phaser.GameObjects.Sprite {
    * @param {Phaser.GameObjects.GameObject} puerta La trampa de estacas
    * @param {Phaser.GameObjects.GameObject} player El jugador
    */
+
+  
   handleCollision(puerta, player) {
 
     this.scene.tweens.add({
@@ -38,11 +40,23 @@ export default class puerta extends Phaser.GameObjects.Sprite {
        this.player.reseteo();
        this.scene.iu.reseteoIU(); 
        let escena = this.scene.scene.key;
-     if(escena=='nivelUno'){ 
+       //sthis.scene.musictop();
+      
+       if(escena=='escenaTutorial'){ 
+        this.scene.pararMusica();
+        this.scene.scene.start('escenaInicial');
+        
+      } 
+       
+    else if(escena=='nivelUno'){ 
+      this.scene.pararMusica();
       this.scene.scene.start('nivelDos');
+      
     } else if(escena=='nivelDos'){ 
+      this.scene.pararMusica();
       this.scene.scene.start('nivelTres');
     } else if(escena=='nivelTres'){ 
+      this.scene.pararMusica();
       this.scene.scene.start('escenaGanador');
     }
     }
