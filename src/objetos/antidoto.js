@@ -33,7 +33,11 @@ export default class antidoto extends Phaser.GameObjects.Sprite {
         if (this.scene.physics.overlap(this.scene.player, this)) {
 
            if(this.scene.collectObject('antidoto')){
+            this.sonidoPunetazo = this.scene.sound.add('objeto');
+            this.sonidoPunetazo.volume=6;
+        this.sonidoPunetazo.play(); 
                 this.destroy();
+
            }
         }
     }

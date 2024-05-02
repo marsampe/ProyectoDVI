@@ -32,6 +32,9 @@ export default class antorcha extends Phaser.GameObjects.Sprite {
             // Delegamos en la escena para decidir qué hacer al 
             // haber cogido una antorcha
            if(this.scene.collectObject('antorcha')){
+            this.sonidoPunetazo = this.scene.sound.add('objeto');
+            this.sonidoPunetazo.volume=6;
+        this.sonidoPunetazo.play(); 
                 this.destroy();
            }
         }
