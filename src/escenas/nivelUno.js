@@ -35,6 +35,7 @@ export default class nivelUno extends Phaser.Scene {
         this.arraySerpientes = [];
     }
     preload() {
+        
         this.load.setPath('assets/tiled/');
 
     this.load.image('patronesTilemap',cjto);
@@ -67,7 +68,7 @@ export default class nivelUno extends Phaser.Scene {
         this.scene.launch('iu', { nivel: 1 });
         this.iu = this.scene.get('iu');
         this.iu.scene.setVisible(true);
-        
+     
         this.player = new Player(this, 180, 400);
         
       // this.flecha = new flecha(this,this.player, 190, 350);

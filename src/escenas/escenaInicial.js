@@ -21,6 +21,7 @@ export default class escenaInicial extends Phaser.Scene {
       this.scene.bringToTop();
       //musica
       this.music = this.sound.add('introSound');
+      this.music.volume=0.2;
       if (!this.musicEnabled){
         this.music.loop=true;
         this.music.play();

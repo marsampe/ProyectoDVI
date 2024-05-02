@@ -142,6 +142,9 @@ export default class Serpiente extends Phaser.GameObjects.Sprite {
     }
 
     reducirVida() {
+        this.sonidoEnemigo = this.scene.sound.add('danoserpiente');
+			
+        this.sonidoEnemigo.play();  
         this.parpadear();
     }
 

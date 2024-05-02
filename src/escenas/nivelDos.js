@@ -10,6 +10,7 @@ import plataformaRompible from '../elementosNivel/plataformaRompible.js';
 import puerta from '../elementosNivel/puerta.js';
 import Column from '../elementosNivel/column.js';
 import flecha from '../trampas/flechas.js';
+import Serpiente from '../enemigos/serpiente.js';
 //mapa/////////////
 
 import mapa from '../../assets/tiled/mapa.json'
@@ -59,6 +60,7 @@ export default class nivelDos extends Phaser.Scene {
         const plataformas=map.getObjectLayer('niveldos/capaplataformasniveldos')['objects'];
         const columnas=map.getObjectLayer('niveldos/capacolumnasniveldos')['objects'];
         const momias=map.getObjectLayer('niveldos/capamomiasniveldos')['objects'];
+        const serpientes=map.getObjectLayer('niveldos/capaserpientesniveldos')['objects'];
                 //serpientes igual que momias
         const plataformasRompibles=map.getObjectLayer('niveldos/capaplataformasrompiblesniveldos')['objects'];
 
@@ -87,9 +89,9 @@ export default class nivelDos extends Phaser.Scene {
         for (let i = 0; i < momias.length; i++) {
             this.arrayMomias.push(new Momia(this, this.player,  momias[i].x, momias[i].y));           
         }
-        /*for (let i = 0; i < serpientes.length; i++) {
+        for (let i = 0; i < serpientes.length; i++) {
             this.arraySerpientes.push(new Serpiente(this, this.player,  serpientes[i].x, serpientes[i].y));           
-        }*/
+        }
         for (let i = 0; i < motosierra.length; i++) {
             new trampaLateral(this, this.player,  motosierra[i].x, motosierra[i].y);  
         }
