@@ -71,6 +71,7 @@ export default class nivelUno extends Phaser.Scene {
         this.player = new Player(this, 180, 400);
         
       // this.flecha = new flecha(this,this.player, 190, 350);
+       this.puerta = new puerta(this,this.player, 2950,95);  
        this.puerta = new puerta(this,this.player, 800,400);  
        for (let i = 0; i < flechas.length; i++) {
         new flecha(this, this.player,  flechas[i].x, flechas[i].y);  
@@ -124,7 +125,8 @@ export default class nivelUno extends Phaser.Scene {
     }
 
     escenaFinal(){
-        this.scene.start('end');
+        this.scene.start('nivelUno');
+       // this.scene.start('end');
         this.arrayCofres = [];
         this.arrayEscaleras = [];
         this.arrayMomias = [];

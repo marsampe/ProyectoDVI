@@ -69,7 +69,7 @@ export default class nivelDos extends Phaser.Scene {
         this.player = new Player(this, 10, 600);
        
       // this.flecha = new flecha(this,this.player, 190, 350)//;door[0].x door[0].y
-       this.puerta = new puerta(this,this.player,2950 ,95);  
+       this.puerta = new puerta(this,this.player,2650 ,170);  
        for (let i = 0; i < flechas.length; i++) {
         new flecha(this, this.player,  flechas[i].x, flechas[i].y);  
     }
@@ -123,11 +123,12 @@ export default class nivelDos extends Phaser.Scene {
     }
 
     escenaFinal(){
-        this.scene.start('end');
+       // this.scene.start('end');
         this.arrayCofres = [];
         this.arrayEscaleras = [];
         this.arrayMomias = [];
         this.arraySerpientes = [];
+        this.scene.start('nivelDos');
         this.iu.scene.setVisible(false);
     }
 }

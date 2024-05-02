@@ -74,7 +74,7 @@ export default class nivelDos extends Phaser.Scene {
         this.player = new Player(this, 120, 0);
         
       // this.flecha = new flecha(this,this.player, 190, 350);door[0].x door[0].y
-       //this.puerta = new puerta(this,this.player,350 ,400);  
+       this.puerta = new puerta(this,this.player,2420 ,194);  
        for (let i = 0; i < flechas.length; i++) {
         new flecha(this, this.player,  flechas[i].x, flechas[i].y);  
     }
@@ -106,9 +106,9 @@ export default class nivelDos extends Phaser.Scene {
             new Platform(this, this.player, this.momia,plataformas[i].x, plataformas[i].y);
         }  
 
-        this.cameras.main.setBounds(15,0, 3000,800);
-        this.physics.world.setBounds(0,0, 3000,800);
-        this.cameras.main.setZoom(1);
+        this.cameras.main.setBounds(15,0, 3050,780);
+        this.physics.world.setBounds(0,0, 3000,795);
+        this.cameras.main.setZoom(0.85);
         this.cameras.main.startFollow(this.player);
     }
         
@@ -128,7 +128,8 @@ export default class nivelDos extends Phaser.Scene {
     }
 
     escenaFinal(){
-        this.scene.start('end');
+        this.scene.start('nivelTres');
+       // this.scene.start('end');
         this.arrayCofres = [];
         this.arrayEscaleras = [];
         this.arrayMomias = [];

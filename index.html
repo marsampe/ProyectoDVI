@@ -15,7 +15,8 @@
     <nav class="navbar navbar-expand-md navbar-light container-fluid"
     style="background-color: rgb(230, 193, 93); padding-top: 0px; padding-bottom: 0px;">
     <a class="navbar-brand mx-3" href="#">
-      <img src="images/llave.jpg" height="60" alt="">
+      <img src="images/llave_sinfondo.png" height="60" alt="">
+      <span style="margin-left: 10px;">GIM Studios</span>
     </a>
     <div class="collapse navbar-collapse justify-content-end " id="navbarNav">
       <ul id="menu-superior" class="navbar-nav mx-5">
@@ -45,20 +46,30 @@
         
   <div class="card m-3" style="background-color: rgb(238, 213, 144);" id="descripcion" style="display: none;">
     <div class="card-body">
-        <h2 class="card-title">Descripción del Juego</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum consequuntur repudiandae beatae nesciunt quaerat ut nobis quia enim saepe repellendus. Consequuntur inventore quod exercitationem incidunt voluptates ut nemo sit odio?</p>
+        <h2 class="card-title"style="font-size: 30px;">Descripción del Juego</h2>
+        <p style="font-size: 20px; font-family: Georgia;text-align:justify; margin: 0 auto;";> 
+          Laura una joven estudiante de arqueología ha sido encargada de investigar una sala recién descubierta en una de las pirámides de Guiza. <br>
+          Sin embargo, su exploración toma un giro inesperado cuando cae en una trampa al pisar una baldosa suelta, quedando atrapada en las profundidades de la antigua estructura.<br>
+          Se enfrentará a un grán desafío mientras explora las misteriosas salas. <br>
+          Laura deberá esquivar trampas mortales, enfrentarse a enemigos ancestrales y desentrañar antiguos misterios para encontrar una salida.<br>
+          ¿Tienes lo que se necesita para ayudar a Laura a escapar de las profundidades de la pirámide y desvelar sus oscuros secretos? 
+        </p>
     </div>
   </div>
     <div class="card m-3"style="background-color: rgb(238, 213, 144);" id="comojugar" style="display: none;">
       <div class="card-body">
-      <h2 class="card-title">Como jugar</h2>
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Commodi sit rem sunt eos accusamus totam architecto iusto tempore, dignissimos nemo a deserunt doloremque consectetur vero cumque odit suscipit dolore neque.</p>
+      <h2 class="card-title"style="font-size: 30px;">Como jugar</h2>
+      <p style="font-size: 20px; font-family: Georgia;text-align:justify; margin: 0 auto;">
+        ¿Eres nuevo en el juego? ¡No te preocupes! Te invitamos a participar en nuestro tutorial interactivo, 
+        donde te enseñaremos los conceptos básicos de juego, desde cómo moverte y saltar hasta cómo enfrentarte a los desafíos más difíciles. 
+        ¡Domina las habilidades fundamentales y prepárate para la aventura que te espera!</p>
       </div>
   </div>
   <div class="card m-3"style="background-color: rgb(238, 213, 144);" id="aboutus" style="display: none;">
     <div class="card-body">
-    <h2 class="card-title">Sobre nosotros</h2>
-    <p>Somos GIM Studios, un grupo de estudiantes de Ingenieria de Software formado por Marta Sampedro, Gonzalo Ramos e Isabel Zamarrón.</p>
+    <h2 class="card-title"style="font-size: 30px;">Sobre nosotros</h2>
+    <p style="font-size: 20px; font-family: Georgia;text-align:justify; margin: 0 auto;">
+      Somos GIM Studios, un grupo de estudiantes de Ingenieria de Software formado por Marta Sampedro, Gonzalo Ramos e Isabel Zamarrón.</p>
     </div>
   </div>
 </div>
@@ -67,7 +78,7 @@
 
  <!--fin Opciones-->
 
-  <div class="container">
+  <div class="container" style="margin: 60px;">
        <script src="./src/game.js" type="module"></script>
 </div>
 
@@ -75,13 +86,19 @@
 </html>
 
 <script>
+  window.onload = function() {
+    document.getElementById("descripcion").style.display = "none";
+    document.getElementById("comojugar").style.display = "none";
+    document.getElementById("aboutus").style.display = "none";
+}
+
 function showDescripcion() {
     var descripcion = document.getElementById("descripcion");
     if (descripcion.style.display === "none") {
         descripcion.style.display = "block";
-    } else {
+   } else {
         descripcion.style.display = "none";
-    }
+   }
 }
 function showComoJugar() {
     var jugar = document.getElementById("comojugar");
