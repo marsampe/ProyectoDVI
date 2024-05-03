@@ -1,4 +1,5 @@
 import Phaser from 'phaser'
+import BolaVeneno from '../enemigos/bolaVeneno'
 
 
 /**
@@ -43,13 +44,15 @@ export default class Escarabajo extends Phaser.GameObjects.Sprite {
         this.patrullando = true;
 
         this.enfriamientoDespuesDeAtaque = false; // Variable para controlar el enfriamiento después de un ataque
-        this.tiempoDeEnfriamiento = 4000;
+        this.tiempoDeEnfriamiento = 3000;
         this.anteriorAnimacion;
         this.puedeAtacar = true;
         this.body.setSize(this.width-50, this.height, true);
         this.atacando=false;
 
+        
     }
+
 
 
 
@@ -57,72 +60,95 @@ export default class Escarabajo extends Phaser.GameObjects.Sprite {
         
         const distanciaX = Math.abs(this.player.x - this.x);
         const distanciaY = Math.abs(this.player.y - this.y);
-        const rangoDePersecucion = 200;
+        const rangoDeAtaque = 300;
 
-        if (distanciaX < rangoDePersecucion && distanciaY < rangoDePersecucion) {
-            this.persigueJugador();
+        if (distanciaX < rangoDeAtaque && distanciaY < rangoDeAtaque && this.puedeAtacar) {
+            this.ataqueJugador();
         }else if(!this.patrullando){
             
             this.scene.tweens.killTweensOf(this);
             this.body.setVelocityX(0);
-            this.anims.play('caminarEscarabajo', false);
+            //this.anims.play('caminarEscarabajo', false);
         }
+
+        
     }
 
-    persigueJugador() {
+    ataqueJugador() {
+        console.log(this.puedeAtacar);
+        const distanciaX = this.player.x - this.x;
+        const direccionX = Math.sign(distanciaX);
+        this.flipX = (direccionX === 1);
         
+        if (this.puedeAtacar) { // Verifica si el escarabajo puede atacar
+            // Detén el movimiento del escarabajo
+            this.patrullando = false;
+            this.body.setVelocityX(0);
+            
+            
+    
+            // Reproduce la animación de ataque
+            this.anims.play('ataqueEscarabajo', true);
+            this.bolaVeneno = new BolaVeneno(this.scene,this.player,this.x -60, this.y + 15);
+            //this.bolaVeneno.lanzar(direccionX);
+    
+            // Después de 4 segundos, permite que el escarabajo ataque nuevamente
+            this.scene.time.delayedCall(2000, () => {
+                this.puedeAtacar = true;
+            });
+    
+            // Evita que el escarabajo ataque durante los 4 segundos
+            this.puedeAtacar = false;
+        }
+
+
+
+
+
+
+
+
+        /*
         this.patrullando = false;
+        
         const distanciaX = this.player.x - this.x;
         const direccionX = Math.sign(distanciaX); // -1 si el jugador está a la izquierda, 1 si está a la derecha
 
-        const distanciaAbsolutaX = Math.abs(distanciaX);
-        const velocidadMaxima = this.speed;
-        const aceleracion = 0.5;
-        const distanciaDeAtaque = 60;
 
-
-       
-
-        if (distanciaAbsolutaX < distanciaDeAtaque) {
-
-            if(this.anims.currentAnim.key == 'ataqueEscarabajo' && this.anteriorAnimacion=== 4 && this.puedeAtacar){
-                this.anims.stop();
-                this.anims.play('caminarEscarabajo', false);
-                
-                this.body.setVelocityX(0); // Detener movimiento
-                this.bloqueoEscarabajo();
-                this.atacando = false;
-
-            }else if(this.puedeAtacar){
+        if(this.anims.currentAnim.key == 'ataqueEscarabajo' && this.anteriorAnimacion=== 1 && this.puedeAtacar){
+            this.anims.stop();
+            this.anims.play('caminarEscarabajo', false);
             
+            this.body.setVelocityX(0); // Detener movimiento
+            this.bloqueoEscarabajo();
+            this.atacando = false;
+            console.log("puede atacar " + this.anims.currentAnim.key);
+        }else if(this.puedeAtacar){
+        
+        
+            this.anims.play('ataqueEscarabajo', true);
+            this.body.setVelocityX(0);
             
-                this.anims.play('ataqueEscarabajo', true);
-                this.body.setVelocityX(0);
-                this.scene.time.delayedCall(500, () => {
-                    // Cambiar el tamaño de la hitbox en el tercer fotograma de la animación de ataque
-                    if (this.anims.currentFrame.index === 4 || this.anims.currentFrame.index === 5) {
-                        //this.body.setSize(this.width * 1.5, this.height, true); // Aumentar el tamaño de colisión
-                        this.atacando =true;
-                    }
-                    this.anteriorAnimacion = this.anims.currentFrame.index ;
+            this.scene.time.delayedCall(500, () => {
+                if (this.anims.currentFrame.index === 1 || this.anims.currentFrame.index === 2) {
+                    this.atacando =true;
+                }
+                this.anteriorAnimacion = this.anims.currentFrame.index ;
 
+            }, null, this);
 
-                }, null, this);
-
-            
-            }
-        } else {    
-            let velocidadX = distanciaAbsolutaX * aceleracion;
-            velocidadX = Phaser.Math.Clamp(velocidadX, 0, velocidadMaxima);
-            this.body.setVelocityX(velocidadX * direccionX);
-
-            this.anims.play('caminarEscarabajo', true);
+           
+            console.log(this.anteriorAnimacion);
+            console.log("no puede atacar " + this.anims.currentAnim.key);
         }
-       
+
         this.flipX = (direccionX === 1);
         this.persiguiendoJugador = true;
 
         this.scene.tweens.killTweensOf(this);
+        this.anims.stop('caminarEscarabajo');
+        console.log("fuera " + this.anims.currentAnim.key);
+        */
     }
 
     bloqueoEscarabajo(){

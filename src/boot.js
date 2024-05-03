@@ -37,6 +37,7 @@ import cjtocenefa from '../assets/tiled/cenefa.png'
 //////////////
 import antidoto from '../assets/sprites/antidoto.png'
 import flecha from '../assets/sprites/flecha.png'
+import bolaVeneno from '../assets/sprites/bolaVeneno.png'
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
  * Esta escena se puede mejorar añadiendo una imagen del juego y una 
@@ -89,6 +90,7 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('plataformaRompible', plataformaRompible, { frameWidth: 32, frameHeight: 22});
     this.load.image('antidoto', antidoto);
     this.load.image('flecha', flecha);
+    this.load.image('bolaVeneno', bolaVeneno);
     this.load.image('vacio', vacio);
     this.load.image('barraVida', barraVida);
     this.load.image('barraEscudo', barraEscudo);
@@ -142,9 +144,15 @@ this.anims.create({
   key: 'ataqueEscarabajo',
   frames: this.anims.generateFrameNumbers('escarabajo', { start: 4, end: 5 }),
   frameRate: 5,
-  repeat: -1
+  repeat: 0
 })
 
+this.anims.create({
+  key: 'escarabajoQuieto',
+  frames: this.anims.generateFrameNumbers('escarabajo', { start: 0, end: 0 }),
+  frameRate: 5,
+  repeat: -1
+})
   this.anims.create({
       key: 'saltar',
       frames: this.anims.generateFrameNumbers('personajeSalto', { start: 0, end: 13}),
