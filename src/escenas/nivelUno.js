@@ -31,6 +31,8 @@ export default class nivelUno extends Phaser.Scene {
         super({ key: 'nivelUno' });
         this.arrayCofres = [];
         this.arrayEscaleras = [];
+        this.arrayMomias = [];
+        this.arraySerpientes = [];
     }
     preload() {
         this.load.setPath('assets/tiled/');
@@ -55,12 +57,12 @@ export default class nivelUno extends Phaser.Scene {
     
         //const door=map.getObjectLayer('niveluno/capapuertasniveluno')['objects'];
 
- const cofres=map.getObjectLayer('niveluno/capacofresniveluno')['objects'];
-const escaleras=map.getObjectLayer('niveluno/capaescalerasniveluno')['objects'];
- const plataformas=map.getObjectLayer('niveluno/capaplataformasniveluno')['objects'];
- const columnas=map.getObjectLayer('niveluno/capacolumnasniveluno')['objects'];
- const momias=map.getObjectLayer('niveluno/capamomiasniveluno')['objects'];
- const plataformasRompibles=map.getObjectLayer('niveluno/capaplataformasrompiblesniveluno')['objects'];
+        const cofres=map.getObjectLayer('niveluno/capacofresniveluno')['objects'];
+        const escaleras=map.getObjectLayer('niveluno/capaescalerasniveluno')['objects'];
+        const plataformas=map.getObjectLayer('niveluno/capaplataformasniveluno')['objects'];
+        const columnas=map.getObjectLayer('niveluno/capacolumnasniveluno')['objects'];
+        const momias=map.getObjectLayer('niveluno/capamomiasniveluno')['objects'];
+        const plataformasRompibles=map.getObjectLayer('niveluno/capaplataformasrompiblesniveluno')['objects'];
 
         this.scene.launch('iu', { nivel: 1 });
         this.iu = this.scene.get('iu');
@@ -69,7 +71,8 @@ const escaleras=map.getObjectLayer('niveluno/capaescalerasniveluno')['objects'];
         this.player = new Player(this, 180, 400);
         
       // this.flecha = new flecha(this,this.player, 190, 350);
-       this.puerta = new puerta(this,this.player, 300,400);  
+       this.puerta = new puerta(this,this.player, 2950,95);  
+       this.puerta = new puerta(this,this.player, 800,400);  
        for (let i = 0; i < flechas.length; i++) {
         new flecha(this, this.player,  flechas[i].x, flechas[i].y);  
     }
@@ -85,7 +88,7 @@ const escaleras=map.getObjectLayer('niveluno/capaescalerasniveluno')['objects'];
             this.arrayCofres.push( new Cofre(this, this.player, cofres[i].x, cofres[i].y, true));
         }
         for (let i = 0; i < momias.length; i++) {
-            this.momia= new Momia(this, this.player,  momias[i].x, momias[i].y);           
+            this.arrayMomias.push(new Momia(this, this.player,  momias[i].x, momias[i].y));           
         }
         for (let i = 0; i < motosierra.length; i++) {
             new trampaLateral(this, this.player,  motosierra[i].x, motosierra[i].y);  
@@ -122,7 +125,12 @@ const escaleras=map.getObjectLayer('niveluno/capaescalerasniveluno')['objects'];
     }
 
     escenaFinal(){
-        this.scene.start('end');
+        this.scene.start('nivelUno');
+       // this.scene.start('end');
+        this.arrayCofres = [];
+        this.arrayEscaleras = [];
+        this.arrayMomias = [];
+        this.arraySerpientes = [];
         this.iu.scene.setVisible(false);
     }
 }

@@ -255,7 +255,7 @@ export default class IU extends Phaser.Scene{
 
     reseteoIU(){
         this.inventoryItems = [];
-        this.inventory = [];
+        this.inventory = [null, null, null];
         this.huecos = [0,0,0];
         this.posicionMarcador = 0;
         this.antorcha = false;

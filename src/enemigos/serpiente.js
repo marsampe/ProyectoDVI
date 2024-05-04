@@ -164,9 +164,9 @@ export default class Serpiente extends Phaser.GameObjects.Sprite {
        
         if(this.player.herido == false){
             if(this.atacando){
-                //this.player.paralizar();
+                this.player.paralizar();
             }
-            //this.player.reduceHealth();
+            this.player.reduceHealth(60);
             
             const direccionRetroceso = this.flipX ? -1 : 1; // Si la serpiente mira hacia la izquierda, el jugador se empujará hacia la derecha y viceversa
             const fuerzaRetroceso = 100; // Puedes ajustar la intensidad del retroceso según sea necesario

@@ -26,7 +26,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.jumpSpeed = -265;
         this.ultimaDireccion = 'derecha'
         //creamos inventario
-        this.inventory = [];
+        this.inventory = [null, null, null];
         this.huecos = [0,0,0];
 
         this.cursors = this.scene.input.keyboard.createCursorKeys();
@@ -54,8 +54,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
       return this.scene.iu.addToInventory(objectName);
     }
 
-    reduceHealth() {
-        this.scene.iu.reducirSalud(60);
+    reduceHealth(valor) {
+        this.scene.iu.reducirSalud(valor);
         this.salud = this.scene.iu.saludVida;
         if (this.salud == 0) {
             this.scene.escenaFinal();
@@ -158,10 +158,17 @@ export default class Player extends Phaser.GameObjects.Sprite {
             this.body.setSize(100, 120);
             this.body.setOffset(0, 97);
 
-            if (Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.momia.getBounds())){
-                this.scene.momia.reducirVida();
-                if(this.herido == false)
-                    this.reduceHealth();
+            for(let i = 0; i < this.scene.arrayMomias.length; i++) {
+                if (Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.arrayMomias[i].getBounds())) {
+                    this.scene.arrayMomias[i].reducirVida();
+                    this.scene.arrayMomias.splice(i, 1);
+                }
+            }
+            for(let i = 0; i < this.scene.arraySerpientes.length; i++) {
+                if (Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.arraySerpientes[i].getBounds())) {
+                    this.scene.arraySerpientes[i].reducirVida();
+                    this.scene.arraySerpientes.splice(i, 1);
+                }
             }
         }
         if (Phaser.Input.Keyboard.JustDown(this.cursors.up)) {
@@ -263,7 +270,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
 
     reseteo(){
-        this.inventory = [];
+        this.inventory = [null, null, null];
         this.huecos = [0,0,0];
         this.scene.iu.salud = 200;
         this.arrayMomias=[];

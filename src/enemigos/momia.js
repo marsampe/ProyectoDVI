@@ -78,6 +78,6 @@ export default class Momia extends Phaser.GameObjects.Sprite {
 
     handleCollision() {
         if(this.player.herido == false && this.player.atacando == false)
-            this.player.reduceHealth();
+            this.player.reduceHealth(30);
     }
 }
