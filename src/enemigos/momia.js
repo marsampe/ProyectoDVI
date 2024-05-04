@@ -33,7 +33,7 @@ export default class Momia extends Phaser.GameObjects.Sprite {
 
         this.saludMaxima = 200;
         this.salud = 100;
-
+        
 
         //this.flipX=true;
 
@@ -60,7 +60,10 @@ export default class Momia extends Phaser.GameObjects.Sprite {
     }
 
     reducirVida() {
-        this.parpadear();
+        this.sonidoEnemigo = this.scene.sound.add('danoEnemigo');
+			
+            this.sonidoEnemigo.play();  
+               this.parpadear();
     }
 
     parpadear() {

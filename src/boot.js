@@ -28,7 +28,12 @@ import column3 from '../assets/sprites/columnNivel3.png'
 import vacio from '../assets/sprites/vacio.png'
 import barraVida from '../assets/sprites/barraVida.png'
 import barraEscudo from '../assets/sprites/barraEscudo.png'
-
+import sonidoPunetazo from '../sound/sound.mp3'
+import sonidoDanoEnemigo from '../sound/danyoMonstruo.mp3'
+import sonidoSerpiente from '../sound/sonidoSerpiente.mp3'
+import sonidoSalto from '../sound/salto.mp3'
+import sonidoObjeto from '../sound/sonidoObjeto.mp3'
+import sound2 from '../sound/sonidoNivelDos.mp3';
 //mapa/////////////
 import mapa from '../assets/tiled/mapa.json'
 import cjto from '../assets/tiled/tilesetEgipto.png'
@@ -57,7 +62,13 @@ export default class Boot extends Phaser.Scene {
    * Carga de los assets del juego
    */
   preload() {
-   
+    this.load.setPath('sound/sprites/');
+    this.load.audio('danoEnemigo',sonidoDanoEnemigo);
+    this.load.audio('punetazo',sonidoPunetazo);
+    this.load.audio('danoserpiente',sonidoSerpiente);
+    this.load.audio('salto',sonidoSalto);
+    this.load.audio('objeto',sonidoObjeto);
+    this.load.audio('sonido2',sound2);
     //this.load.audio('audio','../assets/sprites/sound.wav');
     // Con setPath podemos establecer el prefijo que se añadirá a todos los load que aparecen a continuación
     this.load.setPath('assets/sprites/');
@@ -101,6 +112,8 @@ export default class Boot extends Phaser.Scene {
     this.load.image('patronesTilemapCarteles',cjtocarteles);
     this.load.tilemapTiledJSON('mapa',mapa);
 
+
+
   }
   
 
@@ -110,6 +123,7 @@ export default class Boot extends Phaser.Scene {
    */
   create() {
     let nextScene = this.registry.get('nextScene');
+    
     this.scene.start(nextScene);
     //this.scene.start('escenaTutorial');
     this.anims.create({

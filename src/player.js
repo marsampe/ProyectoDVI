@@ -98,7 +98,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.body.setOffset(10, 97);
 
         super.preUpdate(t, dt);
-
+       
         for(let i = 0; i < this.scene.arrayCofres.length; i++) {
             if (Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.arrayCofres[i].getBounds()) && this.teclaE.isDown && !this.scene.arrayCofres[i].abierto) {
                 this.scene.arrayCofres[i].abrir(i);
@@ -142,8 +142,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
             for(let i = 0; i < this.scene.arrayMomias.length; i++) {
                 if (Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.arrayMomias[i].getBounds())) {
-                    this.scene.arrayMomias[i].reducirVida();
-                    this.scene.arrayMomias.splice(i, 1);
+                   this.scene.arrayMomias[i].reducirVida();
+                   this.scene.arrayMomias.splice(i, 1);
                 }
             }
             for(let i = 0; i < this.scene.arraySerpientes.length; i++) {
@@ -154,28 +154,38 @@ export default class Player extends Phaser.GameObjects.Sprite {
             }
         }else if(this.teclaS.isDown && !this.scene.iu.antorcha){
 
-            this.anims.play('atacarPuno', true);          
+            this.anims.play('atacarPuno', true);  
+                 
             this.body.setSize(100, 120);
             this.body.setOffset(0, 97);
 
             for(let i = 0; i < this.scene.arrayMomias.length; i++) {
                 if (Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.arrayMomias[i].getBounds())) {
                     this.scene.arrayMomias[i].reducirVida();
+                   this.sonidoPunetazo = this.scene.sound.add('punetazo');
+                    this.sonidoPunetazo.play();  
                     this.scene.arrayMomias.splice(i, 1);
                 }
             }
             for(let i = 0; i < this.scene.arraySerpientes.length; i++) {
                 if (Phaser.Geom.Intersects.RectangleToRectangle(this.getBounds(), this.scene.arraySerpientes[i].getBounds())) {
                     this.scene.arraySerpientes[i].reducirVida();
+                    this.sonidoPunetazo = this.scene.sound.add('punetazo');
+                    this.sonidoPunetazo.play(); 
                     this.scene.arraySerpientes.splice(i, 1);
                 }
             }
+         
         }
         if (Phaser.Input.Keyboard.JustDown(this.cursors.up)) {
+            this.sonidoPunetazo = this.scene.sound.add('salto');
+            this.sonidoPunetazo.volume=6;
+            this.sonidoPunetazo.play(); 
             if(this.body.onFloor()){
                 this.body.setVelocityY(this.jumpSpeed);
                 if(this.ultimaDireccion== 'izquierda'){
                     this.anims.play('saltar', true);
+                
                     this.setFlipX(true);
         }
     }
@@ -183,14 +193,20 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
         if (!this.envenenado) {
             if (Phaser.Input.Keyboard.JustDown(this.cursors.up)) {
+                this.sonidoPunetazo = this.scene.sound.add('salto');
+                        this.sonidoPunetazo.volume=6;
+                    this.sonidoPunetazo.play(); 
                 if(this.body.onFloor()){
                     this.body.setVelocityY(this.jumpSpeed);
+                  
                     if(this.ultimaDireccion== 'izquierda'){
                         this.anims.play('saltar', true);
+                        
                         this.setFlipX(true);
                     }
                     else if(this.ultimaDireccion== 'derecha'){
                         this.anims.play('saltar', true);
+                       
                         this.setFlipX(false);
                     }
                     
