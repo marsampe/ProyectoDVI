@@ -11,6 +11,7 @@ import personajeAtaqueAntorcha from '../assets/sprites/personajeAtaque.png'
 import personajeAtaquePuno from '../assets/sprites/personajeAtaquePuno.png'
 import momia from '../assets/sprites/momia.png'
 import serpiente from '../assets/sprites/serpiente.png'
+import escarabajo from '../assets/sprites/escarabajo.png'
 import inventario from '../assets/sprites/inventario.png'
 import marcadorInventario from '../assets/sprites/marcadorInventario.png'
 import escalera from '../assets/sprites/escalera.png'
@@ -36,6 +37,7 @@ import cjtocenefa from '../assets/tiled/cenefa.png'
 //////////////
 import antidoto from '../assets/sprites/antidoto.png'
 import flecha from '../assets/sprites/flecha.png'
+import bolaVeneno from '../assets/sprites/bolaVeneno.png'
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
  * Esta escena se puede mejorar añadiendo una imagen del juego y una 
@@ -73,6 +75,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('venda', venda);
     this.load.spritesheet('momia', momia, { frameWidth: 100, frameHeight: 138});
     this.load.spritesheet('serpiente', serpiente, { frameWidth: 69, frameHeight: 58});
+    this.load.spritesheet('escarabajo', escarabajo,{frameWidth: 214, frameHeight: 93});
     this.load.image('antorcha', antorcha);
     this.load.spritesheet('personajeAndar', personajeAndar, { frameWidth: 84, frameHeight: 217});
     this.load.spritesheet('personajeSalto', personajeSalto, { frameWidth: 81, frameHeight: 217});
@@ -87,6 +90,7 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('plataformaRompible', plataformaRompible, { frameWidth: 32, frameHeight: 22});
     this.load.image('antidoto', antidoto);
     this.load.image('flecha', flecha);
+    this.load.image('bolaVeneno', bolaVeneno);
     this.load.image('vacio', vacio);
     this.load.image('barraVida', barraVida);
     this.load.image('barraEscudo', barraEscudo);
@@ -129,6 +133,26 @@ this.anims.create({
   repeat: -1
 })
 
+this.anims.create({
+  key: 'caminarEscarabajo',
+  frames: this.anims.generateFrameNumbers('escarabajo', { start: 0, end: 3 }),
+  frameRate: 5,
+  repeat: -1
+})
+
+this.anims.create({
+  key: 'ataqueEscarabajo',
+  frames: this.anims.generateFrameNumbers('escarabajo', { start: 4, end: 5 }),
+  frameRate: 5,
+  repeat: 0
+})
+
+this.anims.create({
+  key: 'escarabajoQuieto',
+  frames: this.anims.generateFrameNumbers('escarabajo', { start: 0, end: 0 }),
+  frameRate: 5,
+  repeat: -1
+})
   this.anims.create({
       key: 'saltar',
       frames: this.anims.generateFrameNumbers('personajeSalto', { start: 0, end: 13}),
