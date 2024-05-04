@@ -1706,12 +1706,13 @@
                  "x":0,
                  "y":0
                 }],
+         "locked":true,
          "name":"niveldos",
          "offsetx":0,
          "offsety":5.33333333333334,
          "opacity":1,
          "type":"group",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -2072,6 +2073,41 @@
                  "type":"tilelayer",
                  "visible":true,
                  "width":200,
+                 "x":0,
+                 "y":0
+                }, 
+                {
+                 "draworder":"topdown",
+                 "id":73,
+                 "name":"capaescarabajo",
+                 "objects":[
+                        {
+                         "height":0,
+                         "id":677,
+                         "name":"",
+                         "point":true,
+                         "rotation":0,
+                         "type":"",
+                         "visible":true,
+                         "width":0,
+                         "x":363.636363636364,
+                         "y":711.151515151515
+                        }, 
+                        {
+                         "height":0,
+                         "id":678,
+                         "name":"",
+                         "point":true,
+                         "rotation":0,
+                         "type":"",
+                         "visible":true,
+                         "width":0,
+                         "x":1893.93939393939,
+                         "y":202.060606060606
+                        }],
+                 "opacity":1,
+                 "type":"objectgroup",
+                 "visible":true,
                  "x":0,
                  "y":0
                 }, 
@@ -2748,18 +2784,6 @@
                          "width":0,
                          "x":1909.33,
                          "y":289.333
-                        }, 
-                        {
-                         "height":0,
-                         "id":605,
-                         "name":"",
-                         "point":true,
-                         "rotation":0,
-                         "type":"",
-                         "visible":true,
-                         "width":0,
-                         "x":2023,
-                         "y":242
                         }, 
                         {
                          "height":0,
@@ -3616,13 +3640,12 @@
                  "x":0,
                  "y":0
                 }],
-         "locked":true,
          "name":"niveltres",
          "offsetx":0,
          "offsety":4,
          "opacity":1,
          "type":"group",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -6257,8 +6280,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":73,
- "nextobjectid":677,
+ "nextlayerid":74,
+ "nextobjectid":679,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.2",

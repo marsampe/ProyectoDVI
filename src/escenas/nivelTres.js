@@ -11,6 +11,7 @@ import puerta from '../elementosNivel/puerta.js';
 import Column from '../elementosNivel/column.js';
 import flecha from '../trampas/flechas.js';
 import sound3 from '../../sound/sonidoNivelTres.mp3';
+import Escarabajo from '../enemigos/escarabajo.js';
 //mapa/////////////
 
 import mapa from '../../assets/tiled/mapa.json'
@@ -34,6 +35,7 @@ export default class nivelDos extends Phaser.Scene {
         this.arrayEscaleras = [];
         this.arrayMomias = [];
         this.arraySerpientes = [];
+        this.arrayEscarabajos = [];
     }
     preload() {
         this.load.audio('sonido3',sound3);
@@ -71,7 +73,7 @@ export default class nivelDos extends Phaser.Scene {
         const plataformas=map.getObjectLayer('niveltres/capaplataformasniveltres')['objects'];
         const columnas=map.getObjectLayer('niveltres/capacolumnasniveltres')['objects'];
         const momias=map.getObjectLayer('niveltres/capamomiasniveltres')['objects'];
-
+        const escarabajos=map.getObjectLayer('niveltres/capaescarabajo')['objects'];
         //serpientes igual que momias
         //escarabajos
         const plataformasRompibles=map.getObjectLayer('niveltres/capaplataformasrompiblesniveltres')['objects'];
@@ -100,6 +102,9 @@ export default class nivelDos extends Phaser.Scene {
         }
         for (let i = 0; i < momias.length; i++) {
             this.arrayMomias.push(new Momia(this, this.player,  momias[i].x, momias[i].y));           
+        }
+        for (let i = 0; i < escarabajos.length; i++) {
+            this.arrayEscarabajos.push(new Escarabajo(this, this.player,  escarabajos[i].x, escarabajos[i].y));           
         }
         /*for (let i = 0; i < serpientes.length; i++) {
             this.arraySerpientes.push(new Serpiente(this, this.player,  serpientes[i].x, serpientes[i].y));           
@@ -145,6 +150,7 @@ export default class nivelDos extends Phaser.Scene {
         this.arrayEscaleras = [];
         this.arrayMomias = [];
         this.arraySerpientes = [];
+        this.arrayEscarabajos = [];
         this.iu.scene.setVisible(false);
     }
 }
