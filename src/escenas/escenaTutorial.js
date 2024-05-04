@@ -94,7 +94,7 @@ export default class escenaTutorial extends Phaser.Scene {
         //this.arraySerpientes.push( new Serpiente(this, this.player,  1100, 250)); 
         //this.arraySerpientes.push( new Serpiente(this, this.player,  900, 720)); 
 
-        this.arrayEscarabajos.push(new Escarabajo(this, this.player,  900, 700));
+        //this.arrayEscarabajos.push(new Escarabajo(this, this.player,  900, 700));
 
         //new venda(this, 500, 720);
         //new venda(this, 700, 720);
