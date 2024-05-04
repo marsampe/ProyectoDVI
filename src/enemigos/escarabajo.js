@@ -89,11 +89,17 @@ export default class Escarabajo extends Phaser.GameObjects.Sprite {
     
             // Reproduce la animación de ataque
             this.anims.play('ataqueEscarabajo', true);
-            this.bolaVeneno = new BolaVeneno(this.scene,this.player,this.x -60, this.y + 15);
+            let bolaX = this.x - 60;
+            let bolaY = this.y + 20;
+
+            if (this.flipX) {
+                bolaX = this.x + 60;
+            }
+            this.bolaVeneno = new BolaVeneno(this.scene,this.player,bolaX, bolaY);
             //this.bolaVeneno.lanzar(direccionX);
     
             // Después de 4 segundos, permite que el escarabajo ataque nuevamente
-            this.scene.time.delayedCall(2000, () => {
+            this.scene.time.delayedCall(3000, () => {
                 this.puedeAtacar = true;
             });
     
@@ -102,65 +108,8 @@ export default class Escarabajo extends Phaser.GameObjects.Sprite {
         }
 
 
-
-
-
-
-
-
-        /*
-        this.patrullando = false;
-        
-        const distanciaX = this.player.x - this.x;
-        const direccionX = Math.sign(distanciaX); // -1 si el jugador está a la izquierda, 1 si está a la derecha
-
-
-        if(this.anims.currentAnim.key == 'ataqueEscarabajo' && this.anteriorAnimacion=== 1 && this.puedeAtacar){
-            this.anims.stop();
-            this.anims.play('caminarEscarabajo', false);
-            
-            this.body.setVelocityX(0); // Detener movimiento
-            this.bloqueoEscarabajo();
-            this.atacando = false;
-            console.log("puede atacar " + this.anims.currentAnim.key);
-        }else if(this.puedeAtacar){
-        
-        
-            this.anims.play('ataqueEscarabajo', true);
-            this.body.setVelocityX(0);
-            
-            this.scene.time.delayedCall(500, () => {
-                if (this.anims.currentFrame.index === 1 || this.anims.currentFrame.index === 2) {
-                    this.atacando =true;
-                }
-                this.anteriorAnimacion = this.anims.currentFrame.index ;
-
-            }, null, this);
-
-           
-            console.log(this.anteriorAnimacion);
-            console.log("no puede atacar " + this.anims.currentAnim.key);
-        }
-
-        this.flipX = (direccionX === 1);
-        this.persiguiendoJugador = true;
-
-        this.scene.tweens.killTweensOf(this);
-        this.anims.stop('caminarEscarabajo');
-        console.log("fuera " + this.anims.currentAnim.key);
-        */
     }
 
-    bloqueoEscarabajo(){
-
-        this.puedeAtacar = false; 
-
-        // Iniciar el contador de tiempo de enfriamiento
-        this.scene.time.delayedCall(this.tiempoDeEnfriamiento, () => {
-            this.enfriamientoDespuesDeAtaque = false; // Después de 3 segundos, volver a permitir el ataque
-            this.puedeAtacar = true;
-        }, null, this);
-    }
 
     reducirVida() {
         this.parpadear();
@@ -184,12 +133,10 @@ export default class Escarabajo extends Phaser.GameObjects.Sprite {
         
        
         if(this.player.herido == false){
-            if(this.atacando){
-                //this.player.paralizar();
-            }
-            //this.player.reduceHealth();
+
+            this.player.reduceHealth();
             
-            const direccionRetroceso = this.flipX ? -1 : 1; // Si el escarabajo mira hacia la izquierda, el jugador se empujará hacia la derecha y viceversa
+            const direccionRetroceso = this.flipX ? 1 : -1; // Si el escarabajo mira hacia la izquierda, el jugador se empujará hacia la derecha y viceversa
             const fuerzaRetroceso = 100; // Puedes ajustar la intensidad del retroceso según sea necesario
             this.player.body.setVelocityX(fuerzaRetroceso * direccionRetroceso);
         }

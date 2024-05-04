@@ -24,9 +24,9 @@ export default class BolaVeneno extends Phaser.GameObjects.Sprite {
     const direccionX = Math.sign(player.x - x);
 
     if (direccionX === 1) {
-        this.setScale(-1.5); // Si la dirección es a la derecha, mantén la escala como está
+        this.setScale(-1.5);
     } else {
-    this.setScale(1.5, 1.5); // Si la dirección es a la izquierda, invierte la escala X
+        this.setScale(1.5, 1.5);
     }
 
    //this.scene.physics.add.collider(player, this, this.handleCollision, null, this);
@@ -46,7 +46,7 @@ export default class BolaVeneno extends Phaser.GameObjects.Sprite {
         
     });
 
-    this.scene.time.delayedCall(4000, () => {
+    this.scene.time.delayedCall(2100, () => {
         this.destroy();
     });
 
@@ -56,5 +56,11 @@ export default class BolaVeneno extends Phaser.GameObjects.Sprite {
     update() {
 
     }
+
+    handleCollision(trampa, player) {
+        if(this.player.herido == false)
+          this.player.reduceHealth();
+    }
+
 }
 
