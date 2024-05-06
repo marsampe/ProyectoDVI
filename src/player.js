@@ -78,14 +78,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     
     }
 
-    /**
-     * El jugador ha recogido una estrella por lo que este método añade un punto y
-     * actualiza la UI con la puntuación actual.
-     */
-    point() {
-        this.score++;
-
-    }
+  
 
     /**
      * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
@@ -292,5 +285,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.arrayMomias=[];
         this.arraySerpientes=[];
         this.arrayCofres=[];
+        this.arrayEscarabajos=[];
     }
 }

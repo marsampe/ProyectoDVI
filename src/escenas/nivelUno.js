@@ -109,9 +109,7 @@ export default class nivelUno extends Phaser.Scene {
         for (let i = 0; i < plataformas.length; i++) {
             new Platform(this, this.player, this.momia,plataformas[i].x, plataformas[i].y);
         }  
-      /*  for (let i = 0; i < door.length; i++) {
-            this.puerta = new puerta(this,this.player, door[0].x, door[0].y);      }  
-*/
+     
         this.cameras.main.setBounds(15,0, 3000,800);
         this.physics.world.setBounds(0,0, 3000,800);
         this.cameras.main.setZoom(0.85);

@@ -145,7 +145,6 @@ export default class nivelDos extends Phaser.Scene {
 
     escenaFinal(){
         this.scene.start('nivelTres');
-       // this.scene.start('end');
         this.arrayCofres = [];
         this.arrayEscaleras = [];
         this.arrayMomias = [];
