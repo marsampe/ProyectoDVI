@@ -25,7 +25,7 @@ import cjtocenefa from '../../assets/tiled/cenefa.png'
  * El juego termina cuando el jugador ha recogido 10 estrellas.
  * @extends Phaser.Scene
  */
-export default class nivelDos extends Phaser.Scene {
+export default class nivelTres extends Phaser.Scene {
     /**
      * Constructor de la escena
      */
@@ -36,6 +36,7 @@ export default class nivelDos extends Phaser.Scene {
         this.arrayMomias = [];
         this.arraySerpientes = [];
         this.arrayEscarabajos = [];
+        this.nivel = 3;
     }
     preload() {
         this.load.audio('sonido3',sound3);

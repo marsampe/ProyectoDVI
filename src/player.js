@@ -1,4 +1,5 @@
 import Phaser from 'phaser'
+import BolaFuego from '../src/bolaFuego'
 
 /**
  * Clase que representa el jugador del juego. El jugador se mueve por el mundo usando los cursores.
@@ -32,6 +33,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.cursors = this.scene.input.keyboard.createCursorKeys();
         this.teclaE = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
         this.teclaQ = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
+        this.teclaD = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
         this.teclaTAB = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TAB);
         this.teclaS = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
         this.teclaSPresionada = false;
@@ -124,7 +126,19 @@ export default class Player extends Phaser.GameObjects.Sprite {
             }
         }
 
-        if(this.teclaTAB.isDown && Phaser.Input.Keyboard.JustDown(this.teclaTAB)){
+        console.log(this.scene.nivel);
+
+        if(this.teclaD.isDown && this.scene.nivel == 3){
+            this.anims.play('atacarPuno', true);
+            let bolaX = this.x - 60;
+            let bolaY = this.y + 20;
+
+            if (this.flipX) {
+                bolaX = this.x + 60;
+            }
+            this.bolaVeneno = new BolaFuego(this.scene,this ,bolaX, bolaY);
+        }
+        else if(this.teclaTAB.isDown && Phaser.Input.Keyboard.JustDown(this.teclaTAB)){
             this.scene.iu.cambiarObjeto();
         }
         else if(this.teclaQ.isDown && Phaser.Input.Keyboard.JustDown(this.teclaQ)){
