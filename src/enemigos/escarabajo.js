@@ -67,7 +67,7 @@ export default class Escarabajo extends Phaser.GameObjects.Sprite {
             this.ataqueJugador();
         }else if(!this.patrullando){
             
-            //this.scene.tweens.killTweensOf(this);
+            this.scene.tweens.killTweensOf(this);
             this.body.setVelocityX(0);
             //this.anims.play('caminarEscarabajo', false);
         }
