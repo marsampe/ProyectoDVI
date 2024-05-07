@@ -42,6 +42,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.herido = false;
         this.salud = 200;
         this.envenenado = false;
+        this.bolaVeneno;
 
         this.setDepth(2);
     }
@@ -126,19 +127,27 @@ export default class Player extends Phaser.GameObjects.Sprite {
             }
         }
 
-        console.log(this.scene.nivel);
 
-        if(this.teclaD.isDown && this.scene.nivel == 3){
-            this.anims.play('atacarPuno', true);
-            let bolaX = this.x - 60;
-            let bolaY = this.y + 20;
+        if(this.scene.nivel == 3 && this.teclaD.isDown && !this.bolaFuego){
+            
+            let bolaX = this.x - 1;
+            let bolaY = this.y + 30;
 
             if (this.flipX) {
-                bolaX = this.x + 60;
+                bolaX = this.x + 1;
             }
-            this.bolaVeneno = new BolaFuego(this.scene,this ,bolaX, bolaY);
+            this.bolaFuego = new BolaFuego(this.scene,this ,bolaX, bolaY, this.scene.arrayMomias, this.scene.arrayEscarabajos, this.arraySerpientes );
+            this.scene.time.delayedCall(2100, () => {
+                this.bolaFuego=undefined;
+            });
+            
+                 
+            this.body.setSize(100, 120);
+            this.body.setOffset(0, 97);
+
+         
         }
-        else if(this.teclaTAB.isDown && Phaser.Input.Keyboard.JustDown(this.teclaTAB)){
+        if(this.teclaTAB.isDown && Phaser.Input.Keyboard.JustDown(this.teclaTAB)){
             this.scene.iu.cambiarObjeto();
         }
         else if(this.teclaQ.isDown && Phaser.Input.Keyboard.JustDown(this.teclaQ)){

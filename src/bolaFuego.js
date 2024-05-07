@@ -1,4 +1,8 @@
 import Phaser from 'phaser'
+import Escarabajo from './enemigos/escarabajo';
+//import Momia from './enemigos/momia';
+import Serpiente from './enemigos/serpiente';
+import Momia from './enemigos/momia';
 
 export default class BolaFuego extends Phaser.GameObjects.Sprite {
 
@@ -10,7 +14,7 @@ export default class BolaFuego extends Phaser.GameObjects.Sprite {
    * @param {number} y Coordenada y
    */
     
-  constructor(scene, player, x, y) {
+  constructor(scene, player, x, y, arrayMomias, arrayEscarabajos, arraySerpientes) {
     super(scene, x, y, 'bolaFuego');
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this,true);
@@ -19,6 +23,9 @@ export default class BolaFuego extends Phaser.GameObjects.Sprite {
     this.setScale(1.5);
     this.setDepth(1);
     this.player = player;
+    this.arrayMomias = arrayMomias;
+    this.arrayEscarabajos = arrayEscarabajos;
+    this.arraySerpientes = arraySerpientes;
 
     
     const direccionX = Math.sign(player.x - x);
@@ -31,12 +38,25 @@ export default class BolaFuego extends Phaser.GameObjects.Sprite {
 
    //this.scene.physics.add.collider(player, this, this.handleCollision, null, this);
     //this.scene.physics.add.overlap(player, this, this.handleCollision, null, this);
+
+    for(let i = 0; i < this.arrayMomias.length; i++) {
+        this.scene.physics.add.overlap(this.arrayMomias[i], this,  this.handleCollision, null, this);
+    }
+/*
+    for(let i = 0; i < this.arraySerpientes.length; i++) {
+        this.scene.physics.add.overlap(this, this.arraySerpientes[i], this.arraySerpientes[i].reducirVida(), null, this);
+    }
+*/
+    for(let i = 0; i < this.arrayEscarabajos.length; i++) {
+        this.scene.physics.add.overlap(this.arrayEscarabajos[i], this, this.handleCollision, null, this);
+    }
+
     this.initialBodyX = this.body.x;
     this.scene.tweens.add({
         targets: this,
-        x: x + (direccionX * 1000), 
+        x: x + (direccionX * 600), 
         ease: 'Linear',
-        duration: 2000, // Duración de la animación en milisegundos
+        duration: 1000, // Duración de la animación en milisegundos
         repeat: 0, // Repetir indefinidamente
         yoyo: false, // No invertir la animación al final
         onUpdate: () => {
@@ -46,7 +66,7 @@ export default class BolaFuego extends Phaser.GameObjects.Sprite {
         
     });
 
-    this.scene.time.delayedCall(2100, () => {
+    this.scene.time.delayedCall(1100, () => {
         this.destroy();
     });
 
@@ -57,8 +77,23 @@ export default class BolaFuego extends Phaser.GameObjects.Sprite {
 
     }
 
-    handleCollision(trampa, player) {
-        
+    handleCollision(objetoColisionado) {
+        if (objetoColisionado instanceof Escarabajo) {
+            // Reduce la salud del escarabajo
+            objetoColisionado.reducirVida();
+            // Destruye la bola de fuego después de la colisión
+            this.setVisible(false);
+        }else if (objetoColisionado instanceof Momia) {
+            // Reduce la salud del escarabajo
+            objetoColisionado.reducirVida();
+            // Destruye la bola de fuego después de la colisión
+            this.setVisible(false);
+        }else if (objetoColisionado instanceof Serpiente) {
+            // Reduce la salud del escarabajo
+            objetoColisionado.reducirVida();
+            // Destruye la bola de fuego después de la colisión
+            this.setVisible(false);
+        }
     }
 
 }

@@ -144,6 +144,14 @@ export default class nivelTres extends Phaser.Scene {
         this.iu.updateInventory();
     }
 
+    update() {
+    
+        // Llamar al método detectarJugador de la serpiente en cada fotograma
+        for(let i = 0; i<this.arrayEscarabajos.length; i++){
+            this.arrayEscarabajos[i].update();
+        }
+    }
+
     escenaFinal(){
         this.scene.start('nivelTres');
        // this.scene.start('end');

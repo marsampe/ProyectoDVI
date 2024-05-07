@@ -27,6 +27,7 @@ export default class Escarabajo extends Phaser.GameObjects.Sprite {
         // Queremos que el jugador no se salga de los límites del mundo
         this.body.setCollideWorldBounds();
         this.scene.physics.add.overlap(player, this, this.handleCollision, null, this);
+        
 
         this.speed = 600;
         this.flipX = true;
@@ -66,7 +67,7 @@ export default class Escarabajo extends Phaser.GameObjects.Sprite {
             this.ataqueJugador();
         }else if(!this.patrullando){
             
-            this.scene.tweens.killTweensOf(this);
+            //this.scene.tweens.killTweensOf(this);
             this.body.setVelocityX(0);
             //this.anims.play('caminarEscarabajo', false);
         }
@@ -122,7 +123,7 @@ export default class Escarabajo extends Phaser.GameObjects.Sprite {
             this.setTint(0xED0004);
             i--;
             if (i === 0) {
-                this.scene.add.existing(new antidoto(this.scene, this.x - 50, this.y - 10));
+                //this.scene.tweens.killTweensOf(this);
                 this.destroy();
                 
             }
@@ -134,7 +135,7 @@ export default class Escarabajo extends Phaser.GameObjects.Sprite {
        
         if(this.player.herido == false){
 
-            this.player.reduceHealth();
+            this.player.reduceHealth(20);
             
             const direccionRetroceso = this.flipX ? 1 : -1; // Si el escarabajo mira hacia la izquierda, el jugador se empujará hacia la derecha y viceversa
             const fuerzaRetroceso = 100; // Puedes ajustar la intensidad del retroceso según sea necesario
