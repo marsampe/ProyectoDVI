@@ -28,6 +28,8 @@ import column3 from '../assets/sprites/columnNivel3.png'
 import vacio from '../assets/sprites/vacio.png'
 import barraVida from '../assets/sprites/barraVida.png'
 import barraEscudo from '../assets/sprites/barraEscudo.png'
+import medallonEscudo from '../assets/sprites/medallonEscudo.png'
+import medallonSol from '../assets/sprites/medallonSol.png'
 import sonidoPunetazo from '../sound/sound.mp3'
 import sonidoDanoEnemigo from '../sound/danyoMonstruo.mp3'
 import sonidoSerpiente from '../sound/sonidoSerpiente.mp3'
@@ -105,6 +107,8 @@ export default class Boot extends Phaser.Scene {
     this.load.image('vacio', vacio);
     this.load.image('barraVida', barraVida);
     this.load.image('barraEscudo', barraEscudo);
+    this.load.image('medallonEscudo', medallonEscudo);
+    this.load.image('medallonSol', medallonSol);
     this.load.setPath('assets/tiled/');
 
     this.load.image('patronesTilemap',cjto);

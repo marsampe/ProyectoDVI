@@ -78,7 +78,7 @@ export default class nivelDos extends Phaser.Scene {
         //escarabajos
         const plataformasRompibles=map.getObjectLayer('niveltres/capaplataformasrompiblesniveltres')['objects'];
 
-        this.scene.launch('iu');
+        this.scene.launch('iu', { nivel: 3 });
         this.iu = this.scene.get('iu');
         this.iu.scene.setVisible(true);
         
