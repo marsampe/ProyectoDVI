@@ -39,7 +39,7 @@ export default class nivelTres extends Phaser.Scene {
         this.nivel = 3;
     }
     preload() {
-        this.load.audio('sonido3',sound3);
+        //this.load.audio('sonido3',sound3);
         this.load.setPath('assets/tiled/');
 
     this.load.image('patronesTilemap',cjto);
@@ -47,15 +47,27 @@ export default class nivelTres extends Phaser.Scene {
     this.load.tilemapTiledJSON('mapaniveluno',mapa);
 
     }
+
+    update() {
+    
+        // Llamar al método detectarJugador de la serpiente en cada fotograma
+        for(let i = 0; i<this.arraySerpientes.length; i++){
+            this.arraySerpientes[i].update();
+        }
+        for(let i = 0; i<this.arrayEscarabajos.length; i++){
+            this.arrayEscarabajos[i].update();
+        }
+    }
+
     create() {
         //musica
-      this.music = this.sound.add('sonido3');
-      this.music.volume=0.2;
-      if (!this.musicEnabled){
+      //this.music = this.sound.add('sonido3');
+      //this.music.volume=0.2;
+      /*if (!this.musicEnabled){
         this.music.loop=true;
         this.music.play();
 
-      }
+      }*/
         const map= this.make.tilemap({ key: 'mapa'});
         const tilesett = map.addTilesetImage('set', 'patronesTilemap',16,16);
         const tilesetfondo = map.addTilesetImage('cenefas', 'patronesTilemapFondo',16,16);

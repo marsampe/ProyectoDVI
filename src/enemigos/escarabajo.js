@@ -51,6 +51,7 @@ export default class Escarabajo extends Phaser.GameObjects.Sprite {
         this.body.setSize(this.width-50, this.height, true);
         this.atacando=false;
 
+        this.muerto = false;
         
     }
 
@@ -59,20 +60,20 @@ export default class Escarabajo extends Phaser.GameObjects.Sprite {
 
     update() {
         
-        const distanciaX = Math.abs(this.player.x - this.x);
-        const distanciaY = Math.abs(this.player.y - this.y);
-        const rangoDeAtaque = 300;
-
-        if (distanciaX < rangoDeAtaque && distanciaY < rangoDeAtaque && this.puedeAtacar) {
-            this.ataqueJugador();
-        }else if(!this.patrullando){
-            
-            this.scene.tweens.killTweensOf(this);
-            this.body.setVelocityX(0);
-            //this.anims.play('caminarEscarabajo', false);
+        if(this.muerto == false){
+            const distanciaX = Math.abs(this.player.x - this.x);
+            const distanciaY = Math.abs(this.player.y - this.y);
+            const rangoDeAtaque = 300;
+    
+            if (distanciaX < rangoDeAtaque && distanciaY < rangoDeAtaque && this.puedeAtacar) {
+                this.ataqueJugador();
+            }else if(!this.patrullando){
+                
+                this.scene.tweens.killTweensOf(this);
+                this.body.setVelocityX(0);
+                //this.anims.play('caminarEscarabajo', false);
+            }
         }
-
-        
     }
 
     ataqueJugador() {
@@ -123,9 +124,8 @@ export default class Escarabajo extends Phaser.GameObjects.Sprite {
             this.setTint(0xED0004);
             i--;
             if (i === 0) {
-                //this.scene.tweens.killTweensOf(this);
+                this.muerto = true;
                 this.destroy();
-                
             }
         }, 400);
     }
