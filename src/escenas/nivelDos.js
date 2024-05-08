@@ -80,7 +80,7 @@ export default class nivelDos extends Phaser.Scene {
         const serpientes=map.getObjectLayer('niveldos/capaserpientesniveldos')['objects'];
                 //serpientes igual que momias
         const plataformasRompibles=map.getObjectLayer('niveldos/capaplataformasrompiblesniveldos')['objects'];
-
+       // this.puerta = new puerta(this,this.player, 800,400); 
         this.scene.launch('iu', { nivel: 2 });
         this.iu = this.scene.get('iu');
         this.iu.scene.setVisible(true);
@@ -144,7 +144,7 @@ export default class nivelDos extends Phaser.Scene {
     }
 
     escenaFinal(){
-       // this.scene.start('end');
+        this.pararMusica();
         this.arrayCofres = [];
         this.arrayEscaleras = [];
         this.arrayMomias = [];
