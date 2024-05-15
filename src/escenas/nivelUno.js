@@ -81,7 +81,7 @@ export default class nivelUno extends Phaser.Scene {
         
       // this.flecha = new flecha(this,this.player, 190, 350);
        this.puerta = new puerta(this,this.player, 2950,95);  
-       //this.puerta = new puerta(this,this.player, 800,400);  
+      // this.puerta = new puerta(this,this.player, 800,400);  
        for (let i = 0; i < flechas.length; i++) {
         new flecha(this, this.player,  flechas[i].x, flechas[i].y);  
     }

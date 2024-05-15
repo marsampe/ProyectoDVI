@@ -39,7 +39,7 @@ export default class nivelTres extends Phaser.Scene {
         this.nivel = 3;
     }
     preload() {
-        //this.load.audio('sonido3',sound3);
+        this.load.audio('sonido3',sound3);
         this.load.setPath('assets/tiled/');
 
     this.load.image('patronesTilemap',cjto);
@@ -61,13 +61,13 @@ export default class nivelTres extends Phaser.Scene {
 
     create() {
         //musica
-      //this.music = this.sound.add('sonido3');
-      //this.music.volume=0.2;
-      /*if (!this.musicEnabled){
+      this.music = this.sound.add('sonido3');
+      this.music.volume=0.2;
+      if (!this.musicEnabled){
         this.music.loop=true;
         this.music.play();
 
-      }*/
+      }
         const map= this.make.tilemap({ key: 'mapa'});
         const tilesett = map.addTilesetImage('set', 'patronesTilemap',16,16);
         const tilesetfondo = map.addTilesetImage('cenefas', 'patronesTilemapFondo',16,16);
@@ -98,7 +98,7 @@ export default class nivelTres extends Phaser.Scene {
         this.player = new Player(this, 120, 0);
         
       // this.flecha = new flecha(this,this.player, 190, 350);door[0].x door[0].y
-       this.puerta = new puerta(this,this.player,2420 ,194);  
+       this.puerta = new puerta(this,this.player,2420 ,190);  
        for (let i = 0; i < flechas.length; i++) {
         new flecha(this, this.player,  flechas[i].x, flechas[i].y);  
     }
@@ -165,6 +165,7 @@ export default class nivelTres extends Phaser.Scene {
     }
 
     escenaFinal(){
+        this.pararMusica();
         this.scene.start('nivelTres');
         this.arrayCofres = [];
         this.arrayEscaleras = [];
