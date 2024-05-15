@@ -45,7 +45,7 @@ export default class Serpiente extends Phaser.GameObjects.Sprite {
         this.tiempoDeEnfriamiento = 4000;
         this.anteriorAnimacion;
         this.puedeAtacar = true;
-        this.body.setSize(this.width-10, this.height-15, true);
+        this.body.setSize(this.width-20, this.height-25, true);
         this.atacando=false;
 
     }
