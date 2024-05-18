@@ -92,10 +92,12 @@
 
  <!--fin Opciones-->
 
-  <div class="container" style="margin: 60px;">
+  <div id="game" class="container" style="margin: 60px;" onclick="document.getElementById('sound').pause()">
        <script src="./src/game.js" type="module"></script>
 </div>
-
+<audio id="sound" src="sound/soundIntro.mp3" autoplay>
+  Tu navegador no soporta el elemento de audio.
+</audio>
 </body>
 </html>
 
@@ -108,11 +110,13 @@
     document.getElementById("repo").style.display = "none";
 }
 function showGamePlay() {
+  document.getElementById('sound').pause();
     var descripcion = document.getElementById("gameplay");
     if (descripcion.style.display === "none") {
         descripcion.style.display = "block";
    } else {
         descripcion.style.display = "none";
+        document.getElementById('sound').play();
    }
 }
 function showRepo() {

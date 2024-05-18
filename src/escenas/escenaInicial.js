@@ -21,14 +21,15 @@ export default class escenaInicial extends Phaser.Scene {
       
     create() {
       this.scene.bringToTop();
+      
       //musica
-      this.music = this.sound.add('introSound');
+      /*this.music = this.sound.add('introSound');
       this.music.volume=0.09;
       if (!this.musicEnabled){
         this.music.loop=true;
         this.music.play();
 
-      }
+      }*/
 
      //fondo
       this.background = this.add.image(0, 0, 'background');
@@ -43,6 +44,7 @@ export default class escenaInicial extends Phaser.Scene {
       this.startButton.setScale(6, 3.5);
       this.add.text(445, 270, 'Start Game', { fontFamily: "fontFamily", fontSize: '26px', color: '#ffffff' });
       this.startButton.on('pointerdown', () => {
+        document.getElementById('sound').pause();
         this.registry.set('nextScene', 'nivelUno');
         this.scene.start('boot');
         this.music.stop();
