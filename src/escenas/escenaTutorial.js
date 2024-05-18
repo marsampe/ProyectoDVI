@@ -68,7 +68,6 @@ export default class escenaTutorial extends Phaser.Scene {
         this.iu.scene.setVisible(true);
         
         this.player = new Player(this, 600, 400);
-        this.puerta = new puerta(this,this.player, 400, 600); 
         this.puerta = new puerta(this,this.player, door[0].x, door[0].y);  
         for (let i = 0; i < plataformasRompibles.length; i++) {
             new plataformaRompible(this, this.player,  plataformasRompibles[i].x, plataformasRompibles[i].y);  
