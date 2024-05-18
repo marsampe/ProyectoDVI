@@ -32,20 +32,30 @@ export default class IU extends Phaser.Scene{
          this.barVida.y = 8; // Posición Y fija
          this.saludVida = 180;
 
-         if(this.nivel == 2){
+         if(this.nivel >= 2){
             //crear barra de escudo
          this.add.sprite(350, 25, 'barraEscudo').setScale(3).setDepth(1);
          this.barEscudo = new Phaser.GameObjects.Graphics(this);
          this.barEscudo.x = 135; // Posición X fija
          this.barEscudo.y = 8; // Posición Y fija
          this.saludEscudo = 180;
+         this.add.sprite(300, 90, 'medallonEscudo').setScale(1.5).setDepth(1);
+
+
+         }
+
+         if(this.nivel == 3){
+            this.add.sprite(370, 90, 'medallonSol').setScale(1.5).setDepth(1);
+
          }
 
          this.draw();
          this.add.existing(this.barVida)
 
-         if(this.nivel == 2)
+         if(this.nivel >= 2){
             this.add.existing(this.barEscudo)
+         }
+            
     }
 
     iniciarInventario(){
@@ -208,7 +218,7 @@ export default class IU extends Phaser.Scene{
 
         this.barVida.fillRect(this.barVida.x + 2, this.barVida.y + 2, this.saludVida, 17);
 
-        if(this.nivel == 2){
+        if(this.nivel >= 2){
             this.barEscudo.clear(); 
             if(this.saludEscudo > 0){
                 this.barEscudo.fillStyle(0x0000FF);

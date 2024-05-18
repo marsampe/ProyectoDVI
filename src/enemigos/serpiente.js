@@ -45,7 +45,7 @@ export default class Serpiente extends Phaser.GameObjects.Sprite {
         this.tiempoDeEnfriamiento = 4000;
         this.anteriorAnimacion;
         this.puedeAtacar = true;
-        this.body.setSize(this.width-10, this.height-15, true);
+        this.body.setSize(this.width-20, this.height-25, true);
         this.atacando=false;
 
     }
@@ -57,8 +57,9 @@ export default class Serpiente extends Phaser.GameObjects.Sprite {
         const distanciaX = Math.abs(this.player.x - this.x);
         const distanciaY = Math.abs(this.player.y - this.y);
         const rangoDePersecucion = 200;
+        const rangoDePersecucionY = 50;
 
-        if (distanciaX < rangoDePersecucion && distanciaY < rangoDePersecucion) {
+        if (distanciaX < rangoDePersecucion && distanciaY < rangoDePersecucionY) {
             this.persigueJugador();
         }else if(!this.patrullando){
             
@@ -143,8 +144,7 @@ export default class Serpiente extends Phaser.GameObjects.Sprite {
 
     reducirVida() {
         this.sonidoEnemigo = this.scene.sound.add('danoserpiente');
-			
-        this.sonidoEnemigo.play();  
+        this.sonidoEnemigo.play();   
         this.parpadear();
     }
 

@@ -42,10 +42,18 @@ export default class nivelDos extends Phaser.Scene {
 
     this.load.image('patronesTilemap',cjto);
     this.load.image('patronesTilemapFondo',cjtocenefa);
-  
-
 
     }
+
+    update() {
+    
+        // Llamar al método detectarJugador de la serpiente en cada fotograma
+        for(let i = 0; i<this.arraySerpientes.length; i++){
+            this.arraySerpientes[i].update();
+        }
+    }
+
+
     create() {
         //musica
       this.music = this.sound.add('sonido2');
@@ -72,7 +80,7 @@ export default class nivelDos extends Phaser.Scene {
         const serpientes=map.getObjectLayer('niveldos/capaserpientesniveldos')['objects'];
                 //serpientes igual que momias
         const plataformasRompibles=map.getObjectLayer('niveldos/capaplataformasrompiblesniveldos')['objects'];
-
+       // this.puerta = new puerta(this,this.player, 800,400); 
         this.scene.launch('iu', { nivel: 2 });
         this.iu = this.scene.get('iu');
         this.iu.scene.setVisible(true);
@@ -109,7 +117,7 @@ export default class nivelDos extends Phaser.Scene {
             new trampaEstacas(this, this.player,  estacas[i].x, estacas[i].y);
         }
         for (let i = 0; i < plataformas.length; i++) {
-            new Platform(this, this.player, this.momia,plataformas[i].x, plataformas[i].y);
+            new Platform(this, this.player, this.momia, plataformas[i].x, plataformas[i].y);
         }  
 
         this.cameras.main.setBounds(15,0, 3000,800);
@@ -136,7 +144,7 @@ export default class nivelDos extends Phaser.Scene {
     }
 
     escenaFinal(){
-       // this.scene.start('end');
+        this.pararMusica();
         this.arrayCofres = [];
         this.arrayEscaleras = [];
         this.arrayMomias = [];

@@ -1,4 +1,5 @@
 import Phaser from 'phaser'
+import BolaFuego from '../src/bolaFuego'
 
 /**
  * Clase que representa el jugador del juego. El jugador se mueve por el mundo usando los cursores.
@@ -32,6 +33,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.cursors = this.scene.input.keyboard.createCursorKeys();
         this.teclaE = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
         this.teclaQ = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
+        this.teclaD = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
         this.teclaTAB = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TAB);
         this.teclaS = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
         this.teclaSPresionada = false;
@@ -40,6 +42,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.herido = false;
         this.salud = 200;
         this.envenenado = false;
+        this.bolaVeneno;
 
         this.setDepth(2);
     }
@@ -78,14 +81,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     
     }
 
-    /**
-     * El jugador ha recogido una estrella por lo que este método añade un punto y
-     * actualiza la UI con la puntuación actual.
-     */
-    point() {
-        this.score++;
-
-    }
+  
 
     /**
      * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
@@ -124,6 +120,26 @@ export default class Player extends Phaser.GameObjects.Sprite {
             }
         }
 
+
+        if(this.scene.nivel == 3 && this.teclaD.isDown && !this.bolaFuego){
+            
+            let bolaX = this.x - 1;
+            let bolaY = this.y + 30;
+
+            if (this.flipX) {
+                bolaX = this.x + 1;
+            }
+            this.bolaFuego = new BolaFuego(this.scene,this ,bolaX, bolaY, this.scene.arrayMomias, this.scene.arrayEscarabajos, this.arraySerpientes );
+            this.scene.time.delayedCall(2100, () => {
+                this.bolaFuego=undefined;
+            });
+            
+                 
+            this.body.setSize(100, 120);
+            this.body.setOffset(0, 97);
+
+         
+        }
         if(this.teclaTAB.isDown && Phaser.Input.Keyboard.JustDown(this.teclaTAB)){
             this.scene.iu.cambiarObjeto();
         }
@@ -292,5 +308,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.arrayMomias=[];
         this.arraySerpientes=[];
         this.arrayCofres=[];
+        this.arrayEscarabajos=[];
     }
 }

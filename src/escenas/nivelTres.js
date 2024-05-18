@@ -25,7 +25,7 @@ import cjtocenefa from '../../assets/tiled/cenefa.png'
  * El juego termina cuando el jugador ha recogido 10 estrellas.
  * @extends Phaser.Scene
  */
-export default class nivelDos extends Phaser.Scene {
+export default class nivelTres extends Phaser.Scene {
     /**
      * Constructor de la escena
      */
@@ -36,6 +36,7 @@ export default class nivelDos extends Phaser.Scene {
         this.arrayMomias = [];
         this.arraySerpientes = [];
         this.arrayEscarabajos = [];
+        this.nivel = 3;
     }
     preload() {
         this.load.audio('sonido3',sound3);
@@ -46,6 +47,18 @@ export default class nivelDos extends Phaser.Scene {
     this.load.tilemapTiledJSON('mapaniveluno',mapa);
 
     }
+
+    update() {
+    
+        // Llamar al método detectarJugador de la serpiente en cada fotograma
+        for(let i = 0; i<this.arraySerpientes.length; i++){
+            this.arraySerpientes[i].update();
+        }
+        for(let i = 0; i<this.arrayEscarabajos.length; i++){
+            this.arrayEscarabajos[i].update();
+        }
+    }
+
     create() {
         //musica
       this.music = this.sound.add('sonido3');
@@ -78,14 +91,14 @@ export default class nivelDos extends Phaser.Scene {
         //escarabajos
         const plataformasRompibles=map.getObjectLayer('niveltres/capaplataformasrompiblesniveltres')['objects'];
 
-        this.scene.launch('iu');
+        this.scene.launch('iu', { nivel: 3 });
         this.iu = this.scene.get('iu');
         this.iu.scene.setVisible(true);
         
         this.player = new Player(this, 120, 0);
         
       // this.flecha = new flecha(this,this.player, 190, 350);door[0].x door[0].y
-       this.puerta = new puerta(this,this.player,2420 ,194);  
+       this.puerta = new puerta(this,this.player,2420 ,190);  
        for (let i = 0; i < flechas.length; i++) {
         new flecha(this, this.player,  flechas[i].x, flechas[i].y);  
     }
@@ -143,9 +156,17 @@ export default class nivelDos extends Phaser.Scene {
         this.iu.updateInventory();
     }
 
+    update() {
+    
+        // Llamar al método detectarJugador de la serpiente en cada fotograma
+        for(let i = 0; i<this.arrayEscarabajos.length; i++){
+            this.arrayEscarabajos[i].update();
+        }
+    }
+
     escenaFinal(){
+        this.pararMusica();
         this.scene.start('nivelTres');
-       // this.scene.start('end');
         this.arrayCofres = [];
         this.arrayEscaleras = [];
         this.arrayMomias = [];

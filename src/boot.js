@@ -19,6 +19,7 @@ import cofre from '../assets/sprites/cofre.png'
 import antorcha from '../assets/sprites/antorcha.png'
 import trampaEstacas from '../assets/sprites/trampaEstacas.png'
 import trampaLateral from '../assets/sprites/trampaLateral.png'
+import bolaFuego from '../assets/sprites/bolaFuego.png'
 import plataformaRompible from '../assets/sprites/plataformaRompible.png'
 import puerta from '../assets/sprites/puerta.png'
 import platform2 from '../assets/sprites/platformNivel2.png'
@@ -28,6 +29,8 @@ import column3 from '../assets/sprites/columnNivel3.png'
 import vacio from '../assets/sprites/vacio.png'
 import barraVida from '../assets/sprites/barraVida.png'
 import barraEscudo from '../assets/sprites/barraEscudo.png'
+import medallonEscudo from '../assets/sprites/medallonEscudo.png'
+import medallonSol from '../assets/sprites/medallonSol.png'
 import sonidoPunetazo from '../sound/sound.mp3'
 import sonidoDanoEnemigo from '../sound/danyoMonstruo.mp3'
 import sonidoSerpiente from '../sound/sonidoSerpiente.mp3'
@@ -98,6 +101,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('trampaEstacas', trampaEstacas);
     this.load.spritesheet('cofre', cofre, { frameWidth: 76, frameHeight: 74});
     this.load.image('trampaLateral', trampaLateral);
+    this.load.image('bolaFuego',bolaFuego);
     this.load.spritesheet('plataformaRompible', plataformaRompible, { frameWidth: 32, frameHeight: 22});
     this.load.image('antidoto', antidoto);
     this.load.image('flecha', flecha);
@@ -105,6 +109,8 @@ export default class Boot extends Phaser.Scene {
     this.load.image('vacio', vacio);
     this.load.image('barraVida', barraVida);
     this.load.image('barraEscudo', barraEscudo);
+    this.load.image('medallonEscudo', medallonEscudo);
+    this.load.image('medallonSol', medallonSol);
     this.load.setPath('assets/tiled/');
 
     this.load.image('patronesTilemap',cjto);
