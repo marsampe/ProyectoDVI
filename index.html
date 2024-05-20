@@ -33,7 +33,7 @@
           <a class="nav-link boton-menu-sup mx-3" href="#gameplay" onclick="showGamePlay()">GamePlay</a>
         </li>
         <li id="button5" class="nav-item active">
-          <a class="nav-link boton-menu-sup mx-3" href="https://github.com/marsampe/ProyectoDVI" onclick="showRepo()">Github</a>
+          <a class="nav-link boton-menu-sup mx-3" href="https://github.com/marsampe/ProyectoDVI" >Github</a>
         </li>
       </ul>
     </div>
@@ -99,14 +99,14 @@
   Tu navegador no soporta el elemento de audio.
 </audio>
 
-
+</body>
 <script>
   window.onload = function() {
     document.getElementById("gameplay").style.display = "none";
     document.getElementById("descripcion").style.display = "none";
     document.getElementById("comojugar").style.display = "none";
-    document.getElementById("aboutus").style.display = "none";
-    document.getElementById("repo").style.display = "none";
+    document.getElementById("aboutus").style.display = "none"
+   
 }
 function showGamePlay() {
   document.getElementById('sound').pause();
@@ -151,5 +151,5 @@ function showAboutUs() {
     }
 }
 </script>
-</body>
+
 </html>
