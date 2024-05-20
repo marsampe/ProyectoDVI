@@ -101,13 +101,7 @@
 
 </body>
 <script>
-  window.onload = function() {
-    document.getElementById("gameplay").style.display = "none";
-    document.getElementById("descripcion").style.display = "none";
-    document.getElementById("comojugar").style.display = "none";
-    document.getElementById("aboutus").style.display = "none"
-   
-}
+  
 function showGamePlay() {
   document.getElementById('sound').pause();
     var descripcion = document.getElementById("gameplay");
@@ -116,14 +110,6 @@ function showGamePlay() {
    } else {
         descripcion.style.display = "none";
         document.getElementById('sound').play();
-   }
-}
-function showRepo() {
-    var descripcion = document.getElementById("repo");
-    if (descripcion.style.display === "none") {
-        descripcion.style.display = "block";
-   } else {
-        descripcion.style.display = "none";
    }
 }
 function showDescripcion() {
@@ -149,6 +135,13 @@ function showAboutUs() {
     } else {
       aboutUs.style.display = "none";
     }
+}
+window.onload = function() {
+    document.getElementById("gameplay").style.display = "none";
+    document.getElementById("descripcion").style.display = "none";
+    document.getElementById("comojugar").style.display = "none";
+    document.getElementById("aboutus").style.display = "none"
+   
 }
 </script>
 
