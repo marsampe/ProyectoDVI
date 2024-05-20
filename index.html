@@ -33,7 +33,7 @@
           <a class="nav-link boton-menu-sup mx-3" href="#gameplay" onclick="showGamePlay()">GamePlay</a>
         </li>
         <li id="button5" class="nav-item active">
-          <a class="nav-link boton-menu-sup mx-3" href="https://github.com/marsampe/ProyectoDVI" >Github</a>
+          <a class="nav-link boton-menu-sup mx-3" href="https://github.com/marsampe/ProyectoDVI" onclick="showRepo()">Github</a>
         </li>
       </ul>
     </div>
@@ -50,7 +50,7 @@
     <div class="row justify-content-center">
         <div class="col-10">
         
-  <div class="card m-3" style="background-color: rgb(238, 213, 144);" id="descripcion" style="display: block;">
+  <div class="card m-3" style="background-color: rgb(238, 213, 144);" id="descripcion" style="display: none;">
     <div class="card-body">
         <h2 class="card-title"style="font-size: 30px;">Descripción del Juego</h2>
         <p style="font-size: 20px; font-family: Georgia;text-align:justify; margin: 0 auto;";> 
@@ -62,7 +62,7 @@
         </p>
     </div>
   </div>
-    <div class="card m-3"style="background-color: rgb(238, 213, 144);" id="comojugar" style="display: block;">
+    <div class="card m-3"style="background-color: rgb(238, 213, 144);" id="comojugar" style="display: none;">
       <div class="card-body">
       <h2 class="card-title"style="font-size: 30px;">Como jugar</h2>
       <p style="font-size: 20px; font-family: Georgia;text-align:justify; margin: 0 auto;">
@@ -71,14 +71,14 @@
         ¡Domina las habilidades fundamentales y prepárate para la aventura que te espera!</p>
       </div>
   </div>
-  <div class="card m-3"style="background-color: rgb(238, 213, 144);" id="aboutus" style="display: block;">
+  <div class="card m-3"style="background-color: rgb(238, 213, 144);" id="aboutus" style="display: none;">
     <div class="card-body">
     <h2 class="card-title"style="font-size: 30px;">Sobre nosotros</h2>
     <p style="font-size: 20px; font-family: Georgia;text-align:justify; margin: 0 auto;">
       Somos GIM Studios, un grupo de estudiantes de Ingenieria de Software formado por Marta Sampedro, Gonzalo Ramos e Isabel Zamarrón.</p>
     </div>
   </div>
-  <div class="card m-3"style="background-color: rgb(238, 213, 144);" id="gameplay" style="display: block;">
+  <div class="card m-3"style="background-color: rgb(238, 213, 144);" id="gameplay" style="display: none;">
     <div class="card-body">
     <h2 class="card-title"style="font-size: 30px;">Gameplay</h2>
     <video width="850" height="450" controls>
@@ -99,20 +99,33 @@
   Tu navegador no soporta el elemento de audio.
 </audio>
 
-</body>
+
 <script>
-  
+  window.onload = function() {
+    document.getElementById("gameplay").style.display = "none";
+    document.getElementById("descripcion").style.display = "none";
+    document.getElementById("comojugar").style.display = "none";
+    document.getElementById("aboutus").style.display = "none";
+    document.getElementById("repo").style.display = "none"
+}
 function showGamePlay() {
   document.getElementById('sound').pause();
     var descripcion = document.getElementById("gameplay");
     if (descripcion.style.display === "none") {
         descripcion.style.display = "block";
    } else {
-        descripcion.style.display = "block";
+        descripcion.style.display = "none";
         document.getElementById('sound').play();
    }
 }
-
+function showRepo() {
+    var descripcion = document.getElementById("repo");
+    if (descripcion.style.display === "none") {
+        descripcion.style.display = "block";
+   } else {
+        descripcion.style.display = "none";
+   }
+}
 function showDescripcion() {
     var descripcion = document.getElementById("descripcion");
     if (descripcion.style.display === "none") {
@@ -137,13 +150,6 @@ function showAboutUs() {
       aboutUs.style.display = "none";
     }
 }
-/*window.onload = function() {
-    document.getElementById("gameplay").style.display = "none";
-    document.getElementById("descripcion").style.display = "none";
-    document.getElementById("comojugar").style.display = "none";
-    document.getElementById("aboutus").style.display = "none"
-   
-}*/
 </script>
-
+</body>
 </html>
