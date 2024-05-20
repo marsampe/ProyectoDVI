@@ -54,7 +54,7 @@
     <div class="card-body">
         <h2 class="card-title"style="font-size: 30px;">Descripción del Juego</h2>
         <p style="font-size: 20px; font-family: Georgia;text-align:justify; margin: 0 auto;";> 
-          Laura una joven estudiante de arqueología ha sido encargada de investigar una sala recién descubierta en una de las pirámides de Guiza. <br>
+          Laura una joven estudiante de arqueología le han encargado investigar una sala recién descubierta en una de las pirámides de Guiza. <br>
           Sin embargo, su exploración toma un giro inesperado cuando cae en una trampa al pisar una baldosa suelta, quedando atrapada en las profundidades de la antigua estructura.<br>
           Se enfrentará a un grán desafío mientras explora las misteriosas salas. <br>
           Laura deberá esquivar trampas mortales, enfrentarse a enemigos ancestrales y desentrañar antiguos misterios para encontrar una salida.<br>
@@ -105,8 +105,7 @@
     document.getElementById("gameplay").style.display = "none";
     document.getElementById("descripcion").style.display = "none";
     document.getElementById("comojugar").style.display = "none";
-    document.getElementById("aboutus").style.display = "none";
-    document.getElementById("repo").style.display = "none"
+    document.getElementById("aboutus").style.display = "none"
 }
 function showGamePlay() {
   document.getElementById('sound').pause();
@@ -118,14 +117,7 @@ function showGamePlay() {
         document.getElementById('sound').play();
    }
 }
-function showRepo() {
-    var descripcion = document.getElementById("repo");
-    if (descripcion.style.display === "none") {
-        descripcion.style.display = "block";
-   } else {
-        descripcion.style.display = "none";
-   }
-}
+
 function showDescripcion() {
     var descripcion = document.getElementById("descripcion");
     if (descripcion.style.display === "none") {
