@@ -152,7 +152,7 @@ Los enemigos son más difíciles de superar de forma progresiva. Todos ellos qui
 |Medallón del sol|Indica que el jugador ha superado el nivel 2 y que ahora posee el poder de lanzar bolas de fuego|![medallonSol](https://github.com/marsampe/ProyectoDVI/assets/99255110/76918881-13e7-43d7-b537-3222ee7b50fe)|
 
 
-### 2.3.2 Objetos inventario
+### 2.3.3 Objetos inventario
     
 Son objetos que el personaje podrá obtener ya sea en un cofre o al matar a un enemigo. A continuación se detallan sus características principales:
 
@@ -163,7 +163,7 @@ Son objetos que el personaje podrá obtener ya sea en un cofre o al matar a un e
 |Antorcha|Herramienta que el personaje utiliza como arma y mientras ataca no le pueden hacer daño. Mata de un golpe|![antorcha](https://github.com/marsampe/ProyectoDVI/assets/99255110/30e9c5a1-7f2a-4405-8111-f0fc1a81e120)|
 
 
-### 2.3.3 Trampas
+### 2.3.4 Trampas
     
 
 Son objetos que se encuentran estáticos en las distintas escenas y que provocan daño en la vida del personaje. Pueden ser de varios tipos:
@@ -193,52 +193,44 @@ A continuación se mostraran las principales mecánicas del juego con una breve 
 |Usar inventario|El jugador podrá usar cualquier objeto que tenga en el inventario|-Tecla Q: Usar objeto <br> -Tecla Tab: Mover el marcador del inventario|Desde el principio del juego|
 |Abrir cofre|El jugador podrá abrir un cofre al estar en contacto con este y obtener objeto|-Tecla E|Desde el principio del juego|
 
-1.  Mundo del juego
+### 2.4.1 Mundo del juego
 
 Nuestro juego se conforma de 3 niveles de plataformas más uno de tutorial. El jugador deberá sortear los diferentes retos que le plantean cada nivel. Para poder finalizarlos con éxito el jugador tendrá que encontrar la puerta del nivel antes de morir. En cada escenario se usará una cámara 2D que permitirá hacer zoom y seguir al jugador a través del nivel.
 
-1.  Nivel tutorial
+#### Nivel tutorial
 
 En este nivel se enseñan las principales mecánicas del juego, además de algunos elementos como las trampas y enemigos.
     
-3.  Nivel 1
+#### Nivel 1
 
 En el primer nivel podemos encontrar como enemigos a las momias. Contará con todas las trampas y también habrá cofres para que el jugador pueda conseguir objetos. 
 
 ![image](https://github.com/marsampe/ProyectoDVI/assets/99255110/99bd6bbc-c130-4f2f-85ba-7617fdf53e84)
 
     
-5.  Nivel 2
+#### Nivel 2
 
 Este nivel cuenta con todos los elementos del anterior, además que se añade como enemigo la serpiente, la cual dará como recompensa un antídoto para hacer frente a futuras serpientes. El jugador como recompensa por haber superado el nivel 1 conseguirá una barra de escudo que le permitirá soportar más daño.
 
 ![image](https://github.com/marsampe/ProyectoDVI/assets/99255110/9d1e1973-a99e-4d2b-8821-24794b6df99d)
 
-7.  Nivel 3
+#### Nivel 3
 
 Este nivel cuenta con todo los elementos del anterior y se añade como enemigo el escarabajo, el cual realiza ataques a distancia. Como recompensa por haber superado el nivel 2 el jugador obtendrá el poder de lanzar bolas de fuego, que también le permitirá atacar a los enemigos a distancia.
 
 ![image](https://github.com/marsampe/ProyectoDVI/assets/99255110/f7f22f75-4c10-4ef3-a2f1-009b664fc999)
 
-    
-9.  Otras escenas
+#### Otras escenas
     
 
-Menú principal: se muestra al usuario dos botones, uno para realizar el nivel tutorial (botón “tutorial”) y otro para comenzar el juego (botón “start”). Se muestra nada más acceder a la página web y una vez se finaliza el juego.
+*Menú principal*: se muestra al usuario dos botones, uno para realizar el nivel tutorial (botón “tutorial”) y otro para comenzar el juego (botón “start”). Se muestra nada más acceder a la página web y una vez se finaliza el juego.
 
 ![image](https://github.com/marsampe/ProyectoDVI/assets/99255110/689ccb7c-ffe8-4a94-b1de-ea6455944fc9)
 
-Escena fin de partida: una vez se finalizan los niveles se muestra una pantalla y despues pulsando la tecla enter se vuelve al menu principal.
+*Escena fin de partida*: una vez se finalizan los niveles se muestra una pantalla y despues pulsando la tecla enter se vuelve al menu principal.
 
 ![image](https://github.com/marsampe/ProyectoDVI/assets/99255110/328dba63-e175-4f17-934d-81b5092512df)
 
-### **Personaje**
-
-**Los jugadores van a ponerse en la piel de un estudiante de arqueología de la complutense llamado Laura Cruz**
-
-**El personaje va a poder desplazarse por el mapa pudiendo ir hacia la derecha, izquierda, saltar y agacharse en un plano 2D. En el mapa habrá objetos como escaleras o cuerdas para subir y bajar.**
-
-**Al principio del nivel el personaje podrá atacar a sus enemigos golpeándolos y según vaya consiguiendo objetos y poderes podrá usarlos contra ellos.**
 
 
 
@@ -246,28 +238,6 @@ Escena fin de partida: una vez se finalizan los niveles se muestra una pantalla 
 
 
 
-### **Niveles**
-
-**Los niveles sucederán en el interior de una piramide. Cada nivel consinsitirá en un mapa en todas las direcciones con plataformas, trampas y enemigos. El mapa se irá inundando progresivamente con un líquido nocivo de abajo a arriba, haciendo que el jugador tenga un tiempo límite para superar el nivel antes de que le mate. Cada vez que esté en contacto con el líquido le hará un daño por cada segundo y lo ralentizará. Al llegar a la salida del nivel, el líquido dejará de inundar el mapa para poder enfrentarse al jefe.**
-
-**Los niveles contarán con cofres de dificil acceso que te proporcionarán objetos que puedes guardar en la mochila y utilizarlos a lo largo de ese nivel.**
-
-**Para superar el nivel deberá llegar a la salida y enfrentarse al jefe. Al matar al jefe conseguirá el medallón y un nuevo poder que usará en el siguiente nivel.**
-
-**![](imagenes\nivel1.jpeg)**
 
 
 
-### **Inspiracion**
-
-**https://www.youtube.com/watch?v=Uc0tHRkB-Po**
-
-### **Posibles niveles**
-
-**Nivel 1: se enfrenta a Horus, en caso de vencerle obtiene el medallon de la protección.**
-
-**Nivel 2: se enfrenta a Ra, en caso de vencerle obtiene el medallon de la energia del sol**
-
-**Nivel 3: nivel final, para salir de la piramide hay que superar al dios Osiris (dios de la vida y de la muerte)**
-
- 
