@@ -1,60 +1,3 @@
-
-<script>
-  window.onload = function() {
-    document.getElementById("gameplay").style.display = "none";
-    document.getElementById("descripcion").style.display = "none";
-    document.getElementById("comojugar").style.display = "none";
-    document.getElementById("aboutus").style.display = "none";
-    document.getElementById("repo").style.display = "none";
-}
-</script>
-<script>
-function showGamePlay() {
-  document.getElementById('sound').pause();
-    var descripcion = document.getElementById("gameplay");
-    if (descripcion.style.display === "none") {
-        descripcion.style.display = "block";
-   } else {
-        descripcion.style.display = "none";
-        document.getElementById('sound').play();
-   }
-}
-function showRepo() {
-    var descripcion = document.getElementById("repo");
-    if (descripcion.style.display === "none") {
-        descripcion.style.display = "block";
-   } else {
-        descripcion.style.display = "none";
-   }
-}
-function showDescripcion() {
-    var descripcion = document.getElementById("descripcion");
-    if (descripcion.style.display === "none") {
-        descripcion.style.display = "block";
-   } else {
-        descripcion.style.display = "none";
-   }
-}
-function showComoJugar() {
-    var jugar = document.getElementById("comojugar");
-    if (jugar.style.display === "none") {
-      jugar.style.display = "block";
-    } else {
-      jugar.style.display = "none";
-    }
-}
-function showAboutUs() {
-    var aboutUs = document.getElementById("aboutus");
-    if (aboutUs.style.display === "none") {
-      aboutUs.style.display = "block";
-    } else {
-      aboutUs.style.display = "none";
-    }
-}
-</script>
-
-
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -155,5 +98,58 @@ function showAboutUs() {
 <audio id="sound" src="sound/soundIntro.mp3" autoplay>
   Tu navegador no soporta el elemento de audio.
 </audio>
+
+
+<script>
+  window.onload = function() {
+    document.getElementById("gameplay").style.display = "none";
+    document.getElementById("descripcion").style.display = "none";
+    document.getElementById("comojugar").style.display = "none";
+    document.getElementById("aboutus").style.display = "none";
+    document.getElementById("repo").style.display = "none";
+}
+function showGamePlay() {
+  document.getElementById('sound').pause();
+    var descripcion = document.getElementById("gameplay");
+    if (descripcion.style.display === "none") {
+        descripcion.style.display = "block";
+   } else {
+        descripcion.style.display = "none";
+        document.getElementById('sound').play();
+   }
+}
+function showRepo() {
+    var descripcion = document.getElementById("repo");
+    if (descripcion.style.display === "none") {
+        descripcion.style.display = "block";
+   } else {
+        descripcion.style.display = "none";
+   }
+}
+function showDescripcion() {
+    var descripcion = document.getElementById("descripcion");
+    if (descripcion.style.display === "none") {
+        descripcion.style.display = "block";
+   } else {
+        descripcion.style.display = "none";
+   }
+}
+function showComoJugar() {
+    var jugar = document.getElementById("comojugar");
+    if (jugar.style.display === "none") {
+      jugar.style.display = "block";
+    } else {
+      jugar.style.display = "none";
+    }
+}
+function showAboutUs() {
+    var aboutUs = document.getElementById("aboutus");
+    if (aboutUs.style.display === "none") {
+      aboutUs.style.display = "block";
+    } else {
+      aboutUs.style.display = "none";
+    }
+}
+</script>
 </body>
 </html>
